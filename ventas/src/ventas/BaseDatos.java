@@ -6,38 +6,66 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 public class BaseDatos {
-    final String host = "localhost:3306";
-    final String baseDatos = "ventas";
-    final String usuario = "root";
-    final String clave = "1234";
+
+    static final String HOST = "localhost:3306";
+    static final String BASE_DATOS = "ventas";
+    static final String USUARIO = "root";
+    static final String CLAVE = "1234";
     static Connection conexion = null;
     static Statement sentencia;
 
-    public BaseDatos() {
-        this.hayConexion();
+    String tabla;
+
+    public BaseDatos(String tabla) {
+        this.tabla = tabla;
+        crearConexion();
     }
 
-    public boolean hayConexion() {
-        if (conexion != null) return true;
-        String url = "jdbc:mysql://" + host + "/" + baseDatos + "?characterEncoding=utf8";
+    public static boolean crearConexion() {
+        if (conexion != null) {
+            return true;
+        }
+        String url = "jdbc:mysql://" + HOST + "/" + BASE_DATOS + "?characterEncoding=utf8";
         try {
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-            conexion = DriverManager.getConnection(url, usuario, clave);
-        } catch (Exception e) {
+            conexion = DriverManager.getConnection(url, USUARIO, CLAVE);
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error de conexión" + e.getMessage());
             return false;
         }
         return true;
     }
 
-    public boolean borrarRegistro(String tabla, String condicion) {
+    public void cerrarConexion() {
+        if (conexion == null) {
+            return;
+        }
+        try {
+            conexion.close();
+        } catch (SQLException e) {
+        }
+    }
+
+    public Connection getConexion() {
+        return conexion;
+    }
+
+    public boolean borrarRegistro(String condicion) {
         try {
             Statement s = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
-            JOptionPane optionPane = new JOptionPane();
             Object[] opciones = {"Si", "No"};
 
-            int ret = optionPane.showOptionDialog(null, "Esta seguro de ELIMINAR el REGISTRO? ", "Pregunta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
+            int ret = JOptionPane.showOptionDialog(
+                    null,
+                    "Esta seguro de ELIMINAR el REGISTRO? ",
+                    "Pregunta",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    opciones,
+                    opciones[0]
+            );
             if (ret == JOptionPane.YES_OPTION) {
                 s.executeUpdate("delete from " + tabla + " where " + condicion);
             }
@@ -54,7 +82,7 @@ public class BaseDatos {
         return true;
     }
 
-    public boolean borrarRegistroSinPreguntar(String tabla, String condicion) {
+    public boolean borrarRegistroSinPreguntar(String condicion) {
         try {
             Statement s = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
@@ -67,12 +95,12 @@ public class BaseDatos {
         return true;
     }
 
-    public boolean insertarRegistro(String tabla, String campos, String valores) {
+    public boolean insertarRegistro(String campos, String valores) {
         try {
             Statement s = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
             s.executeUpdate("insert into " + tabla + " (" + campos + ") values (" + valores + ")");
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Ocurrio Un error al insertar \n" + e.getMessage(), "Atencion",
                     JOptionPane.INFORMATION_MESSAGE);
             return false;
@@ -80,12 +108,12 @@ public class BaseDatos {
         return true;
     }
 
-    public boolean insertarRegistro(String tabla, String valores) {
+    public boolean insertarRegistro(String valores) {
         try {
             Statement s = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
             s.executeUpdate("insert into " + tabla + " values (" + valores + ")");
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Ocurrio Un error al insertar \n" + e.getMessage(), "Atencion",
                     JOptionPane.INFORMATION_MESSAGE);
             return false;
@@ -93,12 +121,12 @@ public class BaseDatos {
         return true;
     }
 
-    public boolean actualizarRegistro(String tabla, String campos, String criterio) {
+    public boolean actualizarRegistro(String campos, String criterio) {
         try {
             Statement s = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
             s.executeUpdate("update " + tabla + " set " + campos + " where " + criterio);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Ocurrio Un error\n" + e.getMessage(), "Atencion",
                     JOptionPane.INFORMATION_MESSAGE);
             return false;
@@ -106,20 +134,20 @@ public class BaseDatos {
         return true;
     }
 
-    public ResultSet consultarRegistros(String sql) {
+    public ResultSet consultar(String sql) {
         ResultSet rs = null;
         try {
             Statement s = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
             rs = s.executeQuery(sql);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Ocurrio Un error" + e.getMessage(), "Atencion",
                     JOptionPane.INFORMATION_MESSAGE);
         }
         return rs;
     }
 
-    public void cargarCombo(JComboBox combo, String campos, String tabla) {
+    public void cargarCombo(JComboBox combo, String campos) {
         ResultSet rsC;
         try {
             sentencia = (Statement) conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -132,21 +160,8 @@ public class BaseDatos {
             for (DatosCombo nombre : camposCombo) {
                 combo.addItem(nombre);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al llenar combo\n" + e.getMessage(), "Llenar Combo - " + combo.getName(), JOptionPane.ERROR_MESSAGE);
         }
-
-    }
-
-    public void cierraConexion() {
-        try {
-            conexion.close();
-        } catch (Exception e) {
-
-        }
-    }
-
-    public Connection miConexion() {
-        return this.conexion;
     }
 }
