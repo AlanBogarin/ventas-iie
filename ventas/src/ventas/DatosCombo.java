@@ -1,11 +1,10 @@
 package ventas;
 
-
 public class DatosCombo {
-    
+
     private int codigo;
     private String nombre;
-    
+
     public DatosCombo(int codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
@@ -26,13 +25,13 @@ public class DatosCombo {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    public String toString(){
+
+    @Override
+    public String toString() {
         return this.getNombre();
     }
-    
-    public int toInt(){
+
+    public int toInt() {
         return this.getCodigo();
     }
-    
 }
