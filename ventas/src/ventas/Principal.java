@@ -9,7 +9,7 @@ package ventas;
 // venta
 // venta_articulo
 
-// 222
+// 333
 
 public class Principal extends javax.swing.JFrame {
     
