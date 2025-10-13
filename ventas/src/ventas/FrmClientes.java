@@ -3,20 +3,18 @@ package ventas;
 import javax.swing.JOptionPane;
 
 public class FrmClientes extends javax.swing.JDialog {
-    BaseDatos bd = new BaseDatos("clasificacion");
-    private char opc='z';
-    private  Grilla grd= new Grilla("clasificacion");
-    
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmClientes.class.getName());
+
+    BaseDatos bd = new BaseDatos("clasificacion");
+    private char opc = 'z';
+    private  Grilla grd = new Grilla("clasificacion");
 
     public FrmClientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         if (!BaseDatos.crearConexion()){
             JOptionPane.showMessageDialog(null,"Error de conexion co la base de datos");
-        }else{
-            
         }
         bd.cargarCombo(cmbCiudad, "id,nombre");
         habilitarCampos(false);
@@ -114,10 +112,7 @@ public class FrmClientes extends javax.swing.JDialog {
 
         GrdTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Id", "Nombre", "Ruc", "Ciudad", "Barrio"
