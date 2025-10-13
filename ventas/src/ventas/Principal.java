@@ -143,7 +143,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVentasActionPerformed
 
     private void btnArticulos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArticulos1ActionPerformed
-        // TODO add your handling code here:
+        new FrmClasificacion(this, true).setVisible(true);
     }//GEN-LAST:event_btnArticulos1ActionPerformed
 
     public static void main(String args[]) {

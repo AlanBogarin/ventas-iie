@@ -7,6 +7,7 @@ public class FrmClasificacion extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmClasificacion.class.getName());
     Grilla grd = new Grilla("clasificacion");
     BaseDatos bd = new BaseDatos("clasificacion");
+    char opc = 'Z';
 
     public FrmClasificacion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -21,6 +22,7 @@ public class FrmClasificacion extends javax.swing.JDialog {
     }
 
     void habilitarCampos(boolean estado) {
+        txtId.setEnabled(false);
         txtNombre.setEnabled(estado);
     }
 
@@ -72,12 +74,32 @@ public class FrmClasificacion extends javax.swing.JDialog {
         splClasificaciones.setViewportView(grdClasificaciones);
 
         btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         txtId.setEditable(false);
 
@@ -137,6 +159,42 @@ public class FrmClasificacion extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        opc = 'N';
+        habilitarCampos(true);
+        habilitarBotones(false);
+        txtNombre.requestFocus();
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        if (opc == 'N') {
+            bd.insertarRegistro("nombre",
+                    "'" + txtNombre.getText() + "'");
+        } else {
+            bd.actualizarRegistro("nombre='" + txtNombre.getText() + "'",
+                    "id=" + txtId.getText());
+        }
+        opc = 'Z';
+        limpiarCampos();
+        habilitarCampos(false);
+        habilitarBotones(true);
+        actualizarGrilla();
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        txtId.setText(grdClasificaciones.getValueAt(grdClasificaciones.getSelectedRow(), 0).toString());
+        txtNombre.setText(grdClasificaciones.getValueAt(grdClasificaciones.getSelectedRow(), 1).toString());
+        opc = 'M';
+        habilitarBotones(false);
+        habilitarCampos(true);
+        txtNombre.requestFocus();
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        bd.borrarRegistro("id=" + grdClasificaciones.getValueAt(grdClasificaciones.getSelectedRow(), 0).toString());
+        actualizarGrilla();
+    }//GEN-LAST:event_btnBorrarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
