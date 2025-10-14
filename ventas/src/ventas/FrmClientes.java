@@ -1,6 +1,12 @@
 package ventas;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import static ventas.BaseDatos.conexion;
+import static ventas.BaseDatos.sentencia;
 
 public class FrmClientes extends javax.swing.JDialog {
 
@@ -8,7 +14,7 @@ public class FrmClientes extends javax.swing.JDialog {
 
     BaseDatos bd = new BaseDatos("cliente");
     private char opc = 'z';
-    private  Grilla grd = new Grilla("cliente");
+    private  Grilla grd = new Grilla("ciudad");
 
     public FrmClientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -16,16 +22,15 @@ public class FrmClientes extends javax.swing.JDialog {
         if (!BaseDatos.crearConexion()){
             JOptionPane.showMessageDialog(null,"Error de conexion co la base de datos");
         }
-        bd.cargarCombo(cmbCiudad, "id,nombre");
-        //habilitarCampos(false);
+        bd.cargarCombo(cboCiudad, "id,nombre","ciudad");
+        habilitarCampos(false);
         habilitarBotones(true);
         
     }
     private void habilitarCampos(boolean estado){
         this.txtRuc.setEnabled(estado);
         this.txtNombre.setEnabled(estado);
-        this.cmbbarrio.setEnabled(estado);
-        this.cmbCiudad.setEnabled(estado);
+        this.cbobarrio.setEditable(estado);
         this.txtRuc.requestFocus();
         
         
@@ -50,8 +55,8 @@ public class FrmClientes extends javax.swing.JDialog {
         txtRuc = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        cmbCiudad = new javax.swing.JComboBox<>();
-        cmbbarrio = new javax.swing.JComboBox<>();
+        cboCiudad = new javax.swing.JComboBox<>();
+        cbobarrio = new javax.swing.JComboBox<>();
         cmdNuevo = new javax.swing.JButton();
         cmdGuardar = new javax.swing.JButton();
         cmdModificar = new javax.swing.JButton();
@@ -84,9 +89,15 @@ public class FrmClientes extends javax.swing.JDialog {
 
         jLabel8.setText("Barrio");
 
-        cmbbarrio.addActionListener(new java.awt.event.ActionListener() {
+        cboCiudad.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboCiudadItemStateChanged(evt);
+            }
+        });
+
+        cbobarrio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbbarrioActionPerformed(evt);
+                cbobarrioActionPerformed(evt);
             }
         });
 
@@ -98,6 +109,11 @@ public class FrmClientes extends javax.swing.JDialog {
         });
 
         cmdGuardar.setText("Guardar");
+        cmdGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdGuardarActionPerformed(evt);
+            }
+        });
 
         cmdModificar.setText("Modificar");
 
@@ -153,11 +169,11 @@ public class FrmClientes extends javax.swing.JDialog {
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbbarrio, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbobarrio, 0, 315, Short.MAX_VALUE)
                             .addComponent(txtRuc, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboCiudad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -172,13 +188,13 @@ public class FrmClientes extends javax.swing.JDialog {
                     .addComponent(jLabel2)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbbarrio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbobarrio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
@@ -229,9 +245,36 @@ public class FrmClientes extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRucActionPerformed
 
-    private void cmbbarrioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbbarrioActionPerformed
+    private void cbobarrioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbobarrioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmbbarrioActionPerformed
+    }//GEN-LAST:event_cbobarrioActionPerformed
+
+    private void cmdGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdGuardarActionPerformed
+       
+    }//GEN-LAST:event_cmdGuardarActionPerformed
+
+    private void cboCiudadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboCiudadItemStateChanged
+        String item = cboCiudad.getSelectedItem().toString();
+        sentencia = (Statement) conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        var rs = sentencia.executeQuery("select id,nombre from ciudad where nombre = '" + item+"'");
+        ArrayList<DatosCombo> camposCombo;
+        camposCombo = new ArrayList();
+        while (rs.next()) {
+            camposCombo.add(new DatosCombo(rsC.getInt(1), rsC.getString(2)));
+        }
+        for (DatosCombo nombre : camposCombo) {
+            cbobarrio.addItem(nombre);
+        }
+        try {
+            var rs2 = bd.consultar("select id,nombre from barrio where id = " + rs.getInt(1));
+            while (rs2.next()) {
+                cbobarrio.addItem(rs2.getString(2));
+            }
+        }
+        catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al llenar combo\n" + e.getMessage(), "Llenar Combo - " + cbobarrio.getName(), JOptionPane.ERROR_MESSAGE);
+        } 
+    }//GEN-LAST:event_cboCiudadItemStateChanged
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -269,8 +312,8 @@ public class FrmClientes extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable GrdTabla;
-    private javax.swing.JComboBox<String> cmbCiudad;
-    private javax.swing.JComboBox<String> cmbbarrio;
+    private javax.swing.JComboBox<String> cboCiudad;
+    private javax.swing.JComboBox<String> cbobarrio;
     private javax.swing.JButton cmdCancelar;
     private javax.swing.JButton cmdEliminar;
     private javax.swing.JButton cmdGuardar;
