@@ -6,9 +6,9 @@ public class FrmClientes extends javax.swing.JDialog {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmClientes.class.getName());
 
-    BaseDatos bd = new BaseDatos("clasificacion");
+    BaseDatos bd = new BaseDatos("cliente");
     private char opc = 'z';
-    private  Grilla grd = new Grilla("clasificacion");
+    private  Grilla grd = new Grilla("cliente");
 
     public FrmClientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -17,7 +17,7 @@ public class FrmClientes extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null,"Error de conexion co la base de datos");
         }
         bd.cargarCombo(cmbCiudad, "id,nombre");
-        habilitarCampos(false);
+        //habilitarCampos(false);
         habilitarBotones(true);
         
     }
