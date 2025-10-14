@@ -3,7 +3,6 @@ package ventas;
 public class FrmArticulos extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmArticulos.class.getName());
-    Grilla grd = new Grilla("articulos");
 
     public FrmArticulos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

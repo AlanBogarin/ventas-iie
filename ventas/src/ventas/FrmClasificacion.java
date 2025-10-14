@@ -1,20 +1,14 @@
 package ventas;
 
-import javax.swing.JOptionPane;
-
 public class FrmClasificacion extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmClasificacion.class.getName());
-    Grilla grd = new Grilla("clasificacion");
-    BaseDatos bd = new BaseDatos("clasificacion");
+
     char opc = 'Z';
 
     public FrmClasificacion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        if (!bd.crearConexion()) {
-            JOptionPane.showMessageDialog(null, "");
-        }
         habilitarCampos(false);
         habilitarBotones(true);
         actualizarGrilla();
@@ -40,7 +34,7 @@ public class FrmClasificacion extends javax.swing.JDialog {
 
     void actualizarGrilla() {
         String[] campos = {"id", "nombre"};
-        grd.cargarGrilla(grdClasificaciones, campos);
+        Grilla.cargarGrilla(grdClasificaciones, "clasificacion", campos);
     }
 
     @SuppressWarnings("unchecked")
@@ -169,10 +163,9 @@ public class FrmClasificacion extends javax.swing.JDialog {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (opc == 'N') {
-            bd.insertarRegistro("nombre",
-                    "'" + txtNombre.getText() + "'");
+            BaseDatos.insertarRegistro("clasificacion", "nombre", "'" + txtNombre.getText() + "'");
         } else {
-            bd.actualizarRegistro("nombre='" + txtNombre.getText() + "'",
+            BaseDatos.actualizarRegistro("clasificacion", "nombre='" + txtNombre.getText() + "'",
                     "id=" + txtId.getText());
         }
         opc = 'Z';
@@ -192,7 +185,8 @@ public class FrmClasificacion extends javax.swing.JDialog {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        bd.borrarRegistro("id=" + grdClasificaciones.getValueAt(grdClasificaciones.getSelectedRow(), 0).toString());
+        BaseDatos.borrarRegistro("clasificacion", "id=" + grdClasificaciones.getValueAt(
+                grdClasificaciones.getSelectedRow(), 0).toString());
         actualizarGrilla();
     }//GEN-LAST:event_btnBorrarActionPerformed
 

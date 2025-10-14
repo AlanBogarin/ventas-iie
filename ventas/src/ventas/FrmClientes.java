@@ -1,20 +1,12 @@
 package ventas;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import static ventas.BaseDatos.conexion;
-import static ventas.BaseDatos.sentencia;
 
 public class FrmClientes extends javax.swing.JDialog {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmClientes.class.getName());
 
-    BaseDatos bd = new BaseDatos("cliente");
     private char opc = 'z';
-    private  Grilla grd = new Grilla("ciudad");
 
     public FrmClientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -22,25 +14,25 @@ public class FrmClientes extends javax.swing.JDialog {
         if (!BaseDatos.crearConexion()){
             JOptionPane.showMessageDialog(null,"Error de conexion co la base de datos");
         }
-        bd.cargarCombo(cboCiudad, "id,nombre","ciudad");
+        BaseDatos.cargarCombo(cboCiudad, "ciudad", "id,nombre", null);
         habilitarCampos(false);
         habilitarBotones(true);
-        
     }
+
     private void habilitarCampos(boolean estado){
         this.txtRuc.setEnabled(estado);
         this.txtNombre.setEnabled(estado);
-        this.cbobarrio.setEditable(estado);
+        this.cboBarrio.setEditable(estado);
         this.txtRuc.requestFocus();
         
         
     }
     private void habilitarBotones(boolean estado){
-        this.cmdNuevo.setEnabled(estado);
-        this.cmdGuardar.setEnabled(!estado);
-        this.cmdModificar.setEnabled(estado);
-        this.cmdEliminar.setEnabled(estado);
-        this.cmdCancelar.setEnabled(!estado);
+        this.btnNuevo.setEnabled(estado);
+        this.btnGuardar.setEnabled(!estado);
+        this.btnModificar.setEnabled(estado);
+        this.btnEliminar.setEnabled(estado);
+        this.btnCancelar.setEnabled(!estado);
         
     }
 
@@ -49,27 +41,27 @@ public class FrmClientes extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JFormattedTextField();
-        jLabel3 = new javax.swing.JLabel();
+        lblRuc = new javax.swing.JLabel();
         txtRuc = new javax.swing.JFormattedTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblCiudad = new javax.swing.JLabel();
+        lblBarrio = new javax.swing.JLabel();
         cboCiudad = new javax.swing.JComboBox<>();
-        cbobarrio = new javax.swing.JComboBox<>();
-        cmdNuevo = new javax.swing.JButton();
-        cmdGuardar = new javax.swing.JButton();
-        cmdModificar = new javax.swing.JButton();
-        cmdEliminar = new javax.swing.JButton();
-        cmdCancelar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        GrdTabla = new javax.swing.JTable();
+        cboBarrio = new javax.swing.JComboBox<>();
+        btnNuevo = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        splClientes = new javax.swing.JScrollPane();
+        grdClientes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel2.setText("Nombre");
+        lblNombre.setText("Nombre");
 
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,7 +69,7 @@ public class FrmClientes extends javax.swing.JDialog {
             }
         });
 
-        jLabel3.setText("Ruc");
+        lblRuc.setText("Ruc");
 
         txtRuc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,9 +77,9 @@ public class FrmClientes extends javax.swing.JDialog {
             }
         });
 
-        jLabel7.setText("Ciudad");
+        lblCiudad.setText("Ciudad");
 
-        jLabel8.setText("Barrio");
+        lblBarrio.setText("Barrio");
 
         cboCiudad.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -95,38 +87,38 @@ public class FrmClientes extends javax.swing.JDialog {
             }
         });
 
-        cbobarrio.addActionListener(new java.awt.event.ActionListener() {
+        cboBarrio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbobarrioActionPerformed(evt);
+                cboBarrioActionPerformed(evt);
             }
         });
 
-        cmdNuevo.setText("Nuevo");
-        cmdNuevo.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevo.setText("Nuevo");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdNuevoActionPerformed(evt);
+                btnNuevoActionPerformed(evt);
             }
         });
 
-        cmdGuardar.setText("Guardar");
-        cmdGuardar.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdGuardarActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
 
-        cmdModificar.setText("Modificar");
+        btnModificar.setText("Modificar");
 
-        cmdEliminar.setText("Eliminar ");
+        btnEliminar.setText("Eliminar ");
 
-        cmdCancelar.setText("Cancelar");
-        cmdCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdCancelarActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
-        GrdTabla.setModel(new javax.swing.table.DefaultTableModel(
+        grdClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -142,7 +134,7 @@ public class FrmClientes extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(GrdTabla);
+        splClientes.setViewportView(grdClientes);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -152,25 +144,25 @@ public class FrmClientes extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cmdNuevo)
+                        .addComponent(btnNuevo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmdGuardar)
+                        .addComponent(btnGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmdModificar)
+                        .addComponent(btnModificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmdEliminar)
+                        .addComponent(btnEliminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmdCancelar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancelar))
+                    .addComponent(splClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblBarrio, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblRuc, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbobarrio, 0, 315, Short.MAX_VALUE)
+                            .addComponent(cboBarrio, 0, 315, Short.MAX_VALUE)
                             .addComponent(txtRuc, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cboCiudad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -181,29 +173,29 @@ public class FrmClientes extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(lblRuc)
                     .addComponent(txtRuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(lblNombre)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbobarrio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblBarrio, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboBarrio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(splClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmdNuevo)
-                    .addComponent(cmdGuardar)
-                    .addComponent(cmdModificar)
-                    .addComponent(cmdEliminar)
-                    .addComponent(cmdCancelar))
+                    .addComponent(btnNuevo)
+                    .addComponent(btnGuardar)
+                    .addComponent(btnModificar)
+                    .addComponent(btnEliminar)
+                    .addComponent(btnCancelar))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
@@ -227,15 +219,15 @@ public class FrmClientes extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cmdCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCancelarActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         habilitarBotones(true);
         habilitarCampos(false);
-    }//GEN-LAST:event_cmdCancelarActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void cmdNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdNuevoActionPerformed
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         habilitarBotones(false);
         habilitarCampos(true);
-    }//GEN-LAST:event_cmdNuevoActionPerformed
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
@@ -245,35 +237,17 @@ public class FrmClientes extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRucActionPerformed
 
-    private void cbobarrioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbobarrioActionPerformed
+    private void cboBarrioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboBarrioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbobarrioActionPerformed
+    }//GEN-LAST:event_cboBarrioActionPerformed
 
-    private void cmdGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdGuardarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
        
-    }//GEN-LAST:event_cmdGuardarActionPerformed
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void cboCiudadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboCiudadItemStateChanged
         String item = cboCiudad.getSelectedItem().toString();
-        sentencia = (Statement) conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        var rs = sentencia.executeQuery("select id,nombre from ciudad where nombre = '" + item+"'");
-        ArrayList<DatosCombo> camposCombo;
-        camposCombo = new ArrayList();
-        while (rs.next()) {
-            camposCombo.add(new DatosCombo(rsC.getInt(1), rsC.getString(2)));
-        }
-        for (DatosCombo nombre : camposCombo) {
-            cbobarrio.addItem(nombre);
-        }
-        try {
-            var rs2 = bd.consultar("select id,nombre from barrio where id = " + rs.getInt(1));
-            while (rs2.next()) {
-                cbobarrio.addItem(rs2.getString(2));
-            }
-        }
-        catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al llenar combo\n" + e.getMessage(), "Llenar Combo - " + cbobarrio.getName(), JOptionPane.ERROR_MESSAGE);
-        } 
+        BaseDatos.cargarCombo(cboBarrio, "barrio", "id,nombre", "nombre='"+item+"'");
     }//GEN-LAST:event_cboCiudadItemStateChanged
 
     public static void main(String args[]) {
@@ -311,20 +285,20 @@ public class FrmClientes extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable GrdTabla;
-    private javax.swing.JComboBox<String> cboCiudad;
-    private javax.swing.JComboBox<String> cbobarrio;
-    private javax.swing.JButton cmdCancelar;
-    private javax.swing.JButton cmdEliminar;
-    private javax.swing.JButton cmdGuardar;
-    private javax.swing.JButton cmdModificar;
-    private javax.swing.JButton cmdNuevo;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnNuevo;
+    private javax.swing.JComboBox<DatosCombo> cboBarrio;
+    private javax.swing.JComboBox<DatosCombo> cboCiudad;
+    private javax.swing.JTable grdClientes;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblBarrio;
+    private javax.swing.JLabel lblCiudad;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblRuc;
+    private javax.swing.JScrollPane splClientes;
     private javax.swing.JFormattedTextField txtNombre;
     private javax.swing.JFormattedTextField txtRuc;
     // End of variables declaration//GEN-END:variables

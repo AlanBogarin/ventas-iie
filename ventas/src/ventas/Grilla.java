@@ -37,15 +37,7 @@ class DecimalRenderer extends DefaultTableCellRenderer {
 
 public class Grilla {
 
-    String tabla;
-    BaseDatos bd;
-
-    public Grilla(String tabla) {
-        this.tabla = tabla;
-        bd = new BaseDatos(tabla);
-    }
-
-    public void configurarModelo(JTable nombregrilla, String[] columnas, int[] ancho) {
+    public static void configurarModelo(JTable grilla, String[] columnas, int[] ancho) {
         DefaultTableModel dm = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int col) {
@@ -58,23 +50,23 @@ public class Grilla {
         for (String columna : columnas) {
             dm.addColumn(columna);
         }
-        nombregrilla.getTableHeader().setReorderingAllowed(false);
-        nombregrilla.setModel(dm);
+        grilla.getTableHeader().setReorderingAllowed(false);
+        grilla.setModel(dm);
         for (int cont2 = 0; cont2 <= columnas.length - 1; cont2++) {
-            nombregrilla.getColumnModel().getColumn(cont2).setPreferredWidth(ancho[cont2]);
+            grilla.getColumnModel().getColumn(cont2).setPreferredWidth(ancho[cont2]);
         }
     }
 
-    public void alinear(JTable grilla, String columna) {
+    public static void alinear(JTable grilla, String columna) {
         final DecimalFormat formato = new DecimalFormat("###,##0.00");
         grilla.getColumn(columna).setCellRenderer(new DecimalRenderer(formato));
     }
 
-    public void cargarGrilla(JTable nombregrilla, String[] campos) {
+    public static void cargarGrilla(JTable grilla, String tabla, String[] campos) {
         String sql = "Select ";
-        DefaultTableModel modelo = (DefaultTableModel) nombregrilla.getModel();
-        nombregrilla.selectAll();
-        int[] filas = nombregrilla.getSelectedRows();
+        DefaultTableModel modelo = (DefaultTableModel) grilla.getModel();
+        grilla.selectAll();
+        int[] filas = grilla.getSelectedRows();
         for (int i = (filas.length - 1); i >= 0; --i) {
             modelo.removeRow(i);
         }
@@ -87,7 +79,7 @@ public class Grilla {
         }
         try {
             sql = sql + " from " + tabla;
-            ResultSet rs = bd.consultar(sql);
+            ResultSet rs = BaseDatos.consultar(sql);
             String[] valores = new String[campos.length];
             int fila = 0;
             while (rs.next()) {
@@ -100,13 +92,13 @@ public class Grilla {
                 }
                 fila = fila + 1;
             }
-            nombregrilla.setModel(modelo);
+            grilla.setModel(modelo);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al intentar cargar la grilla" + ex.toString(), "Grilla", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
-    public void filtrarGrilla(JTable nombregrilla, String texto, int columna) {
+    public static void filtrarGrilla(JTable nombregrilla, String texto, int columna) {
         DefaultTableModel modelo = (DefaultTableModel) nombregrilla.getModel();
         TableRowSorter gridFiltrado = new TableRowSorter(modelo);
         gridFiltrado.setRowFilter(RowFilter.regexFilter(texto, columna));

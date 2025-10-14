@@ -1,7 +1,6 @@
 package ventas;
 
 import java.sql.*;
-import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
@@ -12,14 +11,6 @@ public class BaseDatos {
     static final String USUARIO = "root";
     static final String CLAVE = "1234";
     static Connection conexion = null;
-    static Statement sentencia;
-
-    String tabla;
-
-    public BaseDatos(String tabla) {
-        this.tabla = tabla;
-        crearConexion();
-    }
 
     public static boolean crearConexion() {
         if (conexion != null) {
@@ -36,7 +27,7 @@ public class BaseDatos {
         return true;
     }
 
-    public void cerrarConexion() {
+    public static void cerrarConexion() {
         if (conexion == null) {
             return;
         }
@@ -46,11 +37,12 @@ public class BaseDatos {
         }
     }
 
-    public Connection getConexion() {
+    public static Connection getConexion() {
         return conexion;
     }
 
-    public boolean borrarRegistro(String condicion) {
+    public static boolean borrarRegistro(String tabla, String condicion) {
+        crearConexion();
         try {
             Statement s = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
@@ -82,7 +74,8 @@ public class BaseDatos {
         return true;
     }
 
-    public boolean borrarRegistroSinPreguntar(String condicion) {
+    public static boolean borrarRegistroSinPreguntar(String tabla, String condicion) {
+        crearConexion();
         try {
             Statement s = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
@@ -95,7 +88,8 @@ public class BaseDatos {
         return true;
     }
 
-    public boolean insertarRegistro(String campos, String valores) {
+    public static boolean insertarRegistro(String tabla, String campos, String valores) {
+        crearConexion();
         try {
             Statement s = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
@@ -108,7 +102,8 @@ public class BaseDatos {
         return true;
     }
 
-    public boolean insertarRegistro(String valores) {
+    public static boolean insertarRegistro(String tabla, String valores) {
+        crearConexion();
         try {
             Statement s = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
@@ -121,7 +116,8 @@ public class BaseDatos {
         return true;
     }
 
-    public boolean actualizarRegistro(String campos, String criterio) {
+    public static boolean actualizarRegistro(String tabla, String campos, String criterio) {
+        crearConexion();
         try {
             Statement s = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
@@ -134,11 +130,11 @@ public class BaseDatos {
         return true;
     }
 
-    public ResultSet consultar(String sql) {
+    public static ResultSet consultar(String sql) {
+        crearConexion();
         ResultSet rs = null;
         try {
-            Statement s = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_UPDATABLE);
+            Statement s = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
             rs = s.executeQuery(sql);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Ocurrio Un error" + e.getMessage(), "Atencion",
@@ -147,18 +143,13 @@ public class BaseDatos {
         return rs;
     }
 
-    public void cargarCombo(JComboBox combo, String campos) {
-        ResultSet rsC;
+    public static void cargarCombo(JComboBox<DatosCombo> combo, String tabla, String campos, String condicion) {
+        crearConexion();
         try {
-            sentencia = (Statement) conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            rsC = sentencia.executeQuery("select " + campos + " from " + tabla);
-            ArrayList<DatosCombo> camposCombo;
-            camposCombo = new ArrayList();
-            while (rsC.next()) {
-                camposCombo.add(new DatosCombo(rsC.getInt(1), rsC.getString(2)));
-            }
-            for (DatosCombo nombre : camposCombo) {
-                combo.addItem(nombre);
+            ResultSet r = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery(
+                    "select " + campos + " from " + tabla + condicion == null ? "" : ("where " + condicion));
+            while (r.next()) {
+                combo.addItem(new DatosCombo(r.getInt(1), r.getString(2)));
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al llenar combo\n" + e.getMessage(), "Llenar Combo - " + combo.getName(), JOptionPane.ERROR_MESSAGE);
