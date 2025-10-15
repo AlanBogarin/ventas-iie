@@ -8,8 +8,6 @@ package ventas;
 // cliente
 // venta
 // venta_articulo
-// hugo
-// alan
 
 public class Principal extends javax.swing.JFrame {
     
