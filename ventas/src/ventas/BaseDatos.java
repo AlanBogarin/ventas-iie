@@ -147,7 +147,7 @@ public class BaseDatos {
         crearConexion();
         try {
             ResultSet r = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery(
-                    "select " + campos + " from " + tabla + condicion == null ? "" : ("where " + condicion));
+                    "select " + campos + " from " + tabla + (condicion == null ? "" : (" where " + condicion)));
             while (r.next()) {
                 combo.addItem(new DatosCombo(r.getInt(1), r.getString(2)));
             }

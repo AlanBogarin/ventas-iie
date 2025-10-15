@@ -11,9 +11,6 @@ public class FrmClientes extends javax.swing.JDialog {
     public FrmClientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        if (!BaseDatos.crearConexion()){
-            JOptionPane.showMessageDialog(null,"Error de conexion co la base de datos");
-        }
         BaseDatos.cargarCombo(cboCiudad, "ciudad", "id,nombre", null);
         habilitarCampos(false);
         habilitarBotones(true);
