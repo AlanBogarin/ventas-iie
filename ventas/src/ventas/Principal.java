@@ -9,6 +9,8 @@ package ventas;
 // venta
 // venta_articulo
 
+// alan
+
 public class Principal extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Principal.class.getName());
