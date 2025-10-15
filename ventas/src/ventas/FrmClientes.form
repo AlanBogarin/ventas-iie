@@ -158,6 +158,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cboCiudad">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+          </Properties>
           <Events>
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cboCiudadItemStateChanged"/>
           </Events>

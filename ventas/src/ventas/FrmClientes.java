@@ -1,7 +1,5 @@
 package ventas;
 
-import javax.swing.JOptionPane;
-
 public class FrmClientes extends javax.swing.JDialog {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmClientes.class.getName());
@@ -16,7 +14,7 @@ public class FrmClientes extends javax.swing.JDialog {
         habilitarBotones(true);
     }
 
-    private void habilitarCampos(boolean estado){
+    private void habilitarCampos(boolean estado) {
         this.txtRuc.setEnabled(estado);
         this.txtNombre.setEnabled(estado);
         this.cboBarrio.setEditable(estado);
@@ -24,7 +22,8 @@ public class FrmClientes extends javax.swing.JDialog {
         
         
     }
-    private void habilitarBotones(boolean estado){
+
+    private void habilitarBotones(boolean estado) {
         this.btnNuevo.setEnabled(estado);
         this.btnGuardar.setEnabled(!estado);
         this.btnModificar.setEnabled(estado);
