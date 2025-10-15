@@ -19,8 +19,6 @@ public class FrmClientes extends javax.swing.JDialog {
         this.txtNombre.setEnabled(estado);
         this.cboBarrio.setEditable(estado);
         this.txtRuc.requestFocus();
-        
-        
     }
 
     private void habilitarBotones(boolean estado) {
@@ -29,7 +27,7 @@ public class FrmClientes extends javax.swing.JDialog {
         this.btnModificar.setEnabled(estado);
         this.btnEliminar.setEnabled(estado);
         this.btnCancelar.setEnabled(!estado);
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -226,24 +224,20 @@ public class FrmClientes extends javax.swing.JDialog {
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void txtRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRucActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txtRucActionPerformed
 
     private void cboBarrioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboBarrioActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_cboBarrioActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-       
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void cboCiudadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboCiudadItemStateChanged
         String item = cboCiudad.getSelectedItem().toString();
-        BaseDatos.cargarCombo(cboBarrio, "barrio", "id,nombre", "nombre='"+item+"'");
+        BaseDatos.cargarCombo(cboBarrio, "barrio", "id,nombre", "nombre='" + item + "'");
     }//GEN-LAST:event_cboCiudadItemStateChanged
 
     public static void main(String args[]) {
