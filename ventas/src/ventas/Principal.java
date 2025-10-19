@@ -33,6 +33,7 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jMenu1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jMenu1.setText("Archivo");
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -40,9 +41,11 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jMenuItem1.setText("Articulos");
         jMenu1.add(jMenuItem1);
 
+        jMenuItem2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jMenuItem2.setText("Ciudades");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -51,6 +54,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
+        jMenuItem3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jMenuItem3.setText("Ventas");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,6 +63,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem3);
 
+        jMenuItem4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jMenuItem4.setText("Clientes");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,6 +72,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem4);
 
+        jMenuItem5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jMenuItem5.setText("Clasificaciones");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,6 +81,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem5);
 
+        jMenuItem6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jMenuItem6.setText("Barrio");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,6 +92,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jMenu2.setText("Mantenimiento");
         jMenuBar1.add(jMenu2);
 
@@ -98,7 +106,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 255, Short.MAX_VALUE)
+            .addGap(0, 259, Short.MAX_VALUE)
         );
 
         pack();
