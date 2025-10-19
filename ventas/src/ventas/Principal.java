@@ -21,128 +21,118 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnClientes = new javax.swing.JButton();
-        btnArticulos = new javax.swing.JButton();
-        btnCiudades = new javax.swing.JButton();
-        btnBarrios = new javax.swing.JButton();
-        btnVentas = new javax.swing.JButton();
-        btnArticulos1 = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnClientes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnClientes.setText("Clientes");
-        btnClientes.addActionListener(new java.awt.event.ActionListener() {
+        jMenu1.setText("Archivo");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClientesActionPerformed(evt);
+                jMenu1ActionPerformed(evt);
             }
         });
 
-        btnArticulos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnArticulos.setText("Articulos");
-        btnArticulos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnArticulosActionPerformed(evt);
-            }
-        });
+        jMenuItem1.setText("Articulos");
+        jMenu1.add(jMenuItem1);
 
-        btnCiudades.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnCiudades.setText("Ciudades");
-        btnCiudades.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem2.setText("Ciudades");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCiudadesActionPerformed(evt);
+                jMenuItem2ActionPerformed(evt);
             }
         });
+        jMenu1.add(jMenuItem2);
 
-        btnBarrios.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnBarrios.setText("Barrios");
-        btnBarrios.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem3.setText("Ventas");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBarriosActionPerformed(evt);
+                jMenuItem3ActionPerformed(evt);
             }
         });
+        jMenu1.add(jMenuItem3);
 
-        btnVentas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnVentas.setText("Ventas");
-        btnVentas.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem4.setText("Clientes");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVentasActionPerformed(evt);
+                jMenuItem4ActionPerformed(evt);
             }
         });
+        jMenu1.add(jMenuItem4);
 
-        btnArticulos1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnArticulos1.setText("Clasificaciones");
-        btnArticulos1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem5.setText("Clasificaciones");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnArticulos1ActionPerformed(evt);
+                jMenuItem5ActionPerformed(evt);
             }
         });
+        jMenu1.add(jMenuItem5);
+
+        jMenuItem6.setText("Barrio");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem6);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Mantenimiento");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnArticulos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(132, 132, 132)
-                        .addComponent(btnArticulos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCiudades, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(132, 132, 132)
-                        .addComponent(btnBarrios, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(72, Short.MAX_VALUE))
+            .addGap(0, 410, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnArticulos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnArticulos1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCiudades, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBarrios, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(48, Short.MAX_VALUE))
+            .addGap(0, 255, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-        new FrmClientes(this, true).setVisible(true);
-    }//GEN-LAST:event_btnClientesActionPerformed
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+          FrmArticulos articulo=new FrmArticulos(this,false);
+           articulo.setVisible(true);
+    }//GEN-LAST:event_jMenu1ActionPerformed
 
-    private void btnArticulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArticulosActionPerformed
-        new FrmArticulos(this, true).setVisible(true);
-    }//GEN-LAST:event_btnArticulosActionPerformed
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+           FrmCiudades ciudad=new FrmCiudades(this,false);
+        ciudad.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void btnCiudadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCiudadesActionPerformed
-        new FrmCiudades(this, true).setVisible(true);
-    }//GEN-LAST:event_btnCiudadesActionPerformed
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+           FrmVentas venta=new FrmVentas(this,false);
+        venta.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void btnBarriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBarriosActionPerformed
-        new FrmBarrios(this, true).setVisible(true);
-    }//GEN-LAST:event_btnBarriosActionPerformed
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+          FrmClientes cliente=new FrmClientes(this,false);
+        cliente.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
-        new FrmVentas(this, true).setVisible(true);
-    }//GEN-LAST:event_btnVentasActionPerformed
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+          FrmClasificacion clasificacion=new FrmClasificacion(this,false);
+        clasificacion.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void btnArticulos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArticulos1ActionPerformed
-        new FrmClasificacion(this, true).setVisible(true);
-    }//GEN-LAST:event_btnArticulos1ActionPerformed
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+           FrmBarrios barrio=new FrmBarrios(this,false);
+        barrio.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -167,11 +157,14 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnArticulos;
-    private javax.swing.JButton btnArticulos1;
-    private javax.swing.JButton btnBarrios;
-    private javax.swing.JButton btnCiudades;
-    private javax.swing.JButton btnClientes;
-    private javax.swing.JButton btnVentas;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     // End of variables declaration//GEN-END:variables
 }
