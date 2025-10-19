@@ -1,17 +1,24 @@
 package ventas;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class FrmClientes extends javax.swing.JDialog {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmClientes.class.getName());
 
     private char opc = 'z';
+    private Grilla grd=new Grilla();
 
     public FrmClientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         BaseDatos.cargarCombo(cboCiudad, "ciudad", "id,nombre", null);
+        BaseDatos.cargarCombo(cboBarrio, "barrio", "id,nombre", null);
         habilitarCampos(false);
         habilitarBotones(true);
+        this.actualizarGrilla();
+        this.setLocationRelativeTo(null);
     }
 
     private void habilitarCampos(boolean estado) {
@@ -29,6 +36,37 @@ public class FrmClientes extends javax.swing.JDialog {
         this.btnCancelar.setEnabled(!estado);
 
     }
+     private void limpiarCampos(){
+        this.txtRuc.setText(null);
+        this.txtNombre.setText(null);
+    }
+    private void actualizarGrilla(){
+      
+        String[] campos = {
+            "c.id",
+            "c.nombre",
+            "c.ruc",
+            "ci.nombre AS ciudad",
+            "b.nombre AS barrio"
+        };
+
+        String tabla = "cliente c "
+                     + "INNER JOIN ciudad ci ON c.ciudad_id = ci.id "
+                     + "INNER JOIN barrio b ON c.barrio_id = b.id";
+
+        this.grd.cargarGrilla(grdClientes, tabla, campos);
+    }
+
+
+
+    
+
+   
+
+        //String campos[]={"m.id","m.nombre","b.id"};
+        //this.grd.cargarGrilla(grdClientes, "cliente m inner join ciudad a on b.ciudad=a.id", campos);
+        
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -102,8 +140,18 @@ public class FrmClientes extends javax.swing.JDialog {
         });
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar ");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -233,12 +281,86 @@ public class FrmClientes extends javax.swing.JDialog {
     }//GEN-LAST:event_cboBarrioActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-    }//GEN-LAST:event_btnGuardarActionPerformed
+        DatosCombo cboCiudad = (DatosCombo) this.cboCiudad.getSelectedItem();
+        DatosCombo cboBarrio = (DatosCombo) this.cboBarrio.getSelectedItem();
+        int codCiudad = cboCiudad.getCodigo();
+        int codBarrio = cboBarrio.getCodigo();
+        String nombre = this.txtNombre.getText();
+        String ruc = this.txtRuc.getText();
+        if (this.opc == 'N') {
+            String valores = "'" + nombre + "','" + ruc + "'," + codCiudad + "," + codBarrio;
+            BaseDatos.insertarRegistro("cliente", "nombre,ruc,ciudad_id,barrio_id", valores);
+        } else if (this.opc == 'M') {
+            String actualiza = "nombre='" + nombre + "', ruc='" + ruc + 
+                               "', ciudad_id=" + codCiudad + ", barrio_id=" + codBarrio;
+            String condicion = "id=" + this.txtRuc.getText();
+            BaseDatos.actualizarRegistro("cliente", actualiza, condicion);
+        }
 
+        this.opc = 'Z';
+        this.limpiarCampos();
+        this.habilitarCampos(false);
+        this.habilitarBotones(true);
+        this.actualizarGrilla();
+   
+    }//GEN-LAST:event_btnGuardarActionPerformed
+    
+        
     private void cboCiudadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboCiudadItemStateChanged
         String item = cboCiudad.getSelectedItem().toString();
         BaseDatos.cargarCombo(cboBarrio, "barrio", "id,nombre", "nombre='" + item + "'");
     }//GEN-LAST:event_cboCiudadItemStateChanged
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+                                         
+        int fila = this.grdClientes.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un cliente para modificar.");
+            return;
+        }
+
+        // Cargar datos en los campos de texto
+        this.txtRuc.setText(this.grdClientes.getValueAt(fila, 0).toString()); // id
+        this.txtNombre.setText(this.grdClientes.getValueAt(fila, 1).toString()); // nombre
+        this.txtRuc.setText(this.grdClientes.getValueAt(fila, 2).toString()); // ruc
+
+        String ciudadNombre = this.grdClientes.getValueAt(fila, 3).toString();
+        String barrioNombre = this.grdClientes.getValueAt(fila, 4).toString();
+
+        // Seleccionar ciudad en el combo
+        int cantCiudades = this.cboCiudad.getItemCount();
+        for (int i = 0; i < cantCiudades; i++) {
+            DatosCombo ciudad = (DatosCombo) this.cboCiudad.getItemAt(i);
+            if (ciudad.equals(ciudadNombre)) {
+                this.cboCiudad.setSelectedIndex(i);
+                break;
+            }
+        }
+
+        // Seleccionar barrio en el combo
+        int cantBarrios = this.cboBarrio.getItemCount();
+        for (int i = 0; i < cantBarrios; i++) {
+            DatosCombo barrio = (DatosCombo) this.cboBarrio.getItemAt(i);
+            if (barrio.equals(barrioNombre)) {
+                this.cboBarrio.setSelectedIndex(i);
+                break;
+            }
+        }
+
+        // Preparar formulario para modificación
+        this.opc = 'M';
+        this.habilitarCampos(true);
+        this.habilitarBotones(false);
+        this.txtRuc.setEnabled(false);
+        this.txtNombre.requestFocus();
+
+
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        BaseDatos.borrarRegistro("cliente","id="+this.grdClientes.getValueAt(this.grdClientes.getSelectedRow(),0).toString());
+        this.actualizarGrilla();
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
