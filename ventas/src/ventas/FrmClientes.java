@@ -26,6 +26,7 @@ public class FrmClientes extends javax.swing.JDialog {
         this.txtNombre.setEnabled(estado);
         this.cboBarrio.setEditable(estado);
         this.txtRuc.requestFocus();
+        
     }
 
     private void habilitarBotones(boolean estado) {
@@ -56,13 +57,6 @@ public class FrmClientes extends javax.swing.JDialog {
 
         this.grd.cargarGrilla(grdClientes, tabla, campos);
     }
-
-
-
-    
-
-   
-
         //String campos[]={"m.id","m.nombre","b.id"};
         //this.grd.cargarGrilla(grdClientes, "cliente m inner join ciudad a on b.ciudad=a.id", campos);
         
@@ -291,10 +285,10 @@ public class FrmClientes extends javax.swing.JDialog {
             String valores = "'" + nombre + "','" + ruc + "'," + codCiudad + "," + codBarrio;
             BaseDatos.insertarRegistro("cliente", "nombre,ruc,ciudad_id,barrio_id", valores);
         } else if (this.opc == 'M') {
-            String actualiza = "nombre='" + nombre + "', ruc='" + ruc + 
+            String actualiza= "nombre='" + nombre + "', ruc='" + ruc + 
                                "', ciudad_id=" + codCiudad + ", barrio_id=" + codBarrio;
-            String condicion = "id=" + this.txtRuc.getText();
-            BaseDatos.actualizarRegistro("cliente", actualiza, condicion);
+            String criterio = "id=" + this.txtRuc.getText();
+            BaseDatos.actualizarRegistro("cliente", actualiza, criterio);
         }
 
         this.opc = 'Z';
