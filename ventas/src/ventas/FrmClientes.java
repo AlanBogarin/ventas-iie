@@ -261,6 +261,7 @@ public class FrmClientes extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        this.opc = 'N';
         habilitarBotones(false);
         habilitarCampos(true);
     }//GEN-LAST:event_btnNuevoActionPerformed

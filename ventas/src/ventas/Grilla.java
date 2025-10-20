@@ -26,9 +26,14 @@ class DecimalRenderer extends DefaultTableCellRenderer {
             JTable table, Object value, boolean isSelected,
             boolean hasFocus, int row, int column) {
 
-        if (value instanceof Number number) {
+//        if (value instanceof Number number) {
+//            value = formatter.format(number.doubleValue());
+//        }
+//      
+          if (value instanceof Number) {
+            Number number =(Number) value;
             value = formatter.format(number.doubleValue());
-        }
+          }
 
         return super.getTableCellRendererComponent(
                 table, value, isSelected, hasFocus, row, column);
