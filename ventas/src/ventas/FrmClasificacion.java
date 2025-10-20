@@ -7,18 +7,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-public class FrmClasificacion extends javax.swing.JDialog {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmClasificacion.class.getName());
+public final class FrmClasificacion extends javax.swing.JDialog {
 
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmClasificacion.class.getName());
     char opc = 'Z';
-    private ResultSet rs;
-    private BaseDatos bd;
-    private Grilla grd=new Grilla();
 
     public FrmClasificacion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        bd = new BaseDatos();
         initComponents();
         habilitarCampos(false);
         habilitarBotones(true);
@@ -266,36 +261,35 @@ public class FrmClasificacion extends javax.swing.JDialog {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         boolean guardado = false;
         String clasificacion = txtClasificacion.getText().toUpperCase();
-        
-            if(!txtClasificacion.getText().isEmpty()){
-                String sql = "select count(*) as can from clasificacion where nombre = '" 
-                        + clasificacion  +"'";
-                rs = bd.consultar(sql);
-                try{
-                    rs.first();
-                    if(rs.getInt("can")>0){
-                        JOptionPane.showMessageDialog(null, "No se puede agregar la clasificaion porque ya existe");
-                        txtClasificacion.requestFocus();
-                    }else{
-                        if (opc == 'N') {
-                            BaseDatos.insertarRegistro("clasificacion", "nombre", "'" + clasificacion + "'");
-                            
-                        }else{
-                            BaseDatos.actualizarRegistro("clasificacion", "nombre='" + clasificacion + "'",
-                            "id=" + txtId.getText());
-                        }
-                        guardado = true;
+
+        if (!txtClasificacion.getText().isEmpty()) {
+            String sql = "select count(*) as can from clasificacion where nombre = '"
+                    + clasificacion + "'";
+            ResultSet rs = BaseDatos.consultar(sql);
+            try {
+                rs.first();
+                if (rs.getInt("can") > 0) {
+                    JOptionPane.showMessageDialog(null, "No se puede agregar la clasificaion porque ya existe");
+                    txtClasificacion.requestFocus();
+                } else {
+                    if (opc == 'N') {
+                        BaseDatos.insertarRegistro("clasificacion", "nombre", "'" + clasificacion + "'");
+
+                    } else {
+                        BaseDatos.actualizarRegistro("clasificacion", "nombre='" + clasificacion + "'",
+                                "id=" + txtId.getText());
                     }
-                }catch (SQLException ex){
-                    Logger.getLogger(FrmClasificacion.class.getName()).log(Level.SEVERE, null, ex);
+                    guardado = true;
                 }
-            }else{
-                JOptionPane.showMessageDialog(null, "El nombre no puede estar vacío");
-                txtClasificacion.requestFocus();
+            } catch (SQLException ex) {
+                Logger.getLogger(FrmClasificacion.class.getName()).log(Level.SEVERE, null, ex);
             }
-                    
-        
-        if(guardado){
+        } else {
+            JOptionPane.showMessageDialog(null, "El nombre no puede estar vacío");
+            txtClasificacion.requestFocus();
+        }
+
+        if (guardado) {
             opc = 'Z';
             limpiarCampos();
             habilitarCampos(false);
@@ -306,52 +300,51 @@ public class FrmClasificacion extends javax.swing.JDialog {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        if(this.grdClasificaciones.getSelectedRow()>-1){
-            
-        
+        if (this.grdClasificaciones.getSelectedRow() > -1) {
+
             txtId.setText(grdClasificaciones.getValueAt(grdClasificaciones.getSelectedRow(), 0).toString());
             txtClasificacion.setText(grdClasificaciones.getValueAt(grdClasificaciones.getSelectedRow(), 1).toString());
             opc = 'M';
             habilitarBotones(false);
             habilitarCampos(true);
             txtClasificacion.requestFocus();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Seleccione un registro para actulizar");
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         int fila = grdClasificaciones.getSelectedRow();
-        if(grdClasificaciones.getSelectedRow()>-1){
+        if (grdClasificaciones.getSelectedRow() > -1) {
             String id = grdClasificaciones.getValueAt(fila, 0).toString();
             String ca = grdClasificaciones.getValueAt(fila, 1).toString();
             int opcion = JOptionPane.showOptionDialog(null,
-                "¿Está seguro que desea ELIMINAR el registro de la CLASIFICACIÓN: " + ca + "?",
-                "Eliminar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
-                null, new Object[] {"Si", "No"}, "No");
-            if(opcion == JOptionPane.YES_OPTION){
+                    "¿Está seguro que desea ELIMINAR el registro de la CLASIFICACIÓN: " + ca + "?",
+                    "Eliminar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+                    null, new Object[]{"Si", "No"}, "No");
+            if (opcion == JOptionPane.YES_OPTION) {
                 String sql = "select count(*) as can from articulo where clasificacion_id = " + id;
-                rs = bd.consultar(sql);
-                try{
+                ResultSet rs = BaseDatos.consultar(sql);
+                try {
                     rs.first();
-                    if(rs.getInt("can")>0){
+                    if (rs.getInt("can") > 0) {
                         JOptionPane.showMessageDialog(null,
-                            "No se puede eliminar el registro porque pertenece a un artículo",
-                            "Atención", JOptionPane.WARNING_MESSAGE);
-                        
-                    }else{
+                                "No se puede eliminar el registro porque pertenece a un artículo",
+                                "Atención", JOptionPane.WARNING_MESSAGE);
+
+                    } else {
                         BaseDatos.borrarRegistro("clasificacion", "id=" + grdClasificaciones.getValueAt(
-                        grdClasificaciones.getSelectedRow(), 0).toString());
+                                grdClasificaciones.getSelectedRow(), 0).toString());
                         actualizarGrilla();
                     }
-                    
+
                 } catch (SQLException ex) {
                     Logger.getLogger(FrmClasificacion.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                    
+
             }
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(null, "Seleccione un registro para eliminar");
         }
     }//GEN-LAST:event_btnBorrarActionPerformed
@@ -361,17 +354,16 @@ public class FrmClasificacion extends javax.swing.JDialog {
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void txtClasificacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClasificacionKeyTyped
-        char e  = evt.getKeyChar();
-        if(!txtClasificacion.getText().isEmpty()){
-            if(e==KeyEvent.VK_ENTER){
+        char e = evt.getKeyChar();
+        if (!txtClasificacion.getText().isEmpty()) {
+            if (e == KeyEvent.VK_ENTER) {
                 btnGuardar.requestFocus();
             }
         }
     }//GEN-LAST:event_txtClasificacionKeyTyped
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        this.grd.filtrarGrilla(grdClasificaciones, this.txtBuscar.getText(), cboCriterio.getSelectedIndex());
-
+        Grilla.filtrarGrilla(grdClasificaciones, this.txtBuscar.getText(), cboCriterio.getSelectedIndex());
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     public static void main(String args[]) {

@@ -1,14 +1,12 @@
 package ventas;
 
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 public class FrmClientes extends javax.swing.JDialog {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmClientes.class.getName());
 
     private char opc = 'z';
-    private Grilla grd=new Grilla();
 
     public FrmClientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -55,7 +53,7 @@ public class FrmClientes extends javax.swing.JDialog {
                      + "INNER JOIN ciudad ci ON c.ciudad_id = ci.id "
                      + "INNER JOIN barrio b ON c.barrio_id = b.id";
 
-        this.grd.cargarGrilla(grdClientes, tabla, campos);
+        Grilla.cargarGrilla(grdClientes, tabla, campos);
     }
         //String campos[]={"m.id","m.nombre","b.id"};
         //this.grd.cargarGrilla(grdClientes, "cliente m inner join ciudad a on b.ciudad=a.id", campos);
@@ -106,11 +104,6 @@ public class FrmClientes extends javax.swing.JDialog {
         txtRuc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRucActionPerformed(evt);
-            }
-        });
-        txtRuc.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtRucKeyPressed(evt);
             }
         });
 
