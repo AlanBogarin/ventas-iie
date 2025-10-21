@@ -43,8 +43,8 @@ public final class FrmArticulos extends javax.swing.JDialog {
 
     void actualizarGrilla() {
         Grilla.cargarGrilla(grdArticulos,
-                "articulo join clasificacion c on c.id = clasificacion_id",
-                new String[]{"id", "nombre", "precio", "stock", "c.nombre"});
+                "articulo a join clasificacion c on c.id = clasificacion_id",
+                new String[]{"a.id", "a.nombre", "a.precio", "a.stock", "c.nombre"});
     }
 
     @SuppressWarnings("unchecked")
@@ -207,7 +207,7 @@ public final class FrmArticulos extends javax.swing.JDialog {
                     "'" + nombre + "'," + precio + "," + stock + "," + clasificacion_id);
         } else {
             BaseDatos.actualizarRegistro("articulo", "nombre='" + nombre + "'"
-                    + "precio=" + precio + ",stock=" + stock + ",clasificacion_id="
+                    + ",precio=" + precio + ",stock=" + stock + ",clasificacion_id="
                     + clasificacion_id, "id=" + id);
         }
 
@@ -223,11 +223,11 @@ public final class FrmArticulos extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Seleccione un registro para actulizar");
             return;
         }
-        txtId.setText((String) Grilla.getValorSeleccionado(grdArticulos, "id"));
-        txtNombre.setText((String) Grilla.getValorSeleccionado(grdArticulos, "nombre"));
-        txtPrecio.setText((String) Grilla.getValorSeleccionado(grdArticulos, "precio"));
-        txtStock.setText((String) Grilla.getValorSeleccionado(grdArticulos, "stock"));
-        String clasificacion = (String) Grilla.getValorSeleccionado(grdArticulos, "clasificacion");
+        txtId.setText(Grilla.getValorSeleccionado(grdArticulos, "id"));
+        txtNombre.setText(Grilla.getValorSeleccionado(grdArticulos, "nombre"));
+        txtPrecio.setText(Grilla.getValorSeleccionado(grdArticulos, "precio"));
+        txtStock.setText(Grilla.getValorSeleccionado(grdArticulos, "stock"));
+        String clasificacion = Grilla.getValorSeleccionado(grdArticulos, "clasificacion");
         for (int idx = 0; idx < cboClasificacion.getItemCount(); idx++) {
             DatoCombo item = cboClasificacion.getItemAt(idx);
             if (clasificacion.equals(item.toString())) {

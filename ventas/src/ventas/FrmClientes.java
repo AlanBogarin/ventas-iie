@@ -257,8 +257,11 @@ public class FrmClientes extends javax.swing.JDialog {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void cboCiudadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboCiudadItemStateChanged
-        String item = cboCiudad.getSelectedItem().toString();
-        Combo.cargarCombo(cboBarrio, "barrio", "id,nombre", "nombre='" + item + "'");
+        DatoCombo item = (DatoCombo) cboCiudad.getSelectedItem();
+        if (item == null) {
+            return;
+        }
+        Combo.cargarCombo(cboBarrio, "barrio", "id,nombre", "nombre='" + item.toString() + "'");
     }//GEN-LAST:event_cboCiudadItemStateChanged
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed

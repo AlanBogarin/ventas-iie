@@ -104,13 +104,13 @@ public class Grilla {
         grilla.setRowSorter(gridFiltrado);
     }
 
-    public static Object getValorSeleccionado(JTable grilla, String columna) {
+    public static String getValorSeleccionado(JTable grilla, String columna) {
         TableModel model = grilla.getModel();
-        for (int idx = 0; idx < model.getColumnCount() - 1; idx++) {
+        for (int idx = 0; idx < model.getColumnCount(); idx++) {
             if (!columna.equals(model.getColumnName(idx))) {
                 continue;
             }
-            return grilla.getValueAt(grilla.getSelectedRow(), idx);
+            return (String) grilla.getValueAt(grilla.getSelectedRow(), idx);
         }
         return null;
     }
