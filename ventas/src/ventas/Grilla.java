@@ -10,6 +10,7 @@ import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 class DecimalRenderer extends DefaultTableCellRenderer {
@@ -96,11 +97,21 @@ public class Grilla {
         }
     }
 
-    public static void filtrarGrilla(JTable nombregrilla, String texto, int columna) {
-        DefaultTableModel modelo = (DefaultTableModel) nombregrilla.getModel();
+    public static void filtrarGrilla(JTable grilla, String texto, int columna) {
+        DefaultTableModel modelo = (DefaultTableModel) grilla.getModel();
         TableRowSorter gridFiltrado = new TableRowSorter(modelo);
         gridFiltrado.setRowFilter(RowFilter.regexFilter(texto, columna));
-        nombregrilla.setRowSorter(gridFiltrado);
+        grilla.setRowSorter(gridFiltrado);
     }
 
+    public static Object getValorSeleccionado(JTable grilla, String columna) {
+        TableModel model = grilla.getModel();
+        for (int idx = 0; idx < model.getColumnCount() - 1; idx++) {
+            if (!columna.equals(model.getColumnName(idx))) {
+                continue;
+            }
+            return grilla.getValueAt(grilla.getSelectedRow(), idx);
+        }
+        return null;
+    }
 }

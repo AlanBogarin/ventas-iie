@@ -131,28 +131,20 @@ public class BaseDatos {
     }
 
     public static ResultSet consultar(String sql) {
+        return consultar(sql, false);
+    }
+    
+    public static ResultSet consultar(String sql, boolean paraActualizar) {
         crearConexion();
         ResultSet rs = null;
         try {
-            Statement s = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            rs = s.executeQuery(sql);
+            Statement s = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    paraActualizar ? ResultSet.CONCUR_UPDATABLE : ResultSet.CONCUR_READ_ONLY);
+            return s.executeQuery(sql);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Ocurrio Un error" + e.getMessage(), "Atencion",
-                    JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ocurrio Un error"
+                    + e.getMessage(), "Atencion", JOptionPane.INFORMATION_MESSAGE);
         }
         return rs;
-    }
-
-    public static void cargarCombo(JComboBox<DatosCombo> combo, String tabla, String campos, String condicion) {
-        crearConexion();
-        try {
-            ResultSet r = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY).executeQuery(
-                    "select " + campos + " from " + tabla + (condicion == null ? "" : (" where " + condicion)));
-            while (r.next()) {
-                combo.addItem(new DatosCombo(r.getInt(1), r.getString(2)));
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al llenar combo\n" + e.getMessage(), "Llenar Combo - " + combo.getName(), JOptionPane.ERROR_MESSAGE);
-        }
     }
 }
