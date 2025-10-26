@@ -63,8 +63,10 @@ public final class FrmBarrio extends javax.swing.JDialog {
         cboCriterio = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         cboCiudad = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Barrios");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -171,9 +173,17 @@ public final class FrmBarrio extends javax.swing.JDialog {
         jLabel1.setText("Ciudad");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 200, 20));
 
+        cboCiudad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cboCiudadKeyTyped(evt);
+            }
+        });
         jPanel1.add(cboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 200, 20));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 409));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/comunidad.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 130, 160));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -1, 570, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -230,6 +240,7 @@ public final class FrmBarrio extends javax.swing.JDialog {
             return;
         }
         BaseDatos.borrarRegistro("barrio", "id=" + Grilla.getValorSeleccionado(grdBarrios, "id"));
+        actualizarGrilla();
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
@@ -239,7 +250,7 @@ public final class FrmBarrio extends javax.swing.JDialog {
         char e  = evt.getKeyChar();
         if(!txtNombre.getText().isEmpty()){
             if(e==KeyEvent.VK_ENTER){
-                btnGuardar.requestFocus();
+                cboCiudad.requestFocus();
             }
         }
     }//GEN-LAST:event_txtNombreKeyTyped
@@ -247,6 +258,15 @@ public final class FrmBarrio extends javax.swing.JDialog {
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
         Grilla.filtrarGrilla(grdBarrios, txtBuscar.getText(), cboCriterio.getSelectedIndex()+1);
     }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void cboCiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboCiudadKeyTyped
+        char e  = evt.getKeyChar();
+        if(!txtNombre.getText().isEmpty()){
+            if(e==KeyEvent.VK_ENTER){
+                btnGuardar.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_cboCiudadKeyTyped
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -292,6 +312,7 @@ public final class FrmBarrio extends javax.swing.JDialog {
     private javax.swing.JTable grdBarrios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblId1;
