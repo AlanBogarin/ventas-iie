@@ -63,6 +63,7 @@ public final class FrmClasificacion extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -155,6 +156,11 @@ public final class FrmClasificacion extends javax.swing.JDialog {
         jPanel1.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 161, 153));
 
         cboCriterio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Clasificación" }));
+        cboCriterio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboCriterioActionPerformed(evt);
+            }
+        });
         jPanel1.add(cboCriterio, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 96, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 650, 430));
@@ -223,6 +229,10 @@ public final class FrmClasificacion extends javax.swing.JDialog {
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
         Grilla.filtrarGrilla(grdClasificaciones, this.txtBuscar.getText(), cboCriterio.getSelectedIndex());
     }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void cboCriterioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCriterioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboCriterioActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
