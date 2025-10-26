@@ -1,24 +1,16 @@
 package ventas;
 
 import java.awt.event.KeyEvent;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-public class FrmBarrio extends javax.swing.JDialog {
+public final class FrmBarrio extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmBarrio.class.getName());
 
-    char opc = 'Z';
-    private ResultSet rs;
-    private BaseDatos bd;
-    private Grilla grd=new Grilla();
+    private boolean nuevo = false;
 
     public FrmBarrio(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        bd = new BaseDatos();
         initComponents();
         Combo.cargarCombo(cboCiudad, "ciudad", "id,nombre", null);
         habilitarCampos(false);
@@ -29,7 +21,7 @@ public class FrmBarrio extends javax.swing.JDialog {
 
     void habilitarCampos(boolean estado) {
         txtId.setEnabled(false);
-        txtBarrio.setEnabled(estado);
+        txtNombre.setEnabled(estado);
     }
 
     void habilitarBotones(boolean estado) {
@@ -41,7 +33,7 @@ public class FrmBarrio extends javax.swing.JDialog {
 
     void limpiarCampos() {
         txtId.setText(null);
-        txtBarrio.setText(null);
+        txtNombre.setText(null);
     }
 
     void actualizarGrilla() {
@@ -59,7 +51,7 @@ public class FrmBarrio extends javax.swing.JDialog {
         btnGuardar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
         txtId = new javax.swing.JFormattedTextField();
-        txtBarrio = new javax.swing.JFormattedTextField();
+        txtNombre = new javax.swing.JFormattedTextField();
         lblNombre = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
         splClasificaciones = new javax.swing.JScrollPane();
@@ -73,8 +65,10 @@ public class FrmBarrio extends javax.swing.JDialog {
         cboCiudad = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar-flecha.png"))); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -83,6 +77,7 @@ public class FrmBarrio extends javax.swing.JDialog {
                 btnActualizarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(278, 361, 135, 40));
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar.png"))); // NOI18N
         btnGuardar.setText("Guardar");
@@ -91,6 +86,7 @@ public class FrmBarrio extends javax.swing.JDialog {
                 btnGuardarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 361, 124, 40));
 
         btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar.png"))); // NOI18N
         btnBorrar.setText("Borrar");
@@ -99,20 +95,25 @@ public class FrmBarrio extends javax.swing.JDialog {
                 btnBorrarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(425, 361, 137, 40));
 
         txtId.setEditable(false);
+        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, 20));
 
-        txtBarrio.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtBarrioKeyTyped(evt);
+                txtNombreKeyTyped(evt);
             }
         });
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 200, 20));
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblNombre.setText("Nombre");
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 200, 20));
 
         lblId.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblId.setText("Código");
+        lblId.setText("ID");
+        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 200, 20));
 
         grdBarrios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -122,7 +123,7 @@ public class FrmBarrio extends javax.swing.JDialog {
                 {null, null, null}
             },
             new String [] {
-                "Código", "Barrio", "Ciudad"
+                "id", "nombre", "ciudad"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -135,6 +136,8 @@ public class FrmBarrio extends javax.swing.JDialog {
         });
         splClasificaciones.setViewportView(grdBarrios);
 
+        jPanel1.add(splClasificaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 71, 328, 282));
+
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevo.png"))); // NOI18N
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -142,9 +145,11 @@ public class FrmBarrio extends javax.swing.JDialog {
                 btnAgregarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 361, 127, 40));
 
         lblId1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblId1.setText("Buscar");
+        jPanel1.add(lblId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 17, 126, -1));
 
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,232 +161,91 @@ public class FrmBarrio extends javax.swing.JDialog {
                 txtBuscarKeyReleased(evt);
             }
         });
+        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(338, 43, 138, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 111, -1, -1));
 
         cboCriterio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Barrio", "Ciudad" }));
+        jPanel1.add(cboCriterio, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 43, 96, -1));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Ciudad");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 200, 20));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(123, 123, 123)
-                                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(152, 152, 152))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(687, 687, 687))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(txtBarrio, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cboCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(splClasificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblId1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(cboCriterio, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(156, 156, 156))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(lblId1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboCriterio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(splClasificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jLabel2)
-                        .addGap(100, 100, 100)
-                        .addComponent(lblId)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblNombre)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBarrio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cboCiudad)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
+        jPanel1.add(cboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 200, 20));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(155, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(156, Short.MAX_VALUE))
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 409));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        opc = 'N';
+        nuevo = true;
         habilitarCampos(true);
         habilitarBotones(false);
-        txtBarrio.requestFocus();
+        txtNombre.requestFocus();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-//        boolean guardado = false;
-//        String barrio = txtBarrio.getText().toUpperCase();
-//        
-//            if(!txtBarrio.getText().isEmpty()){
-//                String sql = "select count(*) as can from clasificacion where nombre = '" 
-//                        + barrio  +"'";
-//                rs = bd.consultar(sql);
-//                try{
-//                    rs.first();
-//                    if(rs.getInt("can")>0){
-//                        JOptionPane.showMessageDialog(null, "No se puede agregar la clasificaion porque ya existe");
-//                        txtBarrio.requestFocus();
-//                    }else{
-//                        if (opc == 'N') {
-//                            BaseDatos.insertarRegistro("clasificacion", "nombre", "'" + clasificacion + "'");
-//                            
-//                        }else{
-//                            BaseDatos.actualizarRegistro("clasificacion", "nombre='" + clasificacion + "'",
-//                            "id=" + txtId.getText());
-//                        }
-//                        guardado = true;
-//                    }
-//                }catch (SQLException ex){
-//                    Logger.getLogger(FrmBarrio.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }else{
-//                JOptionPane.showMessageDialog(null, "El nombre no puede estar vacío");
-//                txtBarrio.requestFocus();
-//            }
-//                    
-//        
-//        if(guardado){
-//            opc = 'Z';
-//            limpiarCampos();
-//            habilitarCampos(false);
-//            habilitarBotones(true);
-//            btnAgregar.requestFocus();
-//            actualizarGrilla();
-//        }
+        String nombre = txtNombre.getText();
+        int ciudad_id = ((DatoCombo) cboCiudad.getSelectedItem()).toInt();
+        if (nuevo) {
+            BaseDatos.insertarRegistro("barrio", "nombre,ciudad_id",
+                    "'" + nombre + "'," + ciudad_id);
+        } else {
+            String criterio = "id=" + txtId.getText();
+            BaseDatos.actualizarRegistro("barrio",
+                    "nombre='" + nombre + "',ciudad_id=" + ciudad_id, criterio);
+        }
+        limpiarCampos();
+        habilitarCampos(false);
+        habilitarBotones(true);
+        actualizarGrilla();
+        btnAgregar.requestFocus();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        if(this.grdBarrios.getSelectedRow()>-1){
-            
-        
-            txtId.setText(grdBarrios.getValueAt(grdBarrios.getSelectedRow(), 0).toString());
-            txtBarrio.setText(grdBarrios.getValueAt(grdBarrios.getSelectedRow(), 1).toString());
-            opc = 'M';
-            habilitarBotones(false);
-            habilitarCampos(true);
-            txtBarrio.requestFocus();
-        }else{
-            JOptionPane.showMessageDialog(null, "Seleccione un registro para actulizar");
+        if (grdBarrios.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un registro para modificar.");
+            return;
         }
+        txtId.setText(Grilla.getValorSeleccionado(grdBarrios, "id"));
+        txtNombre.setText(Grilla.getValorSeleccionado(grdBarrios, "nombre"));
+        String ciudad = (String) Grilla.getValorSeleccionado(grdBarrios, "ciudad");
+        for (int idx = 0; idx < cboCiudad.getItemCount(); idx++) {
+            DatoCombo item = cboCiudad.getItemAt(idx);
+            if (ciudad.equals(item.toString())) {
+                cboCiudad.setSelectedIndex(idx);
+                break;
+            }
+        }
+        nuevo = false;
+        habilitarCampos(true);
+        habilitarBotones(false);
+        txtNombre.requestFocus();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        int fila = grdBarrios.getSelectedRow();
-        if(grdBarrios.getSelectedRow()>-1){
-            String id = grdBarrios.getValueAt(fila, 0).toString();
-            String ca = grdBarrios.getValueAt(fila, 1).toString();
-            int opcion = JOptionPane.showOptionDialog(null,
-                "¿Está seguro que desea ELIMINAR el registro de la CLASIFICACIÓN: " + ca + "?",
-                "Eliminar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
-                null, new Object[] {"Si", "No"}, "No");
-            if(opcion == JOptionPane.YES_OPTION){
-                String sql = "select count(*) as can from articulo where clasificacion_id = " + id;
-                rs = bd.consultar(sql);
-                try{
-                    rs.first();
-                    if(rs.getInt("can")>0){
-                        JOptionPane.showMessageDialog(null,
-                            "No se puede eliminar el registro porque pertenece a un artículo",
-                            "Atención", JOptionPane.WARNING_MESSAGE);
-                        
-                    }else{
-                        BaseDatos.borrarRegistro("clasificacion", "id=" + grdBarrios.getValueAt(
-                        grdBarrios.getSelectedRow(), 0).toString());
-                        actualizarGrilla();
-                    }
-                    
-                } catch (SQLException ex) {
-                    Logger.getLogger(FrmBarrio.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                    
-            }
-            
-        }else{
+        if(grdBarrios.getSelectedRow() == -1){
             JOptionPane.showMessageDialog(null, "Seleccione un registro para eliminar");
+            return;
         }
+        BaseDatos.borrarRegistro("barrio", "id=" + Grilla.getValorSeleccionado(grdBarrios, "id"));
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarActionPerformed
 
-    private void txtBarrioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBarrioKeyTyped
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
         char e  = evt.getKeyChar();
-        if(!txtBarrio.getText().isEmpty()){
+        if(!txtNombre.getText().isEmpty()){
             if(e==KeyEvent.VK_ENTER){
                 btnGuardar.requestFocus();
             }
         }
-    }//GEN-LAST:event_txtBarrioKeyTyped
+    }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        this.grd.filtrarGrilla(grdBarrios, this.txtBuscar.getText(), cboCriterio.getSelectedIndex()+1);
-
+        Grilla.filtrarGrilla(grdBarrios, txtBuscar.getText(), cboCriterio.getSelectedIndex()+1);
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     public static void main(String args[]) {
@@ -433,8 +297,8 @@ public class FrmBarrio extends javax.swing.JDialog {
     private javax.swing.JLabel lblId1;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JScrollPane splClasificaciones;
-    private javax.swing.JFormattedTextField txtBarrio;
     private javax.swing.JFormattedTextField txtBuscar;
     private javax.swing.JFormattedTextField txtId;
+    private javax.swing.JFormattedTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

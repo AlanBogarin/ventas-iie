@@ -249,11 +249,10 @@ public class FrmClientes extends javax.swing.JDialog {
             String criterio = "id=" + this.txtRuc.getText();
             BaseDatos.actualizarRegistro("cliente", campos, criterio);
         }
-        this.limpiarCampos();
-        this.habilitarCampos(false);
-        this.habilitarBotones(true);
-        this.actualizarGrilla();
-
+        limpiarCampos();
+        habilitarCampos(false);
+        habilitarBotones(true);
+        actualizarGrilla();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void cboCiudadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboCiudadItemStateChanged
@@ -266,7 +265,7 @@ public class FrmClientes extends javax.swing.JDialog {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         if (grdClientes.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(this, "Seleccione un cliente para modificar.");
+            JOptionPane.showMessageDialog(this, "Seleccione un registro para modificar.");
             return;
         }
         txtRuc.setText((String) Grilla.getValorSeleccionado(grdClientes, "id"));
