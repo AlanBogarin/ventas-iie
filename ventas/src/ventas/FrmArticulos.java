@@ -69,6 +69,7 @@ public final class FrmArticulos extends javax.swing.JDialog {
         cboClasificacion = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Articulos\n");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         grdArticulos.setModel(new javax.swing.table.DefaultTableModel(
