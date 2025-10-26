@@ -15,37 +15,36 @@ public class FrmVentas extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
+        splArticulos = new javax.swing.JScrollPane();
         grdArticulos = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
-        jFormattedTextField4 = new javax.swing.JFormattedTextField();
-        jFormattedTextField5 = new javax.swing.JFormattedTextField();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jFormattedTextField7 = new javax.swing.JFormattedTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jFormattedTextField8 = new javax.swing.JFormattedTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jFormattedTextField9 = new javax.swing.JFormattedTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jFormattedTextField10 = new javax.swing.JFormattedTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
-        jFormattedTextField11 = new javax.swing.JFormattedTextField();
+        pnlVenta = new javax.swing.JPanel();
+        lblFecha = new javax.swing.JLabel();
+        lblVentaId = new javax.swing.JLabel();
+        lblCliente = new javax.swing.JLabel();
+        lblClienteId = new javax.swing.JLabel();
+        lblRuc = new javax.swing.JLabel();
+        txtFecha = new javax.swing.JFormattedTextField();
+        txtVentaId = new javax.swing.JFormattedTextField();
+        txtCliente = new javax.swing.JFormattedTextField();
+        txtClienteId = new javax.swing.JFormattedTextField();
+        txtRuc = new javax.swing.JFormattedTextField();
+        btnBuscarClienteId = new javax.swing.JButton();
+        btnBuscarCliente = new javax.swing.JButton();
+        btnBuscarRuc = new javax.swing.JButton();
+        pnlArticulo = new javax.swing.JPanel();
+        lblArticuloId = new javax.swing.JLabel();
+        txtArticuloId = new javax.swing.JFormattedTextField();
+        lblArticulo = new javax.swing.JLabel();
+        txtArticulo = new javax.swing.JFormattedTextField();
+        lblPrecio = new javax.swing.JLabel();
+        txtPrecio = new javax.swing.JFormattedTextField();
+        lblCantidad = new javax.swing.JLabel();
+        txtCantidad = new javax.swing.JFormattedTextField();
+        btnAgregarArticulo = new javax.swing.JButton();
+        btnBuscarArticuloId = new javax.swing.JButton();
+        btnBuscarArticulo = new javax.swing.JButton();
+        lblTotal = new javax.swing.JLabel();
+        txtTotal = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -63,108 +62,111 @@ public class FrmVentas extends javax.swing.JDialog {
                 "id", "nombre", "precio", "cantidad"
             }
         ));
-        jScrollPane1.setViewportView(grdArticulos);
+        splArticulos.setViewportView(grdArticulos);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, 450, 280));
+        getContentPane().add(splArticulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, 450, 280));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de la venta"));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlVenta.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de la venta"));
+        pnlVenta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("Fecha");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 56, 20));
+        lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblFecha.setText("Fecha");
+        pnlVenta.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 56, 20));
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("ID Venta");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 56, 20));
+        lblVentaId.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblVentaId.setText("ID Venta");
+        pnlVenta.add(lblVentaId, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 56, 20));
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("Cliente");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 56, 20));
+        lblCliente.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCliente.setText("Cliente");
+        pnlVenta.add(lblCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 56, 20));
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("ID Cliente");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 56, 20));
+        lblClienteId.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblClienteId.setText("ID Cliente");
+        pnlVenta.add(lblClienteId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 56, 20));
 
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText("Ruc");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 56, 20));
-        jPanel1.add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 125, 20));
-        jPanel1.add(jFormattedTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 125, 20));
-        jPanel1.add(jFormattedTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 125, 20));
+        lblRuc.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblRuc.setText("Ruc");
+        pnlVenta.add(lblRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 56, 20));
 
-        jFormattedTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtFecha.setEditable(false);
+        pnlVenta.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 125, 20));
+
+        txtVentaId.setEditable(false);
+        pnlVenta.add(txtVentaId, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 125, 20));
+        pnlVenta.add(txtCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 125, 20));
+
+        txtClienteId.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jFormattedTextField4KeyReleased(evt);
+                txtClienteIdKeyReleased(evt);
             }
         });
-        jPanel1.add(jFormattedTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 125, 20));
-        jPanel1.add(jFormattedTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 125, 20));
+        pnlVenta.add(txtClienteId, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 125, 20));
+        pnlVenta.add(txtRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 125, 20));
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
-        jButton4.setBorder(null);
-        jButton4.setContentAreaFilled(false);
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 20, 20));
+        btnBuscarClienteId.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
+        btnBuscarClienteId.setBorder(null);
+        btnBuscarClienteId.setContentAreaFilled(false);
+        pnlVenta.add(btnBuscarClienteId, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 20, 20));
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
-        jButton5.setBorder(null);
-        jButton5.setContentAreaFilled(false);
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 20, 20));
+        btnBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
+        btnBuscarCliente.setBorder(null);
+        btnBuscarCliente.setContentAreaFilled(false);
+        pnlVenta.add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 20, 20));
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
-        jButton6.setBorder(null);
-        jButton6.setContentAreaFilled(false);
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 20, 20));
+        btnBuscarRuc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
+        btnBuscarRuc.setBorder(null);
+        btnBuscarRuc.setContentAreaFilled(false);
+        pnlVenta.add(btnBuscarRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 20, 20));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 460, 130));
+        getContentPane().add(pnlVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 460, 130));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Detalle de factura"));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlArticulo.setBorder(javax.swing.BorderFactory.createTitledBorder("Detalle de factura"));
+        pnlArticulo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setText("ID Articulo");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 60, 20));
-        jPanel2.add(jFormattedTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 125, -1));
+        lblArticuloId.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblArticuloId.setText("ID Articulo");
+        pnlArticulo.add(lblArticuloId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 60, 20));
+        pnlArticulo.add(txtArticuloId, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 125, -1));
 
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setText("Articulo");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 60, 20));
-        jPanel2.add(jFormattedTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 125, -1));
+        lblArticulo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblArticulo.setText("Articulo");
+        pnlArticulo.add(lblArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 60, 20));
+        pnlArticulo.add(txtArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 125, -1));
 
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel9.setText("Precio");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 56, 20));
-        jPanel2.add(jFormattedTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 125, -1));
+        lblPrecio.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblPrecio.setText("Precio");
+        pnlArticulo.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 56, 20));
 
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel10.setText("Cantidad");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 60, 20));
-        jPanel2.add(jFormattedTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 125, -1));
+        txtPrecio.setEditable(false);
+        pnlArticulo.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 125, -1));
 
-        jButton1.setText("Agregar");
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
+        lblCantidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCantidad.setText("Cantidad");
+        pnlArticulo.add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 60, 20));
+        pnlArticulo.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 125, -1));
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
-        jButton9.setBorder(null);
-        jButton9.setContentAreaFilled(false);
-        jPanel2.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 20, 20));
+        btnAgregarArticulo.setText("Agregar");
+        pnlArticulo.add(btnAgregarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
-        jButton10.setBorder(null);
-        jButton10.setContentAreaFilled(false);
-        jPanel2.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 20, 20));
+        btnBuscarArticuloId.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
+        btnBuscarArticuloId.setBorder(null);
+        btnBuscarArticuloId.setContentAreaFilled(false);
+        pnlArticulo.add(btnBuscarArticuloId, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 20, 20));
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
-        jButton11.setBorder(null);
-        jButton11.setContentAreaFilled(false);
-        jPanel2.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 20, 20));
+        btnBuscarArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
+        btnBuscarArticulo.setBorder(null);
+        btnBuscarArticulo.setContentAreaFilled(false);
+        pnlArticulo.add(btnBuscarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 20, 20));
 
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel11.setText("Total");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 56, 20));
-        jPanel2.add(jFormattedTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 125, -1));
+        lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotal.setText("Total");
+        pnlArticulo.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 56, 20));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 460, 170));
+        txtTotal.setEditable(false);
+        pnlArticulo.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 125, -1));
+
+        getContentPane().add(pnlArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 460, 170));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Total Factura"));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -173,12 +175,12 @@ public class FrmVentas extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jFormattedTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField4KeyReleased
+    private void txtClienteIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClienteIdKeyReleased
         if(evt.getKeyCode()==KeyEvent.VK_F1){
             FrmCiudad ciudad = new FrmCiudad(null, true);
             ciudad.setVisible(true);
         }
-    }//GEN-LAST:event_jFormattedTextField4KeyReleased
+    }//GEN-LAST:event_txtClienteIdKeyReleased
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -215,37 +217,36 @@ public class FrmVentas extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarArticulo;
+    private javax.swing.JButton btnBuscarArticulo;
+    private javax.swing.JButton btnBuscarArticuloId;
+    private javax.swing.JButton btnBuscarCliente;
+    private javax.swing.JButton btnBuscarClienteId;
+    private javax.swing.JButton btnBuscarRuc;
     private javax.swing.JTable grdArticulos;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField10;
-    private javax.swing.JFormattedTextField jFormattedTextField11;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
-    private javax.swing.JFormattedTextField jFormattedTextField4;
-    private javax.swing.JFormattedTextField jFormattedTextField5;
-    private javax.swing.JFormattedTextField jFormattedTextField7;
-    private javax.swing.JFormattedTextField jFormattedTextField8;
-    private javax.swing.JFormattedTextField jFormattedTextField9;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblArticulo;
+    private javax.swing.JLabel lblArticuloId;
+    private javax.swing.JLabel lblCantidad;
+    private javax.swing.JLabel lblCliente;
+    private javax.swing.JLabel lblClienteId;
+    private javax.swing.JLabel lblFecha;
+    private javax.swing.JLabel lblPrecio;
+    private javax.swing.JLabel lblRuc;
+    private javax.swing.JLabel lblTotal;
+    private javax.swing.JLabel lblVentaId;
+    private javax.swing.JPanel pnlArticulo;
+    private javax.swing.JPanel pnlVenta;
+    private javax.swing.JScrollPane splArticulos;
+    private javax.swing.JFormattedTextField txtArticulo;
+    private javax.swing.JFormattedTextField txtArticuloId;
+    private javax.swing.JFormattedTextField txtCantidad;
+    private javax.swing.JFormattedTextField txtCliente;
+    private javax.swing.JFormattedTextField txtClienteId;
+    private javax.swing.JFormattedTextField txtFecha;
+    private javax.swing.JFormattedTextField txtPrecio;
+    private javax.swing.JFormattedTextField txtRuc;
+    private javax.swing.JFormattedTextField txtTotal;
+    private javax.swing.JFormattedTextField txtVentaId;
     // End of variables declaration//GEN-END:variables
 }
