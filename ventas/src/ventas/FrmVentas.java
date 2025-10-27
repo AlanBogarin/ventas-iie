@@ -45,7 +45,12 @@ public class FrmVentas extends javax.swing.JDialog {
         btnBuscarArticulo = new javax.swing.JButton();
         lblTotal = new javax.swing.JLabel();
         txtTotal = new javax.swing.JFormattedTextField();
+        lblStock = new javax.swing.JLabel();
+        txtStock = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
+        lblCantidad1 = new javax.swing.JLabel();
+        txtCantidad1 = new javax.swing.JFormattedTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setSize(new java.awt.Dimension(720, 1440));
@@ -64,7 +69,7 @@ public class FrmVentas extends javax.swing.JDialog {
         ));
         splArticulos.setViewportView(grdArticulos);
 
-        getContentPane().add(splArticulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, 450, 280));
+        getContentPane().add(splArticulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, 450, 310));
 
         pnlVenta.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de la venta"));
         pnlVenta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -136,10 +141,10 @@ public class FrmVentas extends javax.swing.JDialog {
 
         lblPrecio.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPrecio.setText("Precio");
-        pnlArticulo.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 56, 20));
+        pnlArticulo.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 56, 20));
 
         txtPrecio.setEditable(false);
-        pnlArticulo.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 125, -1));
+        pnlArticulo.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 125, -1));
 
         lblCantidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCantidad.setText("Cantidad");
@@ -161,16 +166,32 @@ public class FrmVentas extends javax.swing.JDialog {
 
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTotal.setText("Total");
-        pnlArticulo.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 56, 20));
+        pnlArticulo.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 56, 20));
 
         txtTotal.setEditable(false);
-        pnlArticulo.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 125, -1));
+        pnlArticulo.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 125, -1));
+
+        lblStock.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblStock.setText("Stock");
+        pnlArticulo.add(lblStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 56, 20));
+
+        txtStock.setEditable(false);
+        pnlArticulo.add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 125, -1));
 
         getContentPane().add(pnlArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 460, 170));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Total Factura"));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblCantidad1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCantidad1.setText("Cantidad");
+        jPanel3.add(lblCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 60, 20));
+        jPanel3.add(txtCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 125, -1));
+
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 460, 140));
+
+        jButton1.setText("Guardar");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 423, 80, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -224,15 +245,18 @@ public class FrmVentas extends javax.swing.JDialog {
     private javax.swing.JButton btnBuscarClienteId;
     private javax.swing.JButton btnBuscarRuc;
     private javax.swing.JTable grdArticulos;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblArticulo;
     private javax.swing.JLabel lblArticuloId;
     private javax.swing.JLabel lblCantidad;
+    private javax.swing.JLabel lblCantidad1;
     private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblClienteId;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblPrecio;
     private javax.swing.JLabel lblRuc;
+    private javax.swing.JLabel lblStock;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JLabel lblVentaId;
     private javax.swing.JPanel pnlArticulo;
@@ -241,11 +265,13 @@ public class FrmVentas extends javax.swing.JDialog {
     private javax.swing.JFormattedTextField txtArticulo;
     private javax.swing.JFormattedTextField txtArticuloId;
     private javax.swing.JFormattedTextField txtCantidad;
+    private javax.swing.JFormattedTextField txtCantidad1;
     private javax.swing.JFormattedTextField txtCliente;
     private javax.swing.JFormattedTextField txtClienteId;
     private javax.swing.JFormattedTextField txtFecha;
     private javax.swing.JFormattedTextField txtPrecio;
     private javax.swing.JFormattedTextField txtRuc;
+    private javax.swing.JFormattedTextField txtStock;
     private javax.swing.JFormattedTextField txtTotal;
     private javax.swing.JFormattedTextField txtVentaId;
     // End of variables declaration//GEN-END:variables
