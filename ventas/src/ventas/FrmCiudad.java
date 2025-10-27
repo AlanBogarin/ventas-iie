@@ -70,9 +70,11 @@ public final class FrmCiudad extends javax.swing.JDialog {
         cboCriterio = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Ciudades\n");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setName("Ciudades"); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar-flecha.png"))); // NOI18N
@@ -110,7 +112,7 @@ public final class FrmCiudad extends javax.swing.JDialog {
                 txtCiudadKeyTyped(evt);
             }
         });
-        jPanel1.add(txtCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 333, 210, 30));
+        jPanel1.add(txtCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 333, 210, 20));
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblNombre.setText("Nombre");
@@ -197,14 +199,14 @@ public final class FrmCiudad extends javax.swing.JDialog {
                 try{
                     rs.first();
                     if(rs.getInt("can")>0){
-                        JOptionPane.showMessageDialog(null, "No se puede agregar la clasificaion porque ya existe");
+                        JOptionPane.showMessageDialog(null, "No se puede agregar la ciudad porque ya existe");
                         txtCiudad.requestFocus();
                     }else{
                         if (opc == 'N') {
                             BaseDatos.insertarRegistro("ciudad", "nombre", "'" + ciudad + "'");
                             
                         }else{
-                            BaseDatos.actualizarRegistro("clasificacion", "nombre='" + ciudad + "'",
+                            BaseDatos.actualizarRegistro("ciudad", "nombre='" + ciudad + "'",
                             "id=" + txtId.getText());
                         }
                         guardado = true;
@@ -244,39 +246,12 @@ public final class FrmCiudad extends javax.swing.JDialog {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        int fila = grdCiudad.getSelectedRow();
-        if(grdCiudad.getSelectedRow()>-1){
-            String id = grdCiudad.getValueAt(fila, 0).toString();
-            String ca = grdCiudad.getValueAt(fila, 1).toString();
-            int opcion = JOptionPane.showOptionDialog(null,
-                "¿Está seguro que desea ELIMINAR el registro de la CIUDAD: " + ca + "?",
-                "Eliminar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
-                null, new Object[] {"Si", "No"}, "No");
-            if(opcion == JOptionPane.YES_OPTION){
-                String sql = "select count(*) as can from cliente where ciudad_id = " + id;
-                rs = bd.consultar(sql);
-                try{
-                    rs.first();
-                    if(rs.getInt("can")>0){
-                        JOptionPane.showMessageDialog(null,
-                            "No se puede eliminar el registro porque pertenece a un cliente",
-                            "Atención", JOptionPane.WARNING_MESSAGE);
-                        
-                    }else{
-                        BaseDatos.borrarRegistro("ciudad", "id=" + grdCiudad.getValueAt(
-                        grdCiudad.getSelectedRow(), 0).toString());
-                        actualizarGrilla();
-                    }
-                    
-                } catch (SQLException ex) {
-                    Logger.getLogger(FrmCiudad.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                    
-            }
-            
-        }else{
+        if(grdCiudad.getSelectedRow() == -1){
             JOptionPane.showMessageDialog(null, "Seleccione un registro para eliminar");
+            return;
         }
+        BaseDatos.borrarRegistro("ciudad", "id=" + Grilla.getValorSeleccionado(grdCiudad, "id"));
+        actualizarGrilla();
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
@@ -293,8 +268,7 @@ public final class FrmCiudad extends javax.swing.JDialog {
     }//GEN-LAST:event_txtCiudadKeyTyped
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        this.grd.filtrarGrilla(grdCiudad, this.txtBuscar.getText(),
-                cboCriterio.getSelectedIndex());
+        this.grd.filtrarGrilla(grdCiudad, this.txtBuscar.getText(), cboCriterio.getSelectedIndex());
 
     }//GEN-LAST:event_txtBuscarKeyReleased
 
