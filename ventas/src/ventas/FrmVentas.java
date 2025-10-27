@@ -12,6 +12,20 @@ public final class FrmVentas extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         btnBuscarCliente.requestFocus();
+        limpiarVenta();
+    }
+
+    void limpiarVenta() {
+        Object[] fila = BaseDatos.getPrimeraFila("SELECT MAX(id) FROM venta");
+        int ventaId = fila.length == 0 ? 1 : ((Number) fila[0]).intValue();
+        txtVentaId.setText(String.valueOf(ventaId));
+        txtClienteId.setText(null);
+        txtCliente.setText(null);
+        txtRuc.setText(null);
+        String fecha = java.time.LocalDate.now().toString();
+        txtFecha.setText(fecha);
+        txtTotal.setText("0");
+        ((DefaultTableModel) grdArticulos.getModel()).setRowCount(0);
     }
 
     void limpiarArticulo() {
@@ -30,7 +44,8 @@ public final class FrmVentas extends javax.swing.JDialog {
             String valor = modelo.getValueAt(i, 4).toString(); // columna subtotal
             try {
                 total += Integer.parseInt(valor);
-            } finally {}
+            } finally {
+            }
         }
         txtTotal.setValue(String.valueOf(total));
     }
@@ -70,7 +85,7 @@ public final class FrmVentas extends javax.swing.JDialog {
         lblStock = new javax.swing.JLabel();
         txtStock = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnGuardarVenta = new javax.swing.JButton();
         lblTotal = new javax.swing.JLabel();
         txtTotal = new javax.swing.JFormattedTextField();
 
@@ -246,8 +261,13 @@ public final class FrmVentas extends javax.swing.JDialog {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Total Factura"));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Guardar");
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 90, 80, 40));
+        btnGuardarVenta.setText("Guardar");
+        btnGuardarVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarVentaActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnGuardarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 90, 80, 40));
 
         lblTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -318,7 +338,7 @@ public final class FrmVentas extends javax.swing.JDialog {
             txtCantidad.requestFocus();
             return;
         }
-        
+
         // Obtener los datos de los campos
         String id = txtArticuloId.getText();
         String nombre = txtArticulo.getText();
@@ -346,6 +366,79 @@ public final class FrmVentas extends javax.swing.JDialog {
         int subtotal = cantidad * precio;
         txtSubTotal.setText(String.valueOf(subtotal));
     }//GEN-LAST:event_txtCantidadActionPerformed
+
+    private void btnGuardarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarVentaActionPerformed
+        if (txtClienteId.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un cliente antes de guardar la venta.");
+            return;
+        }
+
+        DefaultTableModel modelo = (DefaultTableModel) grdArticulos.getModel();
+        if (modelo.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Debe agregar al menos un artículo a la venta.");
+            return;
+        }
+
+        // --- Obtener los datos de la cabecera de venta ---
+        String clienteId = txtClienteId.getText();
+        String fecha = java.time.LocalDate.now().toString();
+
+        // --- Insertar en tabla venta ---
+        boolean ok = BaseDatos.insertarRegistro(
+                "venta",
+                "cliente_id, fecha",
+                clienteId + ", '" + fecha + "'"
+        );
+
+        if (!ok) {
+            JOptionPane.showMessageDialog(this, "No se pudo registrar la venta.");
+            return;
+        }
+
+        // --- Obtener el ID generado (último ID) ---
+        Object[] filaVenta = BaseDatos.getPrimeraFila("SELECT MAX(id) FROM venta");
+        if (filaVenta.length == 0) {
+            JOptionPane.showMessageDialog(this, "Error al obtener el ID de la venta guardada.");
+            return;
+        }
+        int ventaId = ((Number) filaVenta[0]).intValue();
+
+        // --- Insertar los artículos ---
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            int articuloId = Integer.parseInt(modelo.getValueAt(i, 0).toString());
+            int cantidad = Integer.parseInt(modelo.getValueAt(i, 2).toString());
+            int precio = Integer.parseInt(modelo.getValueAt(i, 3).toString());
+
+            // Insertar cada detalle
+            boolean okDetalle = BaseDatos.insertarRegistro(
+                    "venta_articulo",
+                    "venta_id, articulo_id, cantidad, precio",
+                    ventaId + ", " + articuloId + ", " + cantidad + ", " + precio
+            );
+
+            if (!okDetalle) {
+                JOptionPane.showMessageDialog(this, "Error al guardar artículo ID " + articuloId);
+                return;
+            }
+
+            // Opcional: actualizar el stock
+            BaseDatos.actualizarRegistro(
+                    "articulo",
+                    "stock = stock - " + cantidad,
+                    "id = " + articuloId
+            );
+        }
+
+        JOptionPane.showMessageDialog(this, "Venta registrada correctamente con ID " + ventaId);
+
+        // Limpiar formulario
+        txtVentaId.setText(String.valueOf(ventaId));
+        txtClienteId.setText("");
+        txtCliente.setText("");
+        txtRuc.setText("");
+        txtTotal.setText("0");
+        ((DefaultTableModel) grdArticulos.getModel()).setRowCount(0);
+    }//GEN-LAST:event_btnGuardarVentaActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -386,8 +479,8 @@ public final class FrmVentas extends javax.swing.JDialog {
     private javax.swing.JButton btnBuscarArticulo;
     private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnBuscarRuc;
+    private javax.swing.JButton btnGuardarVenta;
     private javax.swing.JTable grdArticulos;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblArticulo;
     private javax.swing.JLabel lblArticuloId;
