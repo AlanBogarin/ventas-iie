@@ -1,5 +1,6 @@
 package ventas;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 public class FrmClientes extends javax.swing.JDialog {
@@ -89,10 +90,22 @@ public class FrmClientes extends javax.swing.JDialog {
 
         lblNombre.setText("Nombre");
         jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 60, 30));
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 325, 30));
 
         lblRuc.setText("Ruc");
         jPanel1.add(lblRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 60, 30));
+
+        txtRuc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRucKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 325, 30));
 
         lblCiudad.setText("Ciudad");
@@ -263,6 +276,24 @@ public class FrmClientes extends javax.swing.JDialog {
         String condicion = item == null ? null : ("ciudad_id=" + item.toInt());
         Combo.cargarCombo(cboBarrio, "barrio", "DISTINCT id,nombre", condicion);
     }//GEN-LAST:event_cboCiudadItemStateChanged
+
+    private void txtRucKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRucKeyTyped
+        char e  = evt.getKeyChar();
+        if(!txtRuc.getText().isEmpty()){
+            if(e==KeyEvent.VK_ENTER){
+                txtNombre.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_txtRucKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char e  = evt.getKeyChar();
+        if(!txtNombre.getText().isEmpty()){
+            if(e==KeyEvent.VK_ENTER){
+                cboCiudad.requestFocus();
+            }
+        }    
+    }//GEN-LAST:event_txtNombreKeyTyped
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

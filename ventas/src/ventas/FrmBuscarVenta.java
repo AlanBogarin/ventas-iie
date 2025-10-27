@@ -22,6 +22,7 @@ public class FrmBuscarVenta extends javax.swing.JDialog {
         Combo.cargarCombo(cboItems, tabla, campos, condicion);
         cboItems.requestFocus();
         this.fnConfirmar = fnConfirmar;
+        this.setSize(301, 302);
     }
 
     @SuppressWarnings("unchecked")
