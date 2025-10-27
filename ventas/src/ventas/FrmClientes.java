@@ -191,6 +191,7 @@ public class FrmClientes extends javax.swing.JDialog {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         habilitarBotones(true);
         habilitarCampos(false);
+        limpiarCampos();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
@@ -258,8 +259,8 @@ public class FrmClientes extends javax.swing.JDialog {
 
     private void cboCiudadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboCiudadItemStateChanged
         DatoCombo item = (DatoCombo) cboCiudad.getSelectedItem();
-        String condicion = item == null ? null : ("nombre='" + item.toString() + "'");
-        Combo.cargarCombo(cboBarrio, "barrio", "id,nombre", condicion);
+        String condicion = item == null ? null : ("ciudad_id='" + item.toInt() + "'");
+        Combo.cargarCombo(cboBarrio, "DISTINCT barrio", "id,nombre", condicion);
     }//GEN-LAST:event_cboCiudadItemStateChanged
 
     public static void main(String args[]) {
