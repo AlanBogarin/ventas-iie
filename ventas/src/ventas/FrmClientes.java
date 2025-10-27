@@ -23,7 +23,8 @@ public class FrmClientes extends javax.swing.JDialog {
         txtId.setEnabled(false);
         txtRuc.setEnabled(estado);
         txtNombre.setEnabled(estado);
-        cboBarrio.setEditable(estado);
+        cboCiudad.setEnabled(estado);
+        cboBarrio.setEnabled(estado);
         txtRuc.requestFocus();
     }
 
@@ -87,12 +88,12 @@ public class FrmClientes extends javax.swing.JDialog {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblNombre.setText("Nombre");
-        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 60, 20));
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 325, 20));
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 60, 30));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 325, 30));
 
         lblRuc.setText("Ruc");
-        jPanel1.add(lblRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 60, 20));
-        jPanel1.add(txtRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 325, 20));
+        jPanel1.add(lblRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 60, 30));
+        jPanel1.add(txtRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 325, 30));
 
         lblCiudad.setText("Ciudad");
         jPanel1.add(lblCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 60, 20));
@@ -180,8 +181,8 @@ public class FrmClientes extends javax.swing.JDialog {
         jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 410, 90, 31));
 
         lblId.setText("Id");
-        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 60, 20));
-        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 325, 20));
+        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 60, 20));
+        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 325, 20));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 710, 470));
 
