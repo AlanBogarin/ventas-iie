@@ -1,15 +1,38 @@
 package ventas;
 
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
-public class FrmVentas extends javax.swing.JDialog {
-    
+public final class FrmVentas extends javax.swing.JDialog {
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmVentas.class.getName());
 
     public FrmVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         btnBuscarCliente.requestFocus();
+    }
+
+    void limpiarArticulo() {
+        txtArticuloId.setText(null);
+        txtArticulo.setText(null);
+        txtCantidad.setText("0");
+        txtStock.setText("0");
+        txtPrecio.setText("0");
+        txtSubTotal.setText("0");
+    }
+
+    private void actualizarTotalFactura() {
+        DefaultTableModel modelo = (DefaultTableModel) grdArticulos.getModel();
+        int total = 0;
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            String valor = modelo.getValueAt(i, 4).toString(); // columna subtotal
+            try {
+                total += Integer.parseInt(valor);
+            } finally {}
+        }
+        txtTotal.setValue(String.valueOf(total));
     }
 
     @SuppressWarnings("unchecked")
@@ -42,14 +65,14 @@ public class FrmVentas extends javax.swing.JDialog {
         txtCantidad = new javax.swing.JFormattedTextField();
         btnAgregarArticulo = new javax.swing.JButton();
         btnBuscarArticulo = new javax.swing.JButton();
-        lblTotal = new javax.swing.JLabel();
-        txtTotal = new javax.swing.JFormattedTextField();
+        lblSubTotal = new javax.swing.JLabel();
+        txtSubTotal = new javax.swing.JFormattedTextField();
         lblStock = new javax.swing.JLabel();
         txtStock = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        lblCantidad1 = new javax.swing.JLabel();
-        txtCantidad1 = new javax.swing.JFormattedTextField();
+        lblTotal = new javax.swing.JLabel();
+        txtTotal = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setSize(new java.awt.Dimension(720, 1440));
@@ -165,16 +188,29 @@ public class FrmVentas extends javax.swing.JDialog {
         pnlArticulo.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 56, 20));
 
         txtPrecio.setEditable(false);
+        txtPrecio.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtPrecio.setText("0");
         pnlArticulo.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 125, -1));
 
         lblCantidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCantidad.setText("Cantidad");
         pnlArticulo.add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 60, 20));
 
-        txtCantidad.setEnabled(false);
+        txtCantidad.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtCantidad.setText("0");
+        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantidadActionPerformed(evt);
+            }
+        });
         pnlArticulo.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 125, -1));
 
         btnAgregarArticulo.setText("Agregar");
+        btnAgregarArticulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarArticuloActionPerformed(evt);
+            }
+        });
         pnlArticulo.add(btnAgregarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
 
         btnBuscarArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
@@ -187,18 +223,22 @@ public class FrmVentas extends javax.swing.JDialog {
         });
         pnlArticulo.add(btnBuscarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 20, 20));
 
-        lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTotal.setText("Total");
-        pnlArticulo.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 56, 20));
+        lblSubTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblSubTotal.setText("SubTotal");
+        pnlArticulo.add(lblSubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 56, 20));
 
-        txtTotal.setEditable(false);
-        pnlArticulo.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 125, -1));
+        txtSubTotal.setEditable(false);
+        txtSubTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtSubTotal.setText("0");
+        pnlArticulo.add(txtSubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 125, -1));
 
         lblStock.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblStock.setText("Stock");
         pnlArticulo.add(lblStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 56, 20));
 
         txtStock.setEditable(false);
+        txtStock.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtStock.setText("0");
         pnlArticulo.add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 125, -1));
 
         getContentPane().add(pnlArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 460, 170));
@@ -209,13 +249,15 @@ public class FrmVentas extends javax.swing.JDialog {
         jButton1.setText("Guardar");
         jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 90, 80, 40));
 
-        lblCantidad1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblCantidad1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCantidad1.setText("Total");
-        jPanel3.add(lblCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 60, 20));
+        lblTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotal.setText("Total");
+        jPanel3.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 60, 20));
 
-        txtCantidad1.setEnabled(false);
-        jPanel3.add(txtCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 20, 125, -1));
+        txtTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtTotal.setText("0");
+        txtTotal.setEnabled(false);
+        jPanel3.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 20, 125, -1));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 930, 150));
 
@@ -223,7 +265,7 @@ public class FrmVentas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtClienteIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClienteIdKeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_F1){
+        if (evt.getKeyCode() == KeyEvent.VK_F1) {
             FrmCiudad ciudad = new FrmCiudad(null, true);
             ciudad.setVisible(true);
         }
@@ -248,6 +290,7 @@ public class FrmVentas extends javax.swing.JDialog {
     }//GEN-LAST:event_btnBuscarRucActionPerformed
 
     private void btnBuscarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarArticuloActionPerformed
+        limpiarArticulo();
         new FrmBuscarVenta(this, false, "articulo", "id,nombre", null, (DatoCombo item) -> {
             txtArticuloId.setText(String.valueOf(item.toInt()));
             txtArticulo.setText(item.toString());
@@ -256,6 +299,53 @@ public class FrmVentas extends javax.swing.JDialog {
             txtPrecio.setText(((Number) fila[2]).toString());
         }).setVisible(true);
     }//GEN-LAST:event_btnBuscarArticuloActionPerformed
+
+    private void btnAgregarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarArticuloActionPerformed
+        if (txtArticuloId.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(btnAgregarArticulo, "No se ha detectado el articulo a agregar");
+            btnBuscarArticulo.requestFocus();
+            return;
+        }
+        int stock = Integer.parseInt(txtStock.getText());
+        if (stock <= 0) {
+            JOptionPane.showMessageDialog(btnAgregarArticulo, "Este articulo no tiene stock");
+            btnBuscarArticulo.requestFocus();
+            return;
+        }
+        String cantidad = txtCantidad.getText();
+        if (Integer.parseInt(cantidad) <= 0) {
+            JOptionPane.showMessageDialog(btnAgregarArticulo, "Agregue la cantidad a vender");
+            txtCantidad.requestFocus();
+            return;
+        }
+        
+        // Obtener los datos de los campos
+        String id = txtArticuloId.getText();
+        String nombre = txtArticulo.getText();
+        String precio = txtPrecio.getText();
+        String subtotal = txtSubTotal.getText();
+
+        // Agregar la fila a la tabla
+        DefaultTableModel modelo = (DefaultTableModel) grdArticulos.getModel();
+        modelo.addRow(new Object[]{id, nombre, cantidad, precio, subtotal});
+
+        // Actualizar el total general
+        actualizarTotalFactura();
+
+        limpiarArticulo();
+    }//GEN-LAST:event_btnAgregarArticuloActionPerformed
+
+    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
+        String sCantidad = txtCantidad.getText();
+        if (sCantidad.isEmpty()) {
+            txtCantidad.setText("0");
+            sCantidad = "0";
+        }
+        int cantidad = Integer.parseInt(sCantidad);
+        int precio = Integer.parseInt(txtPrecio.getText());
+        int subtotal = cantidad * precio;
+        txtSubTotal.setText(String.valueOf(subtotal));
+    }//GEN-LAST:event_txtCantidadActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -302,13 +392,13 @@ public class FrmVentas extends javax.swing.JDialog {
     private javax.swing.JLabel lblArticulo;
     private javax.swing.JLabel lblArticuloId;
     private javax.swing.JLabel lblCantidad;
-    private javax.swing.JLabel lblCantidad1;
     private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblClienteId;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblPrecio;
     private javax.swing.JLabel lblRuc;
     private javax.swing.JLabel lblStock;
+    private javax.swing.JLabel lblSubTotal;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JLabel lblVentaId;
     private javax.swing.JPanel pnlArticulo;
@@ -317,13 +407,13 @@ public class FrmVentas extends javax.swing.JDialog {
     private javax.swing.JFormattedTextField txtArticulo;
     private javax.swing.JFormattedTextField txtArticuloId;
     private javax.swing.JFormattedTextField txtCantidad;
-    private javax.swing.JFormattedTextField txtCantidad1;
     private javax.swing.JFormattedTextField txtCliente;
     private javax.swing.JFormattedTextField txtClienteId;
     private javax.swing.JFormattedTextField txtFecha;
     private javax.swing.JFormattedTextField txtPrecio;
     private javax.swing.JFormattedTextField txtRuc;
     private javax.swing.JFormattedTextField txtStock;
+    private javax.swing.JFormattedTextField txtSubTotal;
     private javax.swing.JFormattedTextField txtTotal;
     private javax.swing.JFormattedTextField txtVentaId;
     // End of variables declaration//GEN-END:variables
