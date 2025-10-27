@@ -8,17 +8,13 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public final class FrmCiudad extends javax.swing.JDialog {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmCiudad.class.getName());
 
-    char opc = 'Z';
-    private ResultSet rs;
-    private BaseDatos bd;
-    private Grilla grd=new Grilla();
+    boolean nuevo = false;
 
     public FrmCiudad(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        bd = new BaseDatos();
         initComponents();
         habilitarCampos(false);
         habilitarBotones(true);
@@ -70,11 +66,9 @@ public final class FrmCiudad extends javax.swing.JDialog {
         cboCriterio = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Ciudades\n");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.setName("Ciudades"); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar-flecha.png"))); // NOI18N
@@ -112,7 +106,7 @@ public final class FrmCiudad extends javax.swing.JDialog {
                 txtCiudadKeyTyped(evt);
             }
         });
-        jPanel1.add(txtCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 333, 210, 20));
+        jPanel1.add(txtCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 333, 210, 30));
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblNombre.setText("Nombre");
@@ -169,11 +163,6 @@ public final class FrmCiudad extends javax.swing.JDialog {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 52, 179, 153));
 
         cboCriterio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Ciudad" }));
-        cboCriterio.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cboCriterioKeyReleased(evt);
-            }
-        });
         jPanel1.add(cboCriterio, new org.netbeans.lib.awtextra.AbsoluteConstraints(223, 43, 96, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 560, 420));
@@ -182,71 +171,48 @@ public final class FrmCiudad extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        opc = 'N';
+        nuevo = true;
         habilitarCampos(true);
         habilitarBotones(false);
         txtCiudad.requestFocus();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        boolean guardado = false;
         String ciudad = txtCiudad.getText().toUpperCase();
-        
-            if(!txtCiudad.getText().isEmpty()){
-                String sql = "select count(*) as can from ciudad where nombre = '" 
-                        + ciudad  +"'";
-                rs = bd.consultar(sql);
-                try{
-                    rs.first();
-                    if(rs.getInt("can")>0){
-                        JOptionPane.showMessageDialog(null, "No se puede agregar la ciudad porque ya existe");
-                        txtCiudad.requestFocus();
-                    }else{
-                        if (opc == 'N') {
-                            BaseDatos.insertarRegistro("ciudad", "nombre", "'" + ciudad + "'");
-                            
-                        }else{
-                            BaseDatos.actualizarRegistro("ciudad", "nombre='" + ciudad + "'",
-                            "id=" + txtId.getText());
-                        }
-                        guardado = true;
-                    }
-                }catch (SQLException ex){
-                    Logger.getLogger(FrmCiudad.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }else{
-                JOptionPane.showMessageDialog(null, "El nombre no puede estar vacío");
-                txtCiudad.requestFocus();
-            }
-                    
-        
-        if(guardado){
-            opc = 'Z';
-            limpiarCampos();
-            habilitarCampos(false);
-            habilitarBotones(true);
-            btnAgregar.requestFocus();
-            actualizarGrilla();
+
+        if (txtCiudad.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El nombre no puede estar vacío");
+            txtCiudad.requestFocus();
+            return;
         }
+        if (nuevo) {
+            BaseDatos.insertarRegistro("ciudad", "nombre", "'" + ciudad + "'");
+        } else {
+            BaseDatos.actualizarRegistro("ciudad", "nombre='" + ciudad + "'",
+                    "id=" + txtId.getText());
+        }
+        limpiarCampos();
+        habilitarCampos(false);
+        habilitarBotones(true);
+        btnAgregar.requestFocus();
+        actualizarGrilla();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        if(this.grdCiudad.getSelectedRow()>-1){
-            
-        
-            txtId.setText(grdCiudad.getValueAt(grdCiudad.getSelectedRow(), 0).toString());
-            txtCiudad.setText(grdCiudad.getValueAt(grdCiudad.getSelectedRow(), 1).toString());
-            opc = 'M';
-            habilitarBotones(false);
-            habilitarCampos(true);
-            txtCiudad.requestFocus();
-        }else{
+        if (this.grdCiudad.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione un registro para actulizar");
+            return;
         }
+        nuevo = false;
+        txtId.setText(Grilla.getValorSeleccionado(grdCiudad, "id"));
+        txtCiudad.setText(Grilla.getValorSeleccionado(grdCiudad, "nombre"));
+        habilitarBotones(false);
+        habilitarCampos(true);
+        txtCiudad.requestFocus();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        if(grdCiudad.getSelectedRow() == -1){
+        if (grdCiudad.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione un registro para eliminar");
             return;
         }
@@ -259,22 +225,18 @@ public final class FrmCiudad extends javax.swing.JDialog {
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void txtCiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCiudadKeyTyped
-        char e  = evt.getKeyChar();
-        if(!txtCiudad.getText().isEmpty()){
-            if(e==KeyEvent.VK_ENTER){
+        char e = evt.getKeyChar();
+        if (!txtCiudad.getText().isEmpty()) {
+            if (e == KeyEvent.VK_ENTER) {
                 btnGuardar.requestFocus();
             }
         }
     }//GEN-LAST:event_txtCiudadKeyTyped
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        this.grd.filtrarGrilla(grdCiudad, this.txtBuscar.getText(), cboCriterio.getSelectedIndex());
+        Grilla.filtrarGrilla(grdCiudad, txtBuscar.getText(), cboCriterio.getSelectedIndex());
 
     }//GEN-LAST:event_txtBuscarKeyReleased
-
-    private void cboCriterioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboCriterioKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCriterioKeyReleased
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
