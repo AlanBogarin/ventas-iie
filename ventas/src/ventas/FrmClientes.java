@@ -121,6 +121,11 @@ public class FrmClientes extends javax.swing.JDialog {
         });
         jPanel1.add(cboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 325, 20));
 
+        cboBarrio.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboBarrioItemStateChanged(evt);
+            }
+        });
         jPanel1.add(cboBarrio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 325, 20));
 
         grdClientes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -275,6 +280,7 @@ public class FrmClientes extends javax.swing.JDialog {
         DatoCombo item = (DatoCombo) cboCiudad.getSelectedItem();
         String condicion = item == null ? null : ("ciudad_id=" + item.toInt());
         Combo.cargarCombo(cboBarrio, "barrio", "DISTINCT id,nombre", condicion);
+        cboBarrio.requestFocus();
     }//GEN-LAST:event_cboCiudadItemStateChanged
 
     private void txtRucKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRucKeyTyped
@@ -294,6 +300,10 @@ public class FrmClientes extends javax.swing.JDialog {
             }
         }    
     }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void cboBarrioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboBarrioItemStateChanged
+        btnGuardar.requestFocus();
+    }//GEN-LAST:event_cboBarrioItemStateChanged
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
