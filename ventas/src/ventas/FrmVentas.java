@@ -304,7 +304,7 @@ public final class FrmVentas extends javax.swing.JDialog {
         new FrmBuscarVenta(this, false, "cliente", "id,ruc", null, (DatoCombo item) -> {
             txtClienteId.setText(String.valueOf(item.toInt()));
             txtRuc.setText(item.toString());
-            Object[] fila = BaseDatos.getPrimeraFila("SELECT id,ruc FROM cliente WHERE id=" + item.toInt());
+            Object[] fila = BaseDatos.getPrimeraFila("SELECT id,nombre FROM cliente WHERE id=" + item.toInt());
             txtCliente.setText((String) fila[1]);
         }).setVisible(true);
     }//GEN-LAST:event_btnBuscarRucActionPerformed
