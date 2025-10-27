@@ -88,27 +88,10 @@ public class FrmClientes extends javax.swing.JDialog {
 
         lblNombre.setText("Nombre");
         jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 60, 20));
-
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
-            }
-        });
-        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNombreKeyPressed(evt);
-            }
-        });
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 325, 20));
 
         lblRuc.setText("Ruc");
         jPanel1.add(lblRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 60, 20));
-
-        txtRuc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRucActionPerformed(evt);
-            }
-        });
         jPanel1.add(txtRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 325, 20));
 
         lblCiudad.setText("Ciudad");
@@ -124,11 +107,6 @@ public class FrmClientes extends javax.swing.JDialog {
         });
         jPanel1.add(cboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 325, 20));
 
-        cboBarrio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboBarrioActionPerformed(evt);
-            }
-        });
         jPanel1.add(cboBarrio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 325, 20));
 
         grdClientes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -203,12 +181,6 @@ public class FrmClientes extends javax.swing.JDialog {
 
         lblId.setText("Id");
         jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 60, 20));
-
-        txtId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdActionPerformed(evt);
-            }
-        });
         jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 325, 20));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 710, 470));
@@ -223,18 +195,10 @@ public class FrmClientes extends javax.swing.JDialog {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         nuevo = true;
+        limpiarCampos();
         habilitarBotones(false);
         habilitarCampos(true);
     }//GEN-LAST:event_btnNuevoActionPerformed
-
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-    }//GEN-LAST:event_txtNombreActionPerformed
-
-    private void txtRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRucActionPerformed
-    }//GEN-LAST:event_txtRucActionPerformed
-
-    private void cboBarrioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboBarrioActionPerformed
-    }//GEN-LAST:event_cboBarrioActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         int ciudad_id = ((DatoCombo) cboCiudad.getSelectedItem()).toInt();
@@ -246,7 +210,7 @@ public class FrmClientes extends javax.swing.JDialog {
                     "'" + nombre + "','" + ruc + "'," + ciudad_id + "," + barrio_id);
         } else {
             String campos = "nombre='" + nombre + "', ruc='" + ruc + "', ciudad_id=" + ciudad_id + ", barrio_id=" + barrio_id;
-            String criterio = "id=" + this.txtRuc.getText();
+            String criterio = "id=" + txtId.getText();
             BaseDatos.actualizarRegistro("cliente", campos, criterio);
         }
         limpiarCampos();
@@ -254,14 +218,6 @@ public class FrmClientes extends javax.swing.JDialog {
         habilitarBotones(true);
         actualizarGrilla();
     }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void cboCiudadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboCiudadItemStateChanged
-        DatoCombo item = (DatoCombo) cboCiudad.getSelectedItem();
-        if (item == null) {
-            return;
-        }
-        Combo.cargarCombo(cboBarrio, "barrio", "id,nombre", "nombre='" + item.toString() + "'");
-    }//GEN-LAST:event_cboCiudadItemStateChanged
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         if (grdClientes.getSelectedRow() == -1) {
@@ -300,13 +256,11 @@ public class FrmClientes extends javax.swing.JDialog {
         this.actualizarGrilla();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreKeyPressed
-
-    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdActionPerformed
+    private void cboCiudadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboCiudadItemStateChanged
+        DatoCombo item = (DatoCombo) cboCiudad.getSelectedItem();
+        String condicion = item == null ? null : ("nombre='" + item.toString() + "'");
+        Combo.cargarCombo(cboBarrio, "barrio", "id,nombre", condicion);
+    }//GEN-LAST:event_cboCiudadItemStateChanged
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

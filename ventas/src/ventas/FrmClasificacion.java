@@ -199,7 +199,7 @@ public final class FrmClasificacion extends javax.swing.JDialog {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        if(grdClasificaciones.getSelectedRow() == -1){
+        if (grdClasificaciones.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione un registro para eliminar");
             return;
         }
