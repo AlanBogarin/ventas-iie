@@ -15,9 +15,10 @@ public class FrmBuscarVenta extends javax.swing.JDialog {
     }
 
     public FrmBuscarVenta(java.awt.Dialog parent, boolean modal,
-            String tabla, String campos, String condicion, Consumer<DatoCombo> fnConfirmar) {
+            String titulo, String tabla, String campos, String condicion, Consumer<DatoCombo> fnConfirmar) {
         super(parent, modal);
         initComponents();
+        lblTitulo.setText(titulo);
         Combo.cargarCombo(cboItems, tabla, campos, condicion);
         cboItems.requestFocus();
         this.fnConfirmar = fnConfirmar;

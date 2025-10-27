@@ -196,7 +196,7 @@ public final class FrmBarrio extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        String nombre = txtNombre.getText();
+        String nombre = txtNombre.getText().toUpperCase();
         int ciudad_id = ((DatoCombo) cboCiudad.getSelectedItem()).toInt();
         if (nuevo) {
             BaseDatos.insertarRegistro("barrio", "nombre,ciudad_id",

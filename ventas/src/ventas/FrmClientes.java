@@ -204,8 +204,8 @@ public class FrmClientes extends javax.swing.JDialog {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         int ciudad_id = ((DatoCombo) cboCiudad.getSelectedItem()).toInt();
         int barrio_id = ((DatoCombo) cboBarrio.getSelectedItem()).toInt();
-        String nombre = txtNombre.getText();
-        String ruc = txtRuc.getText();
+        String nombre = txtNombre.getText().toUpperCase();
+        String ruc = txtRuc.getText().toUpperCase();
         if (nuevo) {
             BaseDatos.insertarRegistro("cliente", "nombre,ruc,ciudad_id,barrio_id",
                     "'" + nombre + "','" + ruc + "'," + ciudad_id + "," + barrio_id);

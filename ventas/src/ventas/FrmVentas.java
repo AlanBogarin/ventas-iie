@@ -295,7 +295,7 @@ public final class FrmVentas extends javax.swing.JDialog {
     }//GEN-LAST:event_txtClienteIdKeyReleased
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
-        new FrmBuscarVenta(this, false, "cliente", "id,nombre", null, (DatoCombo item) -> {
+        new FrmBuscarVenta(this, false, "Buscar Cliente", "cliente", "id,nombre", null, (DatoCombo item) -> {
             txtClienteId.setText(String.valueOf(item.toInt()));
             txtCliente.setText(item.toString());
             Object[] fila = BaseDatos.getPrimeraFila("SELECT id,ruc FROM cliente WHERE id=" + item.toInt());
@@ -304,7 +304,7 @@ public final class FrmVentas extends javax.swing.JDialog {
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     private void btnBuscarRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarRucActionPerformed
-        new FrmBuscarVenta(this, false, "cliente", "id,ruc", null, (DatoCombo item) -> {
+        new FrmBuscarVenta(this, false, "Buscar Ruc", "cliente", "id,ruc", null, (DatoCombo item) -> {
             txtClienteId.setText(String.valueOf(item.toInt()));
             txtRuc.setText(item.toString());
             Object[] fila = BaseDatos.getPrimeraFila("SELECT id,nombre FROM cliente WHERE id=" + item.toInt());
@@ -314,7 +314,7 @@ public final class FrmVentas extends javax.swing.JDialog {
 
     private void btnBuscarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarArticuloActionPerformed
         limpiarArticulo();
-        new FrmBuscarVenta(this, false, "articulo", "id,nombre", null, (DatoCombo item) -> {
+        new FrmBuscarVenta(this, false, "Buscar Articulo", "articulo", "id,nombre", null, (DatoCombo item) -> {
             txtArticuloId.setText(String.valueOf(item.toInt()));
             txtArticulo.setText(item.toString());
             Object[] fila = BaseDatos.getPrimeraFila("SELECT id,stock,precio FROM articulo WHERE id=" + item.toInt());
