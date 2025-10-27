@@ -140,11 +140,6 @@ public final class FrmClasificacion extends javax.swing.JDialog {
         lblbuscar.setText("Buscar");
         jPanel1.add(lblbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 126, -1));
 
-        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarActionPerformed(evt);
-            }
-        });
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
@@ -212,10 +207,6 @@ public final class FrmClasificacion extends javax.swing.JDialog {
         BaseDatos.borrarRegistro("clasificacion", "id=" + Grilla.getValorSeleccionado(grdClasificaciones, "id"));
         actualizarGrilla();
     }//GEN-LAST:event_btnBorrarActionPerformed
-
-    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
         char e = evt.getKeyChar();
