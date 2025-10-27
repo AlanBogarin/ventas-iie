@@ -9,6 +9,7 @@ public class FrmVentas extends javax.swing.JDialog {
     public FrmVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        btnBuscarClienteId.requestFocus();
     }
 
     @SuppressWarnings("unchecked")
@@ -107,29 +108,49 @@ public class FrmVentas extends javax.swing.JDialog {
 
         txtVentaId.setEditable(false);
         pnlVenta.add(txtVentaId, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 125, 20));
+
+        txtCliente.setEnabled(false);
         pnlVenta.add(txtCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 125, 20));
 
+        txtClienteId.setEnabled(false);
         txtClienteId.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtClienteIdKeyReleased(evt);
             }
         });
         pnlVenta.add(txtClienteId, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 125, 20));
+
+        txtRuc.setEnabled(false);
         pnlVenta.add(txtRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 125, 20));
 
         btnBuscarClienteId.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
         btnBuscarClienteId.setBorder(null);
         btnBuscarClienteId.setContentAreaFilled(false);
+        btnBuscarClienteId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarClienteIdActionPerformed(evt);
+            }
+        });
         pnlVenta.add(btnBuscarClienteId, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 20, 20));
 
         btnBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
         btnBuscarCliente.setBorder(null);
         btnBuscarCliente.setContentAreaFilled(false);
+        btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarClienteActionPerformed(evt);
+            }
+        });
         pnlVenta.add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 20, 20));
 
         btnBuscarRuc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
         btnBuscarRuc.setBorder(null);
         btnBuscarRuc.setContentAreaFilled(false);
+        btnBuscarRuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarRucActionPerformed(evt);
+            }
+        });
         pnlVenta.add(btnBuscarRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 20, 20));
 
         getContentPane().add(pnlVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 460, 130));
@@ -140,11 +161,15 @@ public class FrmVentas extends javax.swing.JDialog {
         lblArticuloId.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblArticuloId.setText("ID Articulo");
         pnlArticulo.add(lblArticuloId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 60, 20));
+
+        txtArticuloId.setEnabled(false);
         pnlArticulo.add(txtArticuloId, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 125, -1));
 
         lblArticulo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblArticulo.setText("Articulo");
         pnlArticulo.add(lblArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 60, 20));
+
+        txtArticulo.setEnabled(false);
         pnlArticulo.add(txtArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 125, -1));
 
         lblPrecio.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -157,6 +182,8 @@ public class FrmVentas extends javax.swing.JDialog {
         lblCantidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCantidad.setText("Cantidad");
         pnlArticulo.add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 60, 20));
+
+        txtCantidad.setEnabled(false);
         pnlArticulo.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 125, -1));
 
         btnAgregarArticulo.setText("Agregar");
@@ -165,11 +192,21 @@ public class FrmVentas extends javax.swing.JDialog {
         btnBuscarArticuloId.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
         btnBuscarArticuloId.setBorder(null);
         btnBuscarArticuloId.setContentAreaFilled(false);
+        btnBuscarArticuloId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarArticuloIdActionPerformed(evt);
+            }
+        });
         pnlArticulo.add(btnBuscarArticuloId, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 20, 20));
 
         btnBuscarArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
         btnBuscarArticulo.setBorder(null);
         btnBuscarArticulo.setContentAreaFilled(false);
+        btnBuscarArticulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarArticuloActionPerformed(evt);
+            }
+        });
         pnlArticulo.add(btnBuscarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 20, 20));
 
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -213,6 +250,26 @@ public class FrmVentas extends javax.swing.JDialog {
             ciudad.setVisible(true);
         }
     }//GEN-LAST:event_txtClienteIdKeyReleased
+
+    private void btnBuscarClienteIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarClienteIdActionPerformed
+
+    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarClienteActionPerformed
+
+    private void btnBuscarRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarRucActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarRucActionPerformed
+
+    private void btnBuscarArticuloIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarArticuloIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarArticuloIdActionPerformed
+
+    private void btnBuscarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarArticuloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarArticuloActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
