@@ -8,6 +8,8 @@ public class FrmBuscarVenta extends javax.swing.JDialog {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmBuscarVenta.class.getName());
 
     Consumer<DatoCombo> fnConfirmar;
+    String tabla;
+    String[] campos;
 
     public FrmBuscarVenta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -15,14 +17,26 @@ public class FrmBuscarVenta extends javax.swing.JDialog {
     }
 
     public FrmBuscarVenta(java.awt.Dialog parent, boolean modal,
-            String titulo, String tabla, String campos, String condicion, Consumer<DatoCombo> fnConfirmar) {
+            String titulo,
+            String tabla,
+            String[] campos,
+            String condicion,
+            Consumer<DatoCombo> fnConfirmar) {
         super(parent, modal);
         initComponents();
         lblTitulo.setText(titulo);
         Combo.cargarCombo(cboItems, tabla, campos, condicion);
         cboItems.requestFocus();
+        this.tabla = tabla;
+        this.campos = campos;
         this.fnConfirmar = fnConfirmar;
         this.setSize(301, 302);
+    }
+
+    void actualizarGrilla() {
+        Grilla.cargarGrilla(grdItems, tabla, campos);
+        Grilla.filtrarGrilla(grdItems, txtBuscar.getText(),
+                cboCriterio.getSelectedIndex());
     }
 
     @SuppressWarnings("unchecked")
@@ -33,6 +47,9 @@ public class FrmBuscarVenta extends javax.swing.JDialog {
         cboItems = new javax.swing.JComboBox<>();
         btnConfirmar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        grdItems = new javax.swing.JTable();
+        txtBuscar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -50,7 +67,7 @@ public class FrmBuscarVenta extends javax.swing.JDialog {
                 btnConfirmarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, 85, 40));
+        getContentPane().add(btnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 440, 85, 40));
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -58,7 +75,23 @@ public class FrmBuscarVenta extends javax.swing.JDialog {
                 btnCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 85, 40));
+        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 440, 85, 40));
+
+        grdItems.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(grdItems);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 430, 280));
+        getContentPane().add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 250, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -114,6 +147,9 @@ public class FrmBuscarVenta extends javax.swing.JDialog {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JComboBox<DatoCombo> cboItems;
+    private javax.swing.JTable grdItems;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,7 +16,7 @@ CREATE TABLE articulo (
   nombre VARCHAR(50) UNIQUE NOT NULL,
   precio INT NOT NULL,
   stock INT NOT NULL,
-  clasificacion_id int not null,
+  clasificacion_id INT NOT NULL,
   FOREIGN KEY (clasificacion_id) REFERENCES clasificacion (id)
 );
 
@@ -35,7 +35,7 @@ CREATE TABLE barrio (
 CREATE TABLE cliente (
   id INT PRIMARY KEY AUTO_INCREMENT,
   nombre VARCHAR(100) UNIQUE NOT NULL,
-  ruc varchar(100) UNIQUE,
+  ruc VARCHAR(100) UNIQUE,
   ciudad_id INT NOT NULL,
   barrio_id INT NOT NULL,
   FOREIGN KEY (ciudad_id) REFERENCES ciudad(id),
@@ -46,6 +46,8 @@ CREATE TABLE venta (
   id INT PRIMARY KEY AUTO_INCREMENT,
   cliente_id INT NOT NULL,
   fecha DATE NOT NULL,
+  total INT NOT NULL,
+  anulado BOOLEAN NOT NULL DEFAULT FALSE,
   FOREIGN KEY (cliente_id) REFERENCES cliente(id)
 );
 
