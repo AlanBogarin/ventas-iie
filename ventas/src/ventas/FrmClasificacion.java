@@ -204,6 +204,7 @@ public final class FrmClasificacion extends javax.swing.JDialog {
             return;
         }
         BaseDatos.borrarRegistro("clasificacion", "id=" + Grilla.getValorSeleccionado(grdClasificaciones, "id"));
+        actualizarGrilla();
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
