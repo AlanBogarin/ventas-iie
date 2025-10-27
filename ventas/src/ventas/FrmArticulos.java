@@ -192,7 +192,7 @@ public final class FrmArticulos extends javax.swing.JDialog {
         }
 
         if (stockStr.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "El precio no puede estar vacío");
+            JOptionPane.showMessageDialog(null, "El stock no puede estar vacío");
             txtStock.requestFocus();
             return;
         }

@@ -227,7 +227,8 @@ public final class FrmClasificacion extends javax.swing.JDialog {
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        Grilla.filtrarGrilla(grdClasificaciones, this.txtBuscar.getText(), cboCriterio.getSelectedIndex());
+        Grilla.filtrarGrilla(grdClasificaciones, this.txtBuscar.getText(),
+                cboCriterio.getSelectedIndex());
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void cboCriterioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCriterioActionPerformed

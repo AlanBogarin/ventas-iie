@@ -178,7 +178,7 @@ public final class FrmBarrio extends javax.swing.JDialog {
                 cboCiudadKeyTyped(evt);
             }
         });
-        jPanel1.add(cboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 200, 20));
+        jPanel1.add(cboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 200, 30));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/comunidad.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 130, 160));

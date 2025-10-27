@@ -110,7 +110,7 @@ public final class FrmCiudad extends javax.swing.JDialog {
                 txtCiudadKeyTyped(evt);
             }
         });
-        jPanel1.add(txtCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 333, 210, 20));
+        jPanel1.add(txtCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 333, 210, 30));
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblNombre.setText("Nombre");
@@ -293,7 +293,8 @@ public final class FrmCiudad extends javax.swing.JDialog {
     }//GEN-LAST:event_txtCiudadKeyTyped
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        this.grd.filtrarGrilla(grdCiudad, this.txtBuscar.getText(), cboCriterio.getSelectedIndex());
+        this.grd.filtrarGrilla(grdCiudad, this.txtBuscar.getText(),
+                cboCriterio.getSelectedIndex());
 
     }//GEN-LAST:event_txtBuscarKeyReleased
 
