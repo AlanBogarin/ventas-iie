@@ -205,6 +205,7 @@ public final class FrmVentas extends javax.swing.JDialog {
         txtPrecio.setEditable(false);
         txtPrecio.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtPrecio.setText("0");
+        txtPrecio.setEnabled(false);
         pnlArticulo.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 125, -1));
 
         lblCantidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -245,6 +246,7 @@ public final class FrmVentas extends javax.swing.JDialog {
         txtSubTotal.setEditable(false);
         txtSubTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtSubTotal.setText("0");
+        txtSubTotal.setEnabled(false);
         pnlArticulo.add(txtSubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 125, -1));
 
         lblStock.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -254,6 +256,7 @@ public final class FrmVentas extends javax.swing.JDialog {
         txtStock.setEditable(false);
         txtStock.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtStock.setText("0");
+        txtStock.setEnabled(false);
         pnlArticulo.add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 125, -1));
 
         getContentPane().add(pnlArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 460, 170));
