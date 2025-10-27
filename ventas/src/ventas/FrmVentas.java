@@ -17,8 +17,8 @@ public final class FrmVentas extends javax.swing.JDialog {
 
     void limpiarVenta() {
         Object[] fila = BaseDatos.getPrimeraFila("SELECT MAX(id) FROM venta");
-        int ventaId = fila.length == 0 ? 1 : ((Number) fila[0]).intValue();
-        txtVentaId.setText(String.valueOf(ventaId));
+        String ventaId = fila.length == 0 || fila[0] == null ? "1" : ((Number) fila[0]).toString();
+        txtVentaId.setText(ventaId);
         txtClienteId.setText(null);
         txtCliente.setText(null);
         txtRuc.setText(null);

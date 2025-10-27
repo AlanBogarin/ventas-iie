@@ -16,6 +16,7 @@ public class Combo {
         condicion = condicion == null ? "" : (" where " + condicion);
         ResultSet r = BaseDatos.consultar(
                 "select " + campos + " from " + tabla + condicion, false);
+        combo.removeAllItems();
         try {
             while (r.next()) {
                 combo.addItem(new DatoCombo(r.getInt(1), r.getString(2)));
