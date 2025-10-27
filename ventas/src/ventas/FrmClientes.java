@@ -260,7 +260,7 @@ public class FrmClientes extends javax.swing.JDialog {
     private void cboCiudadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboCiudadItemStateChanged
         DatoCombo item = (DatoCombo) cboCiudad.getSelectedItem();
         String condicion = item == null ? null : ("ciudad_id=" + item.toInt());
-        Combo.cargarCombo(cboBarrio, "DISTINCT barrio", "id,nombre", condicion);
+        Combo.cargarCombo(cboBarrio, "barrio", "DISTINCT id,nombre", condicion);
     }//GEN-LAST:event_cboCiudadItemStateChanged
 
     public static void main(String args[]) {
