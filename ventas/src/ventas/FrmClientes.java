@@ -224,7 +224,7 @@ public class FrmClientes extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Seleccione un registro para modificar.");
             return;
         }
-        txtRuc.setText((String) Grilla.getValorSeleccionado(grdClientes, "id"));
+        txtId.setText((String) Grilla.getValorSeleccionado(grdClientes, "id"));
         txtNombre.setText((String) Grilla.getValorSeleccionado(grdClientes, "nombre"));
         txtRuc.setText((String) Grilla.getValorSeleccionado(grdClientes, "ruc"));
 
