@@ -14,7 +14,7 @@ public class FrmBuscarVenta extends javax.swing.JDialog {
         initComponents();
     }
 
-    public FrmBuscarVenta(java.awt.Frame parent, boolean modal,
+    public FrmBuscarVenta(java.awt.Dialog parent, boolean modal,
             String tabla, String campos, String condicion, Consumer<DatoCombo> fnConfirmar) {
         super(parent, modal);
         initComponents();

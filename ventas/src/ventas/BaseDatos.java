@@ -150,4 +150,27 @@ public class BaseDatos {
         }
         return rs;
     }
+
+    public static Object[] getPrimeraFila(String sql) {
+        crearConexion();
+        ResultSet r = consultar(sql);
+        try {
+            if (r.next()) {
+                int columnas = r.getMetaData().getColumnCount();
+                Object[] fila = new Object[columnas];
+                for (int i = 0; i < columnas; i++) {
+                    fila[i] = r.getObject(i + 1);
+                }
+                return fila;
+            } else {
+                return new Object[0]; // 🔹 sin resultados
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,
+                "Error al obtener datos:\n" + e.getMessage(),
+                "Consulta - " + sql,
+                JOptionPane.ERROR_MESSAGE);
+            return new Object[0];
+        }
+    }
 }

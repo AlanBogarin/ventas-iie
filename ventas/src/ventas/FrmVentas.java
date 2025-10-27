@@ -9,7 +9,7 @@ public class FrmVentas extends javax.swing.JDialog {
     public FrmVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        btnBuscarClienteId.requestFocus();
+        btnBuscarCliente.requestFocus();
     }
 
     @SuppressWarnings("unchecked")
@@ -29,7 +29,6 @@ public class FrmVentas extends javax.swing.JDialog {
         txtCliente = new javax.swing.JFormattedTextField();
         txtClienteId = new javax.swing.JFormattedTextField();
         txtRuc = new javax.swing.JFormattedTextField();
-        btnBuscarClienteId = new javax.swing.JButton();
         btnBuscarCliente = new javax.swing.JButton();
         btnBuscarRuc = new javax.swing.JButton();
         pnlArticulo = new javax.swing.JPanel();
@@ -42,7 +41,6 @@ public class FrmVentas extends javax.swing.JDialog {
         lblCantidad = new javax.swing.JLabel();
         txtCantidad = new javax.swing.JFormattedTextField();
         btnAgregarArticulo = new javax.swing.JButton();
-        btnBuscarArticuloId = new javax.swing.JButton();
         btnBuscarArticulo = new javax.swing.JButton();
         lblTotal = new javax.swing.JLabel();
         txtTotal = new javax.swing.JFormattedTextField();
@@ -123,16 +121,6 @@ public class FrmVentas extends javax.swing.JDialog {
         txtRuc.setEnabled(false);
         pnlVenta.add(txtRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 125, 20));
 
-        btnBuscarClienteId.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
-        btnBuscarClienteId.setBorder(null);
-        btnBuscarClienteId.setContentAreaFilled(false);
-        btnBuscarClienteId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarClienteIdActionPerformed(evt);
-            }
-        });
-        pnlVenta.add(btnBuscarClienteId, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 20, 20));
-
         btnBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
         btnBuscarCliente.setBorder(null);
         btnBuscarCliente.setContentAreaFilled(false);
@@ -189,16 +177,6 @@ public class FrmVentas extends javax.swing.JDialog {
         btnAgregarArticulo.setText("Agregar");
         pnlArticulo.add(btnAgregarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
 
-        btnBuscarArticuloId.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
-        btnBuscarArticuloId.setBorder(null);
-        btnBuscarArticuloId.setContentAreaFilled(false);
-        btnBuscarArticuloId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarArticuloIdActionPerformed(evt);
-            }
-        });
-        pnlArticulo.add(btnBuscarArticuloId, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 20, 20));
-
         btnBuscarArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
         btnBuscarArticulo.setBorder(null);
         btnBuscarArticulo.setContentAreaFilled(false);
@@ -251,24 +229,32 @@ public class FrmVentas extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_txtClienteIdKeyReleased
 
-    private void btnBuscarClienteIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarClienteIdActionPerformed
-
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
-        // TODO add your handling code here:
+        new FrmBuscarVenta(this, false, "cliente", "id,nombre", null, (DatoCombo item) -> {
+            txtClienteId.setText(String.valueOf(item.toInt()));
+            txtCliente.setText(item.toString());
+            Object[] fila = BaseDatos.getPrimeraFila("SELECT id,ruc FROM cliente WHERE id=" + item.toInt());
+            txtRuc.setText((String) fila[1]);
+        }).setVisible(true);
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     private void btnBuscarRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarRucActionPerformed
-        // TODO add your handling code here:
+        new FrmBuscarVenta(this, false, "cliente", "id,ruc", null, (DatoCombo item) -> {
+            txtClienteId.setText(String.valueOf(item.toInt()));
+            txtRuc.setText(item.toString());
+            Object[] fila = BaseDatos.getPrimeraFila("SELECT id,cliente FROM cliente WHERE id=" + item.toInt());
+            txtCliente.setText((String) fila[1]);
+        }).setVisible(true);
     }//GEN-LAST:event_btnBuscarRucActionPerformed
 
-    private void btnBuscarArticuloIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarArticuloIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarArticuloIdActionPerformed
-
     private void btnBuscarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarArticuloActionPerformed
-        // TODO add your handling code here:
+        new FrmBuscarVenta(this, false, "articulo", "id,nombre", null, (DatoCombo item) -> {
+            txtArticuloId.setText(String.valueOf(item.toInt()));
+            txtArticulo.setText(item.toString());
+            Object[] fila = BaseDatos.getPrimeraFila("SELECT id,stock,precio FROM articulo WHERE id=" + item.toInt());
+            txtStock.setText(((Number) fila[1]).toString());
+            txtPrecio.setText(((Number) fila[2]).toString());
+        }).setVisible(true);
     }//GEN-LAST:event_btnBuscarArticuloActionPerformed
 
     public static void main(String args[]) {
@@ -308,9 +294,7 @@ public class FrmVentas extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarArticulo;
     private javax.swing.JButton btnBuscarArticulo;
-    private javax.swing.JButton btnBuscarArticuloId;
     private javax.swing.JButton btnBuscarCliente;
-    private javax.swing.JButton btnBuscarClienteId;
     private javax.swing.JButton btnBuscarRuc;
     private javax.swing.JTable grdArticulos;
     private javax.swing.JButton jButton1;
