@@ -48,9 +48,9 @@ public class FrmVentas extends javax.swing.JDialog {
         lblStock = new javax.swing.JLabel();
         txtStock = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         lblCantidad1 = new javax.swing.JLabel();
         txtCantidad1 = new javax.swing.JFormattedTextField();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setSize(new java.awt.Dimension(720, 1440));
@@ -58,18 +58,26 @@ public class FrmVentas extends javax.swing.JDialog {
 
         grdArticulos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "id", "nombre", "precio", "cantidad"
+                "id", "nombre", "cantidad", "precio", "sutotal"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         splArticulos.setViewportView(grdArticulos);
 
-        getContentPane().add(splArticulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, 450, 310));
+        getContentPane().add(splArticulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 450, 300));
 
         pnlVenta.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de la venta"));
         pnlVenta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -183,15 +191,18 @@ public class FrmVentas extends javax.swing.JDialog {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Total Factura"));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblCantidad1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCantidad1.setText("Cantidad");
-        jPanel3.add(lblCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 60, 20));
-        jPanel3.add(txtCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 125, -1));
-
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 460, 140));
-
         jButton1.setText("Guardar");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 423, 80, 40));
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 90, 80, 40));
+
+        lblCantidad1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblCantidad1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCantidad1.setText("Total");
+        jPanel3.add(lblCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 60, 20));
+
+        txtCantidad1.setEnabled(false);
+        jPanel3.add(txtCantidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 20, 125, -1));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 930, 150));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
