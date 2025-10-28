@@ -68,7 +68,8 @@ public final class FrmCiudad extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlCiudad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnlCiudad.setBackground(new java.awt.Color(153, 204, 255));
+        pnlCiudad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         pnlCiudad.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar-flecha.png"))); // NOI18N
@@ -99,8 +100,10 @@ public final class FrmCiudad extends javax.swing.JDialog {
         pnlCiudad.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 137, 40));
 
         txtId.setEditable(false);
+        txtId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnlCiudad.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 210, 20));
 
+        txtCiudad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtCiudad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCiudadKeyTyped(evt);
@@ -146,6 +149,7 @@ public final class FrmCiudad extends javax.swing.JDialog {
         lblId1.setText("Buscar");
         pnlCiudad.add(lblId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 126, -1));
 
+        txtBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBuscarActionPerformed(evt);

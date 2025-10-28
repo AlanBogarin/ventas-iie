@@ -93,9 +93,11 @@ public final class FrmVentas extends javax.swing.JDialog {
         setSize(new java.awt.Dimension(720, 1440));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlVentas.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        pnlVentas.setBackground(new java.awt.Color(153, 204, 255));
+        pnlVentas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         pnlVentas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        grdArticulos.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
         grdArticulos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -119,38 +121,48 @@ public final class FrmVentas extends javax.swing.JDialog {
 
         pnlVentas.add(splArticulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 450, 300));
 
-        pnlVenta.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de la venta"));
+        pnlVenta.setBackground(new java.awt.Color(153, 204, 255));
+        pnlVenta.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(255, 255, 255), new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)), "Datos de la venta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 3, 12))); // NOI18N
         pnlVenta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblFecha.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFecha.setText("Fecha");
         pnlVenta.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 56, 20));
 
+        lblVentaId.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         lblVentaId.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblVentaId.setText("ID Venta");
         pnlVenta.add(lblVentaId, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 56, 20));
 
+        lblCliente.setFont(new java.awt.Font("Segoe UI Semilight", 3, 12)); // NOI18N
         lblCliente.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCliente.setText("Cliente");
         pnlVenta.add(lblCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 56, 20));
 
+        lblClienteId.setFont(new java.awt.Font("Segoe UI Semilight", 3, 12)); // NOI18N
         lblClienteId.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblClienteId.setText("ID Cliente");
-        pnlVenta.add(lblClienteId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 56, 20));
+        pnlVenta.add(lblClienteId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 30));
 
+        lblRuc.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         lblRuc.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblRuc.setText("Ruc");
         pnlVenta.add(lblRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 56, 20));
 
         txtFecha.setEditable(false);
+        txtFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnlVenta.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 125, 20));
 
         txtVentaId.setEditable(false);
+        txtVentaId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnlVenta.add(txtVentaId, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 125, 20));
 
+        txtCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtCliente.setEnabled(false);
         pnlVenta.add(txtCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 125, 20));
 
+        txtClienteId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtClienteId.setEnabled(false);
         txtClienteId.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -159,6 +171,7 @@ public final class FrmVentas extends javax.swing.JDialog {
         });
         pnlVenta.add(txtClienteId, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 125, 20));
 
+        txtRuc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtRuc.setEnabled(false);
         pnlVenta.add(txtRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 125, 20));
 
@@ -174,37 +187,46 @@ public final class FrmVentas extends javax.swing.JDialog {
 
         pnlVentas.add(pnlVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 460, 130));
 
-        pnlArticulo.setBorder(javax.swing.BorderFactory.createTitledBorder("Detalle de factura"));
+        pnlArticulo.setBackground(new java.awt.Color(153, 204, 255));
+        pnlArticulo.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(255, 255, 255), new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)), "Detalle de factura", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 3, 12))); // NOI18N
         pnlArticulo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblArticuloId.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         lblArticuloId.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblArticuloId.setText("ID Articulo");
         pnlArticulo.add(lblArticuloId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 60, 20));
 
+        txtArticuloId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtArticuloId.setEnabled(false);
         pnlArticulo.add(txtArticuloId, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 125, -1));
 
+        lblArticulo.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         lblArticulo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblArticulo.setText("Articulo");
         pnlArticulo.add(lblArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 60, 20));
 
+        txtArticulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtArticulo.setEnabled(false);
         pnlArticulo.add(txtArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 125, -1));
 
+        lblPrecio.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         lblPrecio.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPrecio.setText("Precio");
         pnlArticulo.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 56, 20));
 
         txtPrecio.setEditable(false);
+        txtPrecio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtPrecio.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtPrecio.setText("0");
         txtPrecio.setEnabled(false);
         pnlArticulo.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 125, -1));
 
+        lblCantidad.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         lblCantidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCantidad.setText("Cantidad");
         pnlArticulo.add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 60, 20));
 
+        txtCantidad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtCantidad.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtCantidad.setText("0");
         txtCantidad.addActionListener(new java.awt.event.ActionListener() {
@@ -214,13 +236,15 @@ public final class FrmVentas extends javax.swing.JDialog {
         });
         pnlArticulo.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 125, -1));
 
+        btnAgregarArticulo.setFont(new java.awt.Font("Segoe UI Symbol", 1, 18)); // NOI18N
+        btnAgregarArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevo.png"))); // NOI18N
         btnAgregarArticulo.setText("Agregar");
         btnAgregarArticulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarArticuloActionPerformed(evt);
             }
         });
-        pnlArticulo.add(btnAgregarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
+        pnlArticulo.add(btnAgregarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, -1, 40));
 
         btnBuscarArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
         btnBuscarArticulo.setBorder(null);
@@ -232,21 +256,25 @@ public final class FrmVentas extends javax.swing.JDialog {
         });
         pnlArticulo.add(btnBuscarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 20, 20));
 
+        lblSubTotal.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         lblSubTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblSubTotal.setText("SubTotal");
         pnlArticulo.add(lblSubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 56, 20));
 
         txtSubTotal.setEditable(false);
+        txtSubTotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtSubTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtSubTotal.setText("0");
         txtSubTotal.setEnabled(false);
         pnlArticulo.add(txtSubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 125, -1));
 
+        lblStock.setFont(new java.awt.Font("Yu Gothic UI Semibold", 3, 12)); // NOI18N
         lblStock.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblStock.setText("Stock");
         pnlArticulo.add(lblStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 56, 20));
 
         txtStock.setEditable(false);
+        txtStock.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtStock.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtStock.setText("0");
         txtStock.setEnabled(false);
@@ -254,30 +282,34 @@ public final class FrmVentas extends javax.swing.JDialog {
 
         pnlVentas.add(pnlArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 460, 170));
 
-        pnlTotal.setBorder(javax.swing.BorderFactory.createTitledBorder("Total Factura"));
+        pnlTotal.setBackground(new java.awt.Color(153, 204, 255));
+        pnlTotal.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 255, 255), new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)), "Total Factura", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 3, 12))); // NOI18N
         pnlTotal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnGuardarVenta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnGuardarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar.png"))); // NOI18N
         btnGuardarVenta.setText("Guardar");
         btnGuardarVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarVentaActionPerformed(evt);
             }
         });
-        pnlTotal.add(btnGuardarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 90, 80, 40));
+        pnlTotal.add(btnGuardarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 80, -1, 40));
 
         lblTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTotal.setText("Total");
         pnlTotal.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 60, 20));
 
+        txtTotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTotal.setText("0");
         txtTotal.setEnabled(false);
         pnlTotal.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 20, 125, -1));
 
-        pnlVentas.add(pnlTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 930, 150));
+        pnlVentas.add(pnlTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 930, 130));
 
-        getContentPane().add(pnlVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 490));
+        getContentPane().add(pnlVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

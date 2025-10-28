@@ -68,7 +68,8 @@ public final class FrmBarrio extends javax.swing.JDialog {
         setTitle("Barrios");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlBarrio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnlBarrio.setBackground(new java.awt.Color(153, 204, 255));
+        pnlBarrio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         pnlBarrio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar-flecha.png"))); // NOI18N
@@ -99,8 +100,10 @@ public final class FrmBarrio extends javax.swing.JDialog {
         pnlBarrio.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(425, 361, 137, 40));
 
         txtId.setEditable(false);
+        txtId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnlBarrio.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, 20));
 
+        txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
@@ -152,6 +155,7 @@ public final class FrmBarrio extends javax.swing.JDialog {
         lblBuscar.setText("Buscar");
         pnlBarrio.add(lblBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 17, 126, -1));
 
+        txtBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
@@ -176,7 +180,7 @@ public final class FrmBarrio extends javax.swing.JDialog {
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/comunidad.png"))); // NOI18N
         pnlBarrio.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 130, 160));
 
-        getContentPane().add(pnlBarrio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -1, 570, 410));
+        getContentPane().add(pnlBarrio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 570, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

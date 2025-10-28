@@ -124,7 +124,7 @@ public final class FrmBuscarVenta extends javax.swing.JDialog {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         int fila = grdItems.getSelectedRow();
-        if (fila == -1) {
+        if (fila ==  -1) {
             JOptionPane.showMessageDialog(btnConfirmar, "No se ha seleccionado el elemento");
             return;
         }

@@ -1,5 +1,6 @@
 package ventas;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 public final class FrmArticulos extends javax.swing.JDialog {
@@ -74,7 +75,8 @@ public final class FrmArticulos extends javax.swing.JDialog {
         setTitle("Articulos\n");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlArticulos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        pnlArticulos.setBackground(new java.awt.Color(153, 204, 255));
+        pnlArticulos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         pnlArticulos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar.png"))); // NOI18N
@@ -132,23 +134,51 @@ public final class FrmArticulos extends javax.swing.JDialog {
             }
         });
         pnlArticulos.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 127, 40));
+
+        txtId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnlArticulos.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 87, 130, -1));
+
+        txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
         pnlArticulos.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 137, 130, -1));
+
+        txtPrecio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
+            }
+        });
         pnlArticulos.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 187, 130, -1));
+
+        txtStock.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtStock.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtStockKeyTyped(evt);
+            }
+        });
         pnlArticulos.add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 237, 130, -1));
 
+        lblClasificacion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblClasificacion.setText("Clasificacion");
         pnlArticulos.add(lblClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 120, -1));
 
+        lblStock.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblStock.setText("Stock");
         pnlArticulos.add(lblStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 37, -1));
 
+        lblPrecio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblPrecio.setText("Precio");
         pnlArticulos.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 120, -1));
 
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblNombre.setText("Nombre");
         pnlArticulos.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 120, -1));
 
+        lblId.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblId.setText("ID");
         pnlArticulos.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 37, -1));
 
@@ -261,6 +291,33 @@ public final class FrmArticulos extends javax.swing.JDialog {
     private void cboClasificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboClasificacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cboClasificacionActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+           char e  = evt.getKeyChar();
+        if(!txtNombre.getText().isEmpty()){
+            if(e==KeyEvent.VK_ENTER){
+                txtPrecio.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+         char e  = evt.getKeyChar();
+        if(!txtPrecio.getText().isEmpty()){
+            if(e==KeyEvent.VK_ENTER){
+                txtStock.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_txtPrecioKeyTyped
+
+    private void txtStockKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStockKeyTyped
+          char e  = evt.getKeyChar();
+        if(!txtStock.getText().isEmpty()){
+            if(e==KeyEvent.VK_ENTER){
+                cboClasificacion.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_txtStockKeyTyped
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
