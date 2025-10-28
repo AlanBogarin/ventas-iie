@@ -33,7 +33,8 @@ public final class FrmFacturas extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlFacturas.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        pnlFacturas.setBackground(new java.awt.Color(153, 204, 255));
+        pnlFacturas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         pnlFacturas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         grdFacturas.setModel(new javax.swing.table.DefaultTableModel(
@@ -57,32 +58,35 @@ public final class FrmFacturas extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(grdFacturas);
 
-        pnlFacturas.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, 290));
+        pnlFacturas.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, 290));
 
+        btnAnular.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAnular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelar.png"))); // NOI18N
         btnAnular.setText("Anular");
         btnAnular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnularActionPerformed(evt);
             }
         });
-        pnlFacturas.add(btnAnular, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 400, 80, 40));
+        pnlFacturas.add(btnAnular, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 390, 120, 40));
 
         lblBuscar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblBuscar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblBuscar.setText("Buscar por");
-        pnlFacturas.add(lblBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, 100, 30));
+        pnlFacturas.add(lblBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 100, 30));
 
+        txtBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
             }
         });
-        pnlFacturas.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 220, 30));
+        pnlFacturas.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 220, 30));
 
         cboCriterio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "id", "cliente", "fecha", "total", " " }));
-        pnlFacturas.add(cboCriterio, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 110, 30));
+        pnlFacturas.add(cboCriterio, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 110, 30));
 
-        getContentPane().add(pnlFacturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 480));
+        getContentPane().add(pnlFacturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 560, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
