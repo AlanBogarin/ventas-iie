@@ -3,13 +3,14 @@ package ventas;
 import java.util.function.Consumer;
 import javax.swing.JOptionPane;
 
-public class FrmBuscarVenta extends javax.swing.JDialog {
+public final class FrmBuscarVenta extends javax.swing.JDialog {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmBuscarVenta.class.getName());
 
     Consumer<DatoCombo> fnConfirmar;
     String tabla;
     String[] campos;
+    int columnaFiltro;
 
     public FrmBuscarVenta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -20,23 +21,26 @@ public class FrmBuscarVenta extends javax.swing.JDialog {
             String titulo,
             String tabla,
             String[] campos,
+            int columnaFiltro,
             String condicion,
             Consumer<DatoCombo> fnConfirmar) {
         super(parent, modal);
         initComponents();
+        Grilla.configurarModelo(grdItems, campos);
         lblTitulo.setText(titulo);
-        Combo.cargarCombo(cboItems, tabla, campos, condicion);
-        cboItems.requestFocus();
         this.tabla = tabla;
         this.campos = campos;
         this.fnConfirmar = fnConfirmar;
+        this.columnaFiltro = columnaFiltro;
         this.setSize(301, 302);
+        actualizarGrilla();
     }
 
     void actualizarGrilla() {
         Grilla.cargarGrilla(grdItems, tabla, campos);
-        Grilla.filtrarGrilla(grdItems, txtBuscar.getText(),
-                cboCriterio.getSelectedIndex());
+        if (!txtBuscar.getText().isEmpty()) {
+            Grilla.filtrarGrilla(grdItems, txtBuscar.getText(), columnaFiltro);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -44,12 +48,12 @@ public class FrmBuscarVenta extends javax.swing.JDialog {
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
-        cboItems = new javax.swing.JComboBox<>();
         btnConfirmar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         grdItems = new javax.swing.JTable();
         txtBuscar = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -57,9 +61,7 @@ public class FrmBuscarVenta extends javax.swing.JDialog {
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Titulo");
-        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 220, 30));
-
-        getContentPane().add(cboItems, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 220, 30));
+        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 610, 50));
 
         btnConfirmar.setText("Confirmar");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -90,8 +92,13 @@ public class FrmBuscarVenta extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(grdItems);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 430, 280));
-        getContentPane().add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 250, 30));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 610, 280));
+        getContentPane().add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 330, 30));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setText("Buscar");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 90, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -146,8 +153,8 @@ public class FrmBuscarVenta extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmar;
-    private javax.swing.JComboBox<DatoCombo> cboItems;
     private javax.swing.JTable grdItems;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtBuscar;

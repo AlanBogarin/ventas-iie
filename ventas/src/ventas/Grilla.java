@@ -36,24 +36,17 @@ class DecimalRenderer extends DefaultTableCellRenderer {
 
 public class Grilla {
 
-    public static void configurarModelo(JTable grilla, String[] columnas, int[] ancho) {
-        DefaultTableModel dm = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int col) {
-                return false;
-            }
-        };
-        dm.setDataVector(
-                new Object[][]{},
-                new String[]{});
-        for (String columna : columnas) {
-            dm.addColumn(columna);
-        }
-        grilla.getTableHeader().setReorderingAllowed(false);
+    public static void configurarModelo(JTable grilla, String[] columnas) {
+        DefaultTableModel dm = new DefaultTableModel();
+        dm.setDataVector(new Object[][]{}, columnas);
+//        for (String columna : columnas) {
+//            dm.addColumn(columna);
+//        }
+//        grilla.getTableHeader().setReorderingAllowed(false);
         grilla.setModel(dm);
-        for (int cont2 = 0; cont2 <= columnas.length - 1; cont2++) {
-            grilla.getColumnModel().getColumn(cont2).setPreferredWidth(ancho[cont2]);
-        }
+//        for (int cont2 = 0; cont2 <= columnas.length - 1; cont2++) {
+//            grilla.getColumnModel().getColumn(cont2).setPreferredWidth(ancho[cont2]);
+//        }
     }
 
     public static void alinear(JTable grilla, String columna) {
