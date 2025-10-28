@@ -13,9 +13,14 @@ public final class FrmFacturas extends javax.swing.JDialog {
     }
 
     void actualizarGrilla() {
-        String[] campos = {"v.id", "c.nombre", "v.fecha", "v.total"};
-        String tabla = "venta v inner join cliente c on v.cliente_id = c.id where v.anulado = false";
+        String[] campos = {"v.id", "c.nombre", "v.fecha", "v.total", "v.anulado"};
+        String tabla = "venta v inner join cliente c on v.cliente_id = c.id";
         Grilla.cargarGrilla(grdFacturas, tabla, campos);
+        for (int row = 0; row < grdFacturas.getRowCount(); row++){
+            String valor = grdFacturas.getValueAt(row, 4).toString(); // anulado
+            valor = Integer.parseInt(valor) == 1 ? "SI" : "NO";
+            grdFacturas.setValueAt(valor, row, 4);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -39,17 +44,17 @@ public final class FrmFacturas extends javax.swing.JDialog {
 
         grdFacturas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "id", "cliente", "fecha", "total"
+                "id", "cliente", "fecha", "total", "anulado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -104,7 +109,7 @@ public final class FrmFacturas extends javax.swing.JDialog {
             return;
         }
         String id = Grilla.getValorSeleccionado(grdFacturas, "id");
-        BaseDatos.borrarRegistro("venta", "id=" + id);
+        BaseDatos.actualizarRegistro("venta", "anulado=!anulado", "id=" + id);
         actualizarGrilla();
     }//GEN-LAST:event_btnAnularActionPerformed
 

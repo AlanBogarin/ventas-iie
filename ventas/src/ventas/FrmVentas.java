@@ -139,7 +139,7 @@ public final class FrmVentas extends javax.swing.JDialog {
 
         lblVentaId.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         lblVentaId.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblVentaId.setText("ID Venta");
+        lblVentaId.setText("Nº Factura");
         pnlVenta.add(lblVentaId, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 56, 20));
 
         lblCliente.setFont(new java.awt.Font("Segoe UI Semilight", 3, 12)); // NOI18N
