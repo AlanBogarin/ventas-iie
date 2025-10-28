@@ -58,30 +58,37 @@ public final class FrmBuscarVenta extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlBuscar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        pnlBuscar.setBackground(new java.awt.Color(153, 204, 255));
+        pnlBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         pnlBuscar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitulo.setBackground(new java.awt.Color(204, 204, 204));
+        lblTitulo.setFont(new java.awt.Font("Segoe UI Semibold", 2, 18)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Titulo");
-        pnlBuscar.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 610, 50));
+        pnlBuscar.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 210, 50));
 
+        btnConfirmar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/confirmar (2).png"))); // NOI18N
         btnConfirmar.setText("Confirmar");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmarActionPerformed(evt);
             }
         });
-        pnlBuscar.add(btnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 440, 85, 40));
+        pnlBuscar.add(btnConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 440, 130, 40));
 
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
             }
         });
-        pnlBuscar.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 440, 85, 40));
+        pnlBuscar.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 440, 120, 40));
 
+        grdItems.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         grdItems.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -97,6 +104,7 @@ public final class FrmBuscarVenta extends javax.swing.JDialog {
 
         pnlBuscar.add(splItems, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 610, 280));
 
+        txtBuscar.setBackground(new java.awt.Color(204, 204, 204));
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
