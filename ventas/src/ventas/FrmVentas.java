@@ -294,7 +294,7 @@ public final class FrmVentas extends javax.swing.JDialog {
                 btnGuardarVentaActionPerformed(evt);
             }
         });
-        pnlTotal.add(btnGuardarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 80, -1, 40));
+        pnlTotal.add(btnGuardarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, -1, 40));
 
         lblTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -305,11 +305,11 @@ public final class FrmVentas extends javax.swing.JDialog {
         txtTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTotal.setText("0");
         txtTotal.setEnabled(false);
-        pnlTotal.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 20, 125, -1));
+        pnlTotal.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, 125, 40));
 
-        pnlVentas.add(pnlTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 930, 130));
+        pnlVentas.add(pnlTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 920, 130));
 
-        getContentPane().add(pnlVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 470));
+        getContentPane().add(pnlVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 950, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -411,7 +411,7 @@ public final class FrmVentas extends javax.swing.JDialog {
         // --- Insertar en tabla venta ---
         boolean ok = BaseDatos.insertarRegistro(
                 "venta",
-                "cliente_id, fecha",
+                "cliente_id, fecha,",
                 clienteId + ", '" + fecha + "'"
         );
 
