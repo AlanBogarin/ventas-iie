@@ -96,7 +96,12 @@ public final class FrmClasificacion extends javax.swing.JDialog {
 
         txtId.setEditable(false);
         txtId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 110, -1));
+        txtId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 110, 25));
 
         txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -104,15 +109,15 @@ public final class FrmClasificacion extends javax.swing.JDialog {
                 txtNombreKeyTyped(evt);
             }
         });
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 217, -1));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 217, 25));
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblNombre.setText("Nombre");
-        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 180, -1));
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 180, 25));
 
         lblId.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblId.setText("ID");
-        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 126, -1));
+        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 126, 25));
 
         grdClasificaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,7 +145,7 @@ public final class FrmClasificacion extends javax.swing.JDialog {
 
         lblbuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblbuscar.setText("Buscar");
-        jPanel1.add(lblbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 126, -1));
+        jPanel1.add(lblbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 100, 30));
 
         txtBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -148,7 +153,7 @@ public final class FrmClasificacion extends javax.swing.JDialog {
                 txtBuscarKeyReleased(evt);
             }
         });
-        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 50, 210, -1));
+        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 210, 30));
 
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/clasificaciones (2).png"))); // NOI18N
         jPanel1.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 161, 153));
@@ -159,7 +164,7 @@ public final class FrmClasificacion extends javax.swing.JDialog {
                 cboCriterioActionPerformed(evt);
             }
         });
-        jPanel1.add(cboCriterio, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 96, -1));
+        jPanel1.add(cboCriterio, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 96, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 430));
 
@@ -228,6 +233,10 @@ public final class FrmClasificacion extends javax.swing.JDialog {
     private void cboCriterioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCriterioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cboCriterioActionPerformed
+
+    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

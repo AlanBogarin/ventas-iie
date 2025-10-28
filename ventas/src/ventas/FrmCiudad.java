@@ -143,7 +143,7 @@ public final class FrmCiudad extends javax.swing.JDialog {
 
         lblId1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblId1.setText("Buscar");
-        pnlCiudad.add(lblId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 126, -1));
+        pnlCiudad.add(lblId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 70, -1));
 
         txtBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -156,7 +156,7 @@ public final class FrmCiudad extends javax.swing.JDialog {
                 txtBuscarKeyReleased(evt);
             }
         });
-        pnlCiudad.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 220, -1));
+        pnlCiudad.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 220, 30));
         pnlCiudad.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 85, -1, -1));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -164,9 +164,9 @@ public final class FrmCiudad extends javax.swing.JDialog {
         pnlCiudad.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 210, 200));
 
         cboCriterio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Ciudad" }));
-        pnlCiudad.add(cboCriterio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 96, -1));
+        pnlCiudad.add(cboCriterio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 96, 30));
 
-        getContentPane().add(pnlCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 450));
+        getContentPane().add(pnlCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

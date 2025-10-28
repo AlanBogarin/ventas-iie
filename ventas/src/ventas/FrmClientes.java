@@ -91,7 +91,7 @@ public class FrmClientes extends javax.swing.JDialog {
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblNombre.setText("Nombre");
-        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 60, 30));
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 60, 30));
 
         txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -99,11 +99,11 @@ public class FrmClientes extends javax.swing.JDialog {
                 txtNombreKeyTyped(evt);
             }
         });
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 325, 30));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 325, 30));
 
         lblRuc.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblRuc.setText("Ruc");
-        jPanel1.add(lblRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 60, 30));
+        jPanel1.add(lblRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 60, 30));
 
         txtRuc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtRuc.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -111,29 +111,29 @@ public class FrmClientes extends javax.swing.JDialog {
                 txtRucKeyTyped(evt);
             }
         });
-        jPanel1.add(txtRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 325, 30));
+        jPanel1.add(txtRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 325, 30));
 
         lblCiudad.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCiudad.setText("Ciudad");
-        jPanel1.add(lblCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 60, 20));
+        jPanel1.add(lblCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 60, 30));
 
         lblBarrio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblBarrio.setText("Barrio");
-        jPanel1.add(lblBarrio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 60, 20));
+        jPanel1.add(lblBarrio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 60, 30));
 
         cboCiudad.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboCiudadItemStateChanged(evt);
             }
         });
-        jPanel1.add(cboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 325, 20));
+        jPanel1.add(cboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 325, 30));
 
         cboBarrio.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboBarrioItemStateChanged(evt);
             }
         });
-        jPanel1.add(cboBarrio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 325, 20));
+        jPanel1.add(cboBarrio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 325, 30));
 
         grdClientes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(255, 255, 255), new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153))));
         grdClientes.setModel(new javax.swing.table.DefaultTableModel(
@@ -154,11 +154,11 @@ public class FrmClientes extends javax.swing.JDialog {
         });
         splClientes.setViewportView(grdClientes);
 
-        jPanel1.add(splClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 660, 182));
+        jPanel1.add(splClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 680, 182));
 
         lblIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/public-service.png"))); // NOI18N
-        jPanel1.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 83, 114));
+        jPanel1.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(573, 40, 90, 114));
 
         btnNuevo.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevo.png"))); // NOI18N
@@ -168,7 +168,7 @@ public class FrmClientes extends javax.swing.JDialog {
                 btnNuevoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 110, 31));
+        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 110, 31));
 
         btnGuardar.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar.png"))); // NOI18N
@@ -178,7 +178,7 @@ public class FrmClientes extends javax.swing.JDialog {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, 120, 31));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 120, 31));
 
         btnModificar.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
         btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificar.png"))); // NOI18N
@@ -188,7 +188,7 @@ public class FrmClientes extends javax.swing.JDialog {
                 btnModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 130, 31));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, 130, 31));
 
         btnEliminar.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar.png"))); // NOI18N
@@ -198,7 +198,7 @@ public class FrmClientes extends javax.swing.JDialog {
                 btnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 410, 130, 31));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 430, 130, 31));
 
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelar.png"))); // NOI18N
@@ -208,16 +208,16 @@ public class FrmClientes extends javax.swing.JDialog {
                 btnCancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 410, 120, 30));
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 120, 30));
 
         lblId.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblId.setText("Id");
-        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 60, 20));
+        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 60, 30));
 
         txtId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 325, 20));
+        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 325, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 470));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

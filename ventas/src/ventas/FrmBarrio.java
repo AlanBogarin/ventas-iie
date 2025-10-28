@@ -152,8 +152,9 @@ public final class FrmBarrio extends javax.swing.JDialog {
         pnlBarrio.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 361, 127, 40));
 
         lblBuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblBuscar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBuscar.setText("Buscar");
-        pnlBarrio.add(lblBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 17, 126, -1));
+        pnlBarrio.add(lblBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 60, 40));
 
         txtBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -161,10 +162,10 @@ public final class FrmBarrio extends javax.swing.JDialog {
                 txtBuscarKeyReleased(evt);
             }
         });
-        pnlBarrio.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(338, 43, 138, -1));
+        pnlBarrio.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(408, 20, 150, 40));
 
-        cboCriterio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Barrio", "Ciudad" }));
-        pnlBarrio.add(cboCriterio, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 43, 96, -1));
+        cboCriterio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Barrio", "Ciudad" }));
+        pnlBarrio.add(cboCriterio, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 96, 40));
 
         lblCiudad.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCiudad.setText("Ciudad");
@@ -250,7 +251,7 @@ public final class FrmBarrio extends javax.swing.JDialog {
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        Grilla.filtrarGrilla(grdBarrios, txtBuscar.getText(), cboCriterio.getSelectedIndex()+1);
+        Grilla.filtrarGrilla(grdBarrios, txtBuscar.getText(), cboCriterio.getSelectedIndex());
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void cboCiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboCiudadKeyTyped

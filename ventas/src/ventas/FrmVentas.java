@@ -125,7 +125,7 @@ public final class FrmVentas extends javax.swing.JDialog {
         });
         splArticulos.setViewportView(grdArticulos);
 
-        pnlVentas.add(splArticulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 450, 300));
+        pnlVentas.add(splArticulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 440, 300));
 
         pnlVenta.setBackground(new java.awt.Color(153, 204, 255));
         pnlVenta.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(255, 255, 255), new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)), "Datos de la venta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 3, 12))); // NOI18N

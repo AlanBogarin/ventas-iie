@@ -70,6 +70,9 @@ public final class FrmArticulos extends javax.swing.JDialog {
         lblNombre = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
         cboClasificacion = new javax.swing.JComboBox<>();
+        txtBuscar = new javax.swing.JTextField();
+        lblBuscar = new javax.swing.JLabel();
+        cboCriterio = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Articulos\n");
@@ -124,7 +127,7 @@ public final class FrmArticulos extends javax.swing.JDialog {
         });
         splArticulos.setViewportView(grdArticulos);
 
-        pnlArticulos.add(splArticulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 65, 420, 244));
+        pnlArticulos.add(splArticulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 89, 420, 220));
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevo.png"))); // NOI18N
         btnAgregar.setText("Agregar");
@@ -136,7 +139,7 @@ public final class FrmArticulos extends javax.swing.JDialog {
         pnlArticulos.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 127, 40));
 
         txtId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnlArticulos.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 87, 130, -1));
+        pnlArticulos.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 87, 130, 20));
 
         txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -144,7 +147,7 @@ public final class FrmArticulos extends javax.swing.JDialog {
                 txtNombreKeyTyped(evt);
             }
         });
-        pnlArticulos.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 137, 130, -1));
+        pnlArticulos.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 137, 130, 20));
 
         txtPrecio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -152,7 +155,7 @@ public final class FrmArticulos extends javax.swing.JDialog {
                 txtPrecioKeyTyped(evt);
             }
         });
-        pnlArticulos.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 187, 130, -1));
+        pnlArticulos.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 187, 130, 20));
 
         txtStock.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtStock.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -160,27 +163,27 @@ public final class FrmArticulos extends javax.swing.JDialog {
                 txtStockKeyTyped(evt);
             }
         });
-        pnlArticulos.add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 237, 130, -1));
+        pnlArticulos.add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 237, 130, 20));
 
         lblClasificacion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblClasificacion.setText("Clasificacion");
-        pnlArticulos.add(lblClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 120, -1));
+        pnlArticulos.add(lblClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 120, 20));
 
         lblStock.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblStock.setText("Stock");
-        pnlArticulos.add(lblStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 37, -1));
+        pnlArticulos.add(lblStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 37, 20));
 
         lblPrecio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblPrecio.setText("Precio");
-        pnlArticulos.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 120, -1));
+        pnlArticulos.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 120, 20));
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblNombre.setText("Nombre");
-        pnlArticulos.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 120, -1));
+        pnlArticulos.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 120, 20));
 
         lblId.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblId.setText("ID");
-        pnlArticulos.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 37, -1));
+        pnlArticulos.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 37, 20));
 
         cboClasificacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,6 +191,21 @@ public final class FrmArticulos extends javax.swing.JDialog {
             }
         });
         pnlArticulos.add(cboClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 130, 20));
+
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
+            }
+        });
+        pnlArticulos.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 220, 40));
+
+        lblBuscar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblBuscar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBuscar.setText("Buscar");
+        pnlArticulos.add(lblBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 70, 40));
+
+        cboCriterio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "id", "nombre", "precio", "stock", "clasificacion" }));
+        pnlArticulos.add(cboCriterio, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, 40));
 
         getContentPane().add(pnlArticulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 400));
 
@@ -293,7 +311,7 @@ public final class FrmArticulos extends javax.swing.JDialog {
     }//GEN-LAST:event_cboClasificacionActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-           char e  = evt.getKeyChar();
+        char e  = evt.getKeyChar();
         if(!txtNombre.getText().isEmpty()){
             if(e==KeyEvent.VK_ENTER){
                 txtPrecio.requestFocus();
@@ -318,6 +336,10 @@ public final class FrmArticulos extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_txtStockKeyTyped
+
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        Grilla.filtrarGrilla(grdArticulos, txtBuscar.getText(), cboCriterio.getSelectedIndex());
+    }//GEN-LAST:event_txtBuscarKeyReleased
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -359,7 +381,9 @@ public final class FrmArticulos extends javax.swing.JDialog {
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JComboBox<DatoCombo> cboClasificacion;
+    private javax.swing.JComboBox<String> cboCriterio;
     private javax.swing.JTable grdArticulos;
+    private javax.swing.JLabel lblBuscar;
     private javax.swing.JLabel lblClasificacion;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblNombre;
@@ -367,6 +391,7 @@ public final class FrmArticulos extends javax.swing.JDialog {
     private javax.swing.JLabel lblStock;
     private javax.swing.JPanel pnlArticulos;
     private javax.swing.JScrollPane splArticulos;
+    private javax.swing.JTextField txtBuscar;
     private javax.swing.JFormattedTextField txtId;
     private javax.swing.JFormattedTextField txtNombre;
     private javax.swing.JFormattedTextField txtPrecio;
