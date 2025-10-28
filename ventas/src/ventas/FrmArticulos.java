@@ -338,7 +338,10 @@ public final class FrmArticulos extends javax.swing.JDialog {
     }//GEN-LAST:event_txtStockKeyTyped
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        Grilla.filtrarGrilla(grdArticulos, txtBuscar.getText(), cboCriterio.getSelectedIndex());
+        if (cboCriterio.getSelectedIndex() == -1) {
+            return;
+        }
+        Grilla.filtrarGrilla(grdArticulos, txtBuscar.getText().toUpperCase(), cboCriterio.getSelectedIndex());
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     public static void main(String args[]) {

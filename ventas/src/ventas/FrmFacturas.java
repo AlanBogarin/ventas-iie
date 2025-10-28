@@ -100,7 +100,7 @@ public final class FrmFacturas extends javax.swing.JDialog {
         if (cboCriterio.getSelectedIndex() == -1) {
             return;
         }
-        Grilla.filtrarGrilla(grdFacturas, txtBuscar.getText(), cboCriterio.getSelectedIndex());
+        Grilla.filtrarGrilla(grdFacturas, txtBuscar.getText().toUpperCase(), cboCriterio.getSelectedIndex());
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void btnAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnularActionPerformed

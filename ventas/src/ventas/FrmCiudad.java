@@ -146,11 +146,6 @@ public final class FrmCiudad extends javax.swing.JDialog {
         pnlCiudad.add(lblId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 70, -1));
 
         txtBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarActionPerformed(evt);
-            }
-        });
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
@@ -221,10 +216,6 @@ public final class FrmCiudad extends javax.swing.JDialog {
         actualizarGrilla();
     }//GEN-LAST:event_btnBorrarActionPerformed
 
-    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarActionPerformed
-
     private void txtCiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCiudadKeyTyped
         char e = evt.getKeyChar();
         if (!txtCiudad.getText().isEmpty()) {
@@ -235,8 +226,10 @@ public final class FrmCiudad extends javax.swing.JDialog {
     }//GEN-LAST:event_txtCiudadKeyTyped
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        Grilla.filtrarGrilla(grdCiudad, txtBuscar.getText(), cboCriterio.getSelectedIndex());
-
+        if (cboCriterio.getSelectedIndex() == -1) {
+            return;
+        }
+        Grilla.filtrarGrilla(grdCiudad, txtBuscar.getText().toUpperCase(), cboCriterio.getSelectedIndex());
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     public static void main(String args[]) {

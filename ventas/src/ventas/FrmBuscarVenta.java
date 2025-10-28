@@ -148,11 +148,10 @@ public final class FrmBuscarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        int idxCriterio = cboCriterio.getSelectedIndex();
-        if (idxCriterio == -1) {
+        if (cboCriterio.getSelectedIndex() == -1) {
             return;
         }
-        Grilla.filtrarGrilla(grdItems, txtBuscar.getText().trim().toUpperCase(), idxCriterio);
+        Grilla.filtrarGrilla(grdItems, txtBuscar.getText().trim().toUpperCase(), cboCriterio.getSelectedIndex());
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     public static void main(String args[]) {
