@@ -1,10 +1,6 @@
 package ventas;
 
 import java.awt.event.KeyEvent;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public final class FrmCiudad extends javax.swing.JDialog {

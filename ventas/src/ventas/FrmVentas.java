@@ -117,6 +117,11 @@ public final class FrmVentas extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        grdArticulos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                grdArticulosMouseClicked(evt);
+            }
+        });
         splArticulos.setViewportView(grdArticulos);
 
         pnlVentas.add(splArticulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 450, 300));
@@ -229,9 +234,9 @@ public final class FrmVentas extends javax.swing.JDialog {
         txtCantidad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtCantidad.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtCantidad.setText("0");
-        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantidadActionPerformed(evt);
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyReleased(evt);
             }
         });
         pnlArticulo.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 125, -1));
@@ -324,7 +329,7 @@ public final class FrmVentas extends javax.swing.JDialog {
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
         new FrmBuscarVenta(this, false,
                 "Buscar Cliente", "cliente", new String[]{"id", "nombre", "ruc"},
-                1, null, (String[] fila) -> {
+                null, (String[] fila) -> {
                     txtClienteId.setText(fila[0]);
                     txtCliente.setText(fila[1]);
                     txtRuc.setText(fila[2]);
@@ -336,7 +341,7 @@ public final class FrmVentas extends javax.swing.JDialog {
         limpiarArticulo();
         new FrmBuscarVenta(this, false,
                 "Buscar Articulo", "articulo", new String[]{"id", "nombre", "precio", "stock"},
-                1, null, (String[] fila) -> {
+                null, (String[] fila) -> {
                     txtArticuloId.setText(fila[0]);
                     txtArticulo.setText(fila[1]);
                     txtPrecio.setText(fila[2]);
@@ -379,18 +384,6 @@ public final class FrmVentas extends javax.swing.JDialog {
 
         limpiarArticulo();
     }//GEN-LAST:event_btnAgregarArticuloActionPerformed
-
-    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
-        String sCantidad = txtCantidad.getText();
-        if (sCantidad.isEmpty()) {
-            txtCantidad.setText("0");
-            sCantidad = "0";
-        }
-        int cantidad = Integer.parseInt(sCantidad);
-        int precio = Integer.parseInt(txtPrecio.getText());
-        int subtotal = cantidad * precio;
-        txtSubTotal.setText(String.valueOf(subtotal));
-    }//GEN-LAST:event_txtCantidadActionPerformed
 
     private void btnGuardarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarVentaActionPerformed
         if (txtClienteId.getText().isEmpty()) {
@@ -464,6 +457,26 @@ public final class FrmVentas extends javax.swing.JDialog {
         txtTotal.setText("0");
         ((DefaultTableModel) grdArticulos.getModel()).setRowCount(0);
     }//GEN-LAST:event_btnGuardarVentaActionPerformed
+
+    private void txtCantidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyReleased
+        String sCantidad = txtCantidad.getText();
+        if (sCantidad.startsWith("0")) {
+           sCantidad = sCantidad.replaceFirst("0", "");
+           txtCantidad.setText(sCantidad);
+        }
+        if (sCantidad.isEmpty()) {
+            sCantidad = "0";
+            txtCantidad.setText(sCantidad);
+        }
+        int cantidad = Integer.parseInt(sCantidad);
+        int precio = Integer.parseInt(txtPrecio.getText());
+        int subtotal = cantidad * precio;
+        txtSubTotal.setText(String.valueOf(subtotal));
+    }//GEN-LAST:event_txtCantidadKeyReleased
+
+    private void grdArticulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grdArticulosMouseClicked
+        
+    }//GEN-LAST:event_grdArticulosMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

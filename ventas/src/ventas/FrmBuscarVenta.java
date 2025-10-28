@@ -10,7 +10,6 @@ public final class FrmBuscarVenta extends javax.swing.JDialog {
     private Consumer<String[]> fnConfirmar;
     private String tabla;
     private String[] campos;
-    private int columnaFiltro;
 
     public FrmBuscarVenta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -21,17 +20,18 @@ public final class FrmBuscarVenta extends javax.swing.JDialog {
             String titulo,
             String tabla,
             String[] campos,
-            int columnaFiltro,
             String condicion,
             Consumer<String[]> fnConfirmar) {
         super(parent, modal);
         initComponents();
         Grilla.configurarModelo(grdItems, campos);
+        for (String criterio : campos) {
+            cboCriterio.addItem(criterio);
+        }
         lblTitulo.setText(titulo);
         this.tabla = tabla;
         this.campos = campos;
         this.fnConfirmar = fnConfirmar;
-        this.columnaFiltro = columnaFiltro;
         this.setSize(301, 302);
         actualizarGrilla();
         pack();
@@ -54,6 +54,7 @@ public final class FrmBuscarVenta extends javax.swing.JDialog {
         grdItems = new javax.swing.JTable();
         txtBuscar = new javax.swing.JTextField();
         lblBuscar = new javax.swing.JLabel();
+        cboCriterio = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -110,12 +111,14 @@ public final class FrmBuscarVenta extends javax.swing.JDialog {
                 txtBuscarKeyReleased(evt);
             }
         });
-        pnlBuscar.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 540, 40));
+        pnlBuscar.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 390, 40));
 
         lblBuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblBuscar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblBuscar.setText("Buscar");
-        pnlBuscar.add(lblBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 55, 40));
+        lblBuscar.setText("Buscar por");
+        pnlBuscar.add(lblBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 80, 40));
+
+        pnlBuscar.add(cboCriterio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 100, 40));
 
         getContentPane().add(pnlBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 660, 490));
 
@@ -145,7 +148,11 @@ public final class FrmBuscarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        Grilla.filtrarGrilla(grdItems, txtBuscar.getText().trim().toUpperCase(), columnaFiltro);
+        int idxCriterio = cboCriterio.getSelectedIndex();
+        if (idxCriterio == -1) {
+            return;
+        }
+        Grilla.filtrarGrilla(grdItems, txtBuscar.getText().trim().toUpperCase(), idxCriterio);
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     public static void main(String args[]) {
@@ -185,6 +192,7 @@ public final class FrmBuscarVenta extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmar;
+    private javax.swing.JComboBox<String> cboCriterio;
     private javax.swing.JTable grdItems;
     private javax.swing.JLabel lblBuscar;
     private javax.swing.JLabel lblTitulo;
