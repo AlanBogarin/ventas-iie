@@ -36,7 +36,7 @@ INSERT INTO cliente (nombre, ruc, ciudad_id, barrio_id)
 VALUES
 ("Anonimo", "0000000", 1, 1);
 
--- INSERT INTO venta (cliente_id, fecha)
+-- INSERT INTO venta (cliente_id, fecha, total, anulado)
 -- VALUES
 -- ();
 
