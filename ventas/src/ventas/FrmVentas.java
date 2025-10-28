@@ -300,7 +300,7 @@ public final class FrmVentas extends javax.swing.JDialog {
                 btnGuardarVentaActionPerformed(evt);
             }
         });
-        pnlTotal.add(btnGuardarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, -1, 40));
+        pnlTotal.add(btnGuardarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 80, 130, 40));
 
         lblTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
