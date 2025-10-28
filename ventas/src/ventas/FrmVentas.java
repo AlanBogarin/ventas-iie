@@ -299,13 +299,13 @@ public final class FrmVentas extends javax.swing.JDialog {
         lblTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTotal.setText("Total");
-        pnlTotal.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 60, 20));
+        pnlTotal.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 30, 60, 20));
 
         txtTotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTotal.setText("0");
         txtTotal.setEnabled(false);
-        pnlTotal.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, 125, 40));
+        pnlTotal.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 20, 125, 40));
 
         pnlVentas.add(pnlTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 920, 130));
 
