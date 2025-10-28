@@ -1,6 +1,7 @@
 package ventas;
 
 import java.awt.event.KeyEvent;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -170,7 +171,11 @@ public final class FrmVentas extends javax.swing.JDialog {
         pnlVenta.add(txtCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 125, 20));
 
         txtClienteId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtClienteId.setEnabled(false);
+        txtClienteId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtClienteIdActionPerformed(evt);
+            }
+        });
         txtClienteId.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtClienteIdKeyReleased(evt);
@@ -521,6 +526,14 @@ public final class FrmVentas extends javax.swing.JDialog {
         Object[] fila = BaseDatos.getPrimeraFila("SELECT id,stock FROM articulo WHERE id="+txtArticuloId.getText());
         txtStock.setText(fila[1].toString());
     }//GEN-LAST:event_grdArticulosMouseClicked
+
+    private void txtClienteIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClienteIdActionPerformed
+        // TODO add your handling code here:
+        //ResultSet rs=BaseDatos.consultar("SELECT*FROM cliente WHERE id="+this.txtClienteId.getText());
+        ///try{
+        //    
+        //}catch(SQLException)
+    }//GEN-LAST:event_txtClienteIdActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
