@@ -32,7 +32,8 @@ public class Principal extends javax.swing.JFrame {
         itemBarrio = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         itemVentas = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        itemCompra = new javax.swing.JMenuItem();
+        itemFacturas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
@@ -107,14 +108,23 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu1.add(itemVentas);
 
-        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jMenuItem1.setText("Compra");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        itemCompra.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        itemCompra.setText("Compra");
+        itemCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                itemCompraActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(itemCompra);
+
+        itemFacturas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        itemFacturas.setText("Facturas");
+        itemFacturas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemFacturasActionPerformed(evt);
+            }
+        });
+        jMenu1.add(itemFacturas);
 
         jMenuBar1.add(jMenu1);
 
@@ -151,9 +161,13 @@ public class Principal extends javax.swing.JFrame {
         new FrmArticulos(this, true).setVisible(true);
     }//GEN-LAST:event_itemArticulosActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void itemCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCompraActionPerformed
+        
+    }//GEN-LAST:event_itemCompraActionPerformed
+
+    private void itemFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemFacturasActionPerformed
+        new FrmFacturas(this, true).setVisible(true);
+    }//GEN-LAST:event_itemFacturasActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -183,10 +197,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemCiudad;
     private javax.swing.JMenuItem itemClasificaciones;
     private javax.swing.JMenuItem itemClientes;
+    private javax.swing.JMenuItem itemCompra;
+    private javax.swing.JMenuItem itemFacturas;
     private javax.swing.JMenuItem itemVentas;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JLabel lblIcon;
     private javax.swing.JMenu menuFormularios;
     // End of variables declaration//GEN-END:variables
