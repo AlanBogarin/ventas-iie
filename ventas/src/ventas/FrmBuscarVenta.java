@@ -7,7 +7,6 @@ public final class FrmBuscarVenta extends javax.swing.JDialog {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmBuscarVenta.class.getName());
 
-    private String ultimoTexto;
     private Consumer<String[]> fnConfirmar;
     private String tabla;
     private String[] campos;
@@ -41,9 +40,6 @@ public final class FrmBuscarVenta extends javax.swing.JDialog {
 
     void actualizarGrilla() {
         Grilla.cargarGrilla(grdItems, tabla, campos);
-        if (!txtBuscar.getText().isEmpty()) {
-            Grilla.filtrarGrilla(grdItems, txtBuscar.getText(), columnaFiltro);
-        }
     }
 
     @SuppressWarnings("unchecked")
@@ -141,15 +137,7 @@ public final class FrmBuscarVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        String textoActual = txtBuscar.getText().trim().toLowerCase();
-        // Si el texto actual es más largo → filtrar localmente
-        if (ultimoTexto != null && textoActual.startsWith(ultimoTexto) && !textoActual.isEmpty()) {
-            Grilla.filtrarGrilla(grdItems, textoActual, columnaFiltro);
-        } else {
-            // Si se borró texto o está vacío → recargar desde la base
-            actualizarGrilla();
-        }
-        ultimoTexto = textoActual;
+        Grilla.filtrarGrilla(grdItems, txtBuscar.getText().trim().toUpperCase(), columnaFiltro);
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     public static void main(String args[]) {
