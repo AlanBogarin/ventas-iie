@@ -181,7 +181,7 @@ public final class FrmBarrio extends javax.swing.JDialog {
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/comunidad.png"))); // NOI18N
         pnlBarrio.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 130, 160));
 
-        getContentPane().add(pnlBarrio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 570, 410));
+        getContentPane().add(pnlBarrio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

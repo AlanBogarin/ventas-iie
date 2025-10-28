@@ -58,7 +58,7 @@ public final class FrmFacturas extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(grdFacturas);
 
-        pnlFacturas.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, 290));
+        pnlFacturas.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, 290));
 
         btnAnular.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnAnular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelar.png"))); // NOI18N
@@ -68,12 +68,12 @@ public final class FrmFacturas extends javax.swing.JDialog {
                 btnAnularActionPerformed(evt);
             }
         });
-        pnlFacturas.add(btnAnular, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 390, 120, 40));
+        pnlFacturas.add(btnAnular, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 120, 40));
 
         lblBuscar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblBuscar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblBuscar.setText("Buscar por");
-        pnlFacturas.add(lblBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 100, 30));
+        pnlFacturas.add(lblBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 100, 30));
 
         txtBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -81,12 +81,12 @@ public final class FrmFacturas extends javax.swing.JDialog {
                 txtBuscarKeyReleased(evt);
             }
         });
-        pnlFacturas.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 220, 30));
+        pnlFacturas.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 220, 30));
 
         cboCriterio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "id", "cliente", "fecha", "total", " " }));
-        pnlFacturas.add(cboCriterio, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 110, 30));
+        pnlFacturas.add(cboCriterio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 110, 30));
 
-        getContentPane().add(pnlFacturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 560, 480));
+        getContentPane().add(pnlFacturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 430));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
