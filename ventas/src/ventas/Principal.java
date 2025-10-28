@@ -1,6 +1,9 @@
 package ventas;
 
 // Tablas
+
+import javax.swing.JOptionPane;
+
 // clasificacion
 // articulo
 // ciudad
@@ -162,7 +165,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_itemArticulosActionPerformed
 
     private void itemCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCompraActionPerformed
-        
+        JOptionPane.showMessageDialog(itemCompra, "Proximamente...");
     }//GEN-LAST:event_itemCompraActionPerformed
 
     private void itemFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemFacturasActionPerformed
