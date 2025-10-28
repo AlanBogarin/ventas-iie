@@ -109,7 +109,7 @@ public final class FrmFacturas extends javax.swing.JDialog {
             return;
         }
         String id = Grilla.getValorSeleccionado(grdFacturas, "id");
-        BaseDatos.actualizarRegistro("venta", "anulado=!anulado", "id=" + id);
+        BaseDatos.actualizarRegistro("venta", "anulado=not anulado", "id=" + id);
         actualizarGrilla();
     }//GEN-LAST:event_btnAnularActionPerformed
 

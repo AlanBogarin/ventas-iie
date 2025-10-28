@@ -19,13 +19,17 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+        pack();
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
+        pnlPrincipal = new javax.swing.JPanel();
         lblIcon = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFormularios = new javax.swing.JMenu();
         itemArticulos = new javax.swing.JMenuItem();
@@ -33,20 +37,38 @@ public class Principal extends javax.swing.JFrame {
         itemClientes = new javax.swing.JMenuItem();
         itemClasificaciones = new javax.swing.JMenuItem();
         itemBarrio = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        menuMovimiento = new javax.swing.JMenu();
         itemVentas = new javax.swing.JMenuItem();
         itemCompra = new javax.swing.JMenuItem();
         itemFacturas = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(153, 204, 255));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jButton1.setText("jButton1");
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
+
+        pnlPrincipal.setBackground(new java.awt.Color(153, 204, 255));
+        pnlPrincipal.setLayout(new java.awt.GridBagLayout());
+
+        lblIcon.setBackground(new java.awt.Color(153, 204, 255));
+        lblIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/punto-de-venta.png"))); // NOI18N
-        getContentPane().add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 75, -1, -1));
+        lblIcon.setToolTipText("");
+        pnlPrincipal.add(lblIcon, new java.awt.GridBagConstraints());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("¡BIENVENIDO!");
+        jLabel1.setMaximumSize(new java.awt.Dimension(123, 40));
+        jLabel1.setMinimumSize(new java.awt.Dimension(123, 40));
+        pnlPrincipal.add(jLabel1, new java.awt.GridBagConstraints());
+
+        getContentPane().add(pnlPrincipal);
+
+        jMenuBar1.setBackground(new java.awt.Color(153, 153, 153));
 
         menuFormularios.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        menuFormularios.setText("Archivo");
+        menuFormularios.setText("Formulario");
         menuFormularios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuFormulariosActionPerformed(evt);
@@ -100,7 +122,7 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(menuFormularios);
 
-        jMenu1.setText("Movimiento");
+        menuMovimiento.setText("Movimiento");
 
         itemVentas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         itemVentas.setText("Ventas");
@@ -109,7 +131,7 @@ public class Principal extends javax.swing.JFrame {
                 itemVentasActionPerformed(evt);
             }
         });
-        jMenu1.add(itemVentas);
+        menuMovimiento.add(itemVentas);
 
         itemCompra.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         itemCompra.setText("Compra");
@@ -118,7 +140,7 @@ public class Principal extends javax.swing.JFrame {
                 itemCompraActionPerformed(evt);
             }
         });
-        jMenu1.add(itemCompra);
+        menuMovimiento.add(itemCompra);
 
         itemFacturas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         itemFacturas.setText("Facturas");
@@ -127,9 +149,9 @@ public class Principal extends javax.swing.JFrame {
                 itemFacturasActionPerformed(evt);
             }
         });
-        jMenu1.add(itemFacturas);
+        menuMovimiento.add(itemFacturas);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(menuMovimiento);
 
         setJMenuBar(jMenuBar1);
 
@@ -203,9 +225,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemCompra;
     private javax.swing.JMenuItem itemFacturas;
     private javax.swing.JMenuItem itemVentas;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblIcon;
     private javax.swing.JMenu menuFormularios;
+    private javax.swing.JMenu menuMovimiento;
+    private javax.swing.JPanel pnlPrincipal;
     // End of variables declaration//GEN-END:variables
 }
