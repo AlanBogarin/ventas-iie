@@ -70,9 +70,9 @@
                   <Table columnCount="5" rowCount="4">
                     <Column editable="false" title="id" type="java.lang.Object"/>
                     <Column editable="false" title="nombre" type="java.lang.Object"/>
-                    <Column editable="true" title="cantidad" type="java.lang.Object"/>
+                    <Column editable="false" title="cantidad" type="java.lang.Object"/>
                     <Column editable="false" title="precio" type="java.lang.Object"/>
-                    <Column editable="false" title="sutotal" type="java.lang.Object"/>
+                    <Column editable="false" title="subtotal" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -483,7 +483,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="180" y="120" width="-1" height="40"/>
+                  <AbsoluteConstraints x="150" y="120" width="-1" height="40"/>
                 </Constraint>
               </Constraints>
             </Component>

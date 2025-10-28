@@ -46,7 +46,15 @@ public final class FrmFacturas extends javax.swing.JDialog {
             new String [] {
                 "id", "cliente", "fecha", "total"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(grdFacturas);
 
         pnlFacturas.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, 290));

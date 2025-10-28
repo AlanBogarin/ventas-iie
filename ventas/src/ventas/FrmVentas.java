@@ -35,6 +35,7 @@ public final class FrmVentas extends javax.swing.JDialog {
         txtStock.setText("0");
         txtPrecio.setText("0");
         txtSubTotal.setText("0");
+        grdArticulos.clearSelection();
     }
 
     private void actualizarTotalFactura() {
@@ -106,11 +107,11 @@ public final class FrmVentas extends javax.swing.JDialog {
                 {null, null, null, null, null}
             },
             new String [] {
-                "id", "nombre", "cantidad", "precio", "sutotal"
+                "id", "nombre", "cantidad", "precio", "subtotal"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -249,7 +250,7 @@ public final class FrmVentas extends javax.swing.JDialog {
                 btnAgregarArticuloActionPerformed(evt);
             }
         });
-        pnlArticulo.add(btnAgregarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, -1, 40));
+        pnlArticulo.add(btnAgregarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, -1, 40));
 
         btnBuscarArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
         btnBuscarArticulo.setBorder(null);
@@ -342,7 +343,20 @@ public final class FrmVentas extends javax.swing.JDialog {
         new FrmBuscarVenta(this, false,
                 "Buscar Articulo", "articulo", new String[]{"id", "nombre", "precio", "stock"},
                 null, (String[] fila) -> {
-                    txtArticuloId.setText(fila[0]);
+                    DefaultTableModel modelo = (DefaultTableModel) grdArticulos.getModel();
+                    String articulo_id = fila[0];
+                    for (int row = 0; row < modelo.getRowCount(); row++) {
+                        String columna_id = modelo.getValueAt(row, 0).toString(); // columna 'id'
+                        if (!articulo_id.equals(columna_id)) {
+                            continue;
+                        }
+                        // Seleccionar la fila del articulo ya cargado
+                        grdArticulos.setRowSelectionInterval(row, row);
+                        // Cargar los valores desde la grilla
+                        txtCantidad.setText(modelo.getValueAt(row, 2).toString());
+                        txtSubTotal.setText(modelo.getValueAt(row, 4).toString());
+                    }
+                    txtArticuloId.setText(articulo_id);
                     txtArticulo.setText(fila[1]);
                     txtPrecio.setText(fila[2]);
                     txtStock.setText(fila[3]);
@@ -362,27 +376,49 @@ public final class FrmVentas extends javax.swing.JDialog {
             btnBuscarArticulo.requestFocus();
             return;
         }
-        String cantidad = txtCantidad.getText();
-        if (Integer.parseInt(cantidad) <= 0) {
-            JOptionPane.showMessageDialog(btnAgregarArticulo, "Agregue la cantidad a vender");
-            txtCantidad.requestFocus();
-            return;
-        }
-
-        // Obtener los datos de los campos
+                // Obtener los datos de los campos
         String id = txtArticuloId.getText();
         String nombre = txtArticulo.getText();
+        String cantidad = txtCantidad.getText();
         String precio = txtPrecio.getText();
         String subtotal = txtSubTotal.getText();
 
-        // Agregar la fila a la tabla
+        int intCantidad = Integer.parseInt(cantidad);
+
         DefaultTableModel modelo = (DefaultTableModel) grdArticulos.getModel();
-        modelo.addRow(new Object[]{id, nombre, cantidad, precio, subtotal});
+        int fila = grdArticulos.getSelectedRow();
+
+        if (intCantidad > stock) {
+            JOptionPane.showMessageDialog(btnAgregarArticulo, "La cantidad no debe superar el stock");
+            return;
+        }
+
+        if (fila == -1) {
+            // Fila no seleccionada
+            if (intCantidad <= 0) {
+                JOptionPane.showMessageDialog(btnAgregarArticulo, "Agregue la cantidad a vender");
+                txtCantidad.requestFocus();
+                return;
+            }
+            // Agregar la fila a la tabla
+            modelo.addRow(new Object[]{id, nombre, cantidad, precio, subtotal});
+        } else if (intCantidad <= 0) {
+            // Eliminar la fila ya que cantidad = 0
+            modelo.removeRow(fila);
+        } else {
+            // Modificar fila
+            modelo.setValueAt(id, fila, 0);
+            modelo.setValueAt(nombre, fila, 1);
+            modelo.setValueAt(cantidad, fila, 2);
+            modelo.setValueAt(precio, fila, 3);
+            modelo.setValueAt(subtotal, fila, 4);
+        }
 
         // Actualizar el total general
         actualizarTotalFactura();
 
         limpiarArticulo();
+
     }//GEN-LAST:event_btnAgregarArticuloActionPerformed
 
     private void btnGuardarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarVentaActionPerformed
@@ -399,13 +435,14 @@ public final class FrmVentas extends javax.swing.JDialog {
 
         // --- Obtener los datos de la cabecera de venta ---
         String clienteId = txtClienteId.getText();
+        String total = txtTotal.getText();
         String fecha = java.time.LocalDate.now().toString();
 
         // --- Insertar en tabla venta ---
         boolean ok = BaseDatos.insertarRegistro(
                 "venta",
-                "cliente_id, fecha,",
-                clienteId + ", '" + fecha + "'"
+                "cliente_id,fecha,total",
+                clienteId + ", '" + fecha + "'" + ", " + total
         );
 
         if (!ok) {
@@ -439,7 +476,7 @@ public final class FrmVentas extends javax.swing.JDialog {
                 return;
             }
 
-            // Opcional: actualizar el stock
+            // Actualizar el stock
             BaseDatos.actualizarRegistro(
                     "articulo",
                     "stock = stock - " + cantidad,
@@ -475,7 +512,16 @@ public final class FrmVentas extends javax.swing.JDialog {
     }//GEN-LAST:event_txtCantidadKeyReleased
 
     private void grdArticulosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grdArticulosMouseClicked
-        
+        if (!(evt.getClickCount() == 2 && grdArticulos.getSelectedRow() != -1)) {
+            return;
+        }
+        txtArticuloId.setText(Grilla.getValorSeleccionado(grdArticulos, "id"));
+        txtArticulo.setText(Grilla.getValorSeleccionado(grdArticulos, "nombre"));
+        txtCantidad.setText(Grilla.getValorSeleccionado(grdArticulos, "cantidad"));
+        txtPrecio.setText(Grilla.getValorSeleccionado(grdArticulos, "precio"));
+        txtSubTotal.setText(Grilla.getValorSeleccionado(grdArticulos, "subtotal"));
+        Object[] fila = BaseDatos.getPrimeraFila("SELECT id,stock FROM articulo WHERE id="+txtArticuloId.getText());
+        txtStock.setText(fila[1].toString());
     }//GEN-LAST:event_grdArticulosMouseClicked
 
     public static void main(String args[]) {
