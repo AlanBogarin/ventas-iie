@@ -17,7 +17,8 @@ public final class FrmVentas extends javax.swing.JDialog {
 
     void limpiarVenta() {
         Object[] fila = BaseDatos.getPrimeraFila("SELECT MAX(id) FROM venta");
-        String ventaId = fila.length == 0 || fila[0] == null ? "1" : ((Number) fila[0]).toString();
+        String ventaId = fila.length == 0 || fila[0] == null ? "1" :
+                String.valueOf((((Number) fila[0]).intValue() + 1));
         txtVentaId.setText(ventaId);
         txtClienteId.setText(null);
         txtCliente.setText(null);
@@ -315,7 +316,7 @@ public final class FrmVentas extends javax.swing.JDialog {
 
         pnlVentas.add(pnlTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 920, 130));
 
-        getContentPane().add(pnlVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 950, 470));
+        getContentPane().add(pnlVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -487,11 +488,8 @@ public final class FrmVentas extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(this, "Venta registrada correctamente con ID " + ventaId);
 
         // Limpiar formulario
-        txtVentaId.setText(String.valueOf(ventaId));
-        txtClienteId.setText("");
-        txtCliente.setText("");
-        txtRuc.setText("");
-        txtTotal.setText("0");
+        limpiarVenta();
+        limpiarArticulo();
         ((DefaultTableModel) grdArticulos.getModel()).setRowCount(0);
     }//GEN-LAST:event_btnGuardarVentaActionPerformed
 
