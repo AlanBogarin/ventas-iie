@@ -15,7 +15,8 @@ public final class FrmArticulos extends javax.swing.JDialog {
         habilitarCampos(false);
         habilitarBotones(true);
         actualizarGrilla();
-        setLocationRelativeTo(null);
+        pack();
+        setLocationRelativeTo(parent);
     }
 
     void habilitarCampos(boolean estado) {
@@ -51,12 +52,13 @@ public final class FrmArticulos extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        splArticulos = new javax.swing.JScrollPane();
-        grdArticulos = new javax.swing.JTable();
-        btnAgregar = new javax.swing.JButton();
+        pnlArticulos = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
+        splArticulos = new javax.swing.JScrollPane();
+        grdArticulos = new javax.swing.JTable();
+        btnAgregar = new javax.swing.JButton();
         txtId = new javax.swing.JFormattedTextField();
         txtNombre = new javax.swing.JFormattedTextField();
         txtPrecio = new javax.swing.JFormattedTextField();
@@ -71,6 +73,36 @@ public final class FrmArticulos extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Articulos\n");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlArticulos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        pnlArticulos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar.png"))); // NOI18N
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        pnlArticulos.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, 124, 40));
+
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar-flecha.png"))); // NOI18N
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+        pnlArticulos.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 135, 40));
+
+        btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar.png"))); // NOI18N
+        btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
+        pnlArticulos.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, 137, 40));
 
         grdArticulos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -90,7 +122,7 @@ public final class FrmArticulos extends javax.swing.JDialog {
         });
         splArticulos.setViewportView(grdArticulos);
 
-        getContentPane().add(splArticulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 65, 378, 244));
+        pnlArticulos.add(splArticulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 65, 420, 244));
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevo.png"))); // NOI18N
         btnAgregar.setText("Agregar");
@@ -99,60 +131,35 @@ public final class FrmArticulos extends javax.swing.JDialog {
                 btnAgregarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 127, 40));
-
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar.png"))); // NOI18N
-        btnGuardar.setText("Guardar");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 335, 124, 40));
-
-        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar-flecha.png"))); // NOI18N
-        btnActualizar.setText("Actualizar");
-        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 335, 135, 40));
-
-        btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar.png"))); // NOI18N
-        btnBorrar.setText("Borrar");
-        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBorrarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(443, 335, 137, 40));
-        getContentPane().add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 87, 130, -1));
-        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 137, 130, -1));
-        getContentPane().add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 187, 130, -1));
-        getContentPane().add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 237, 130, -1));
+        pnlArticulos.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 127, 40));
+        pnlArticulos.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 87, 130, -1));
+        pnlArticulos.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 137, 130, -1));
+        pnlArticulos.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 187, 130, -1));
+        pnlArticulos.add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 237, 130, -1));
 
         lblClasificacion.setText("Clasificacion");
-        getContentPane().add(lblClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 120, -1));
+        pnlArticulos.add(lblClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 120, -1));
 
         lblStock.setText("Stock");
-        getContentPane().add(lblStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 37, -1));
+        pnlArticulos.add(lblStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 37, -1));
 
         lblPrecio.setText("Precio");
-        getContentPane().add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 120, -1));
+        pnlArticulos.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 120, -1));
 
         lblNombre.setText("Nombre");
-        getContentPane().add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 120, -1));
+        pnlArticulos.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 120, -1));
 
         lblId.setText("ID");
-        getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 37, -1));
+        pnlArticulos.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 37, -1));
 
         cboClasificacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboClasificacionActionPerformed(evt);
             }
         });
-        getContentPane().add(cboClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 130, 20));
+        pnlArticulos.add(cboClasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 130, 20));
+
+        getContentPane().add(pnlArticulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -301,6 +308,7 @@ public final class FrmArticulos extends javax.swing.JDialog {
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblPrecio;
     private javax.swing.JLabel lblStock;
+    private javax.swing.JPanel pnlArticulos;
     private javax.swing.JScrollPane splArticulos;
     private javax.swing.JFormattedTextField txtId;
     private javax.swing.JFormattedTextField txtNombre;

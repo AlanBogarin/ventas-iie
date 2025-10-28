@@ -54,6 +54,7 @@ public final class FrmVentas extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlVentas = new javax.swing.JPanel();
         splArticulos = new javax.swing.JScrollPane();
         grdArticulos = new javax.swing.JTable();
         pnlVenta = new javax.swing.JPanel();
@@ -68,7 +69,6 @@ public final class FrmVentas extends javax.swing.JDialog {
         txtClienteId = new javax.swing.JFormattedTextField();
         txtRuc = new javax.swing.JFormattedTextField();
         btnBuscarCliente = new javax.swing.JButton();
-        btnBuscarRuc = new javax.swing.JButton();
         pnlArticulo = new javax.swing.JPanel();
         lblArticuloId = new javax.swing.JLabel();
         txtArticuloId = new javax.swing.JFormattedTextField();
@@ -84,7 +84,7 @@ public final class FrmVentas extends javax.swing.JDialog {
         txtSubTotal = new javax.swing.JFormattedTextField();
         lblStock = new javax.swing.JLabel();
         txtStock = new javax.swing.JFormattedTextField();
-        jPanel3 = new javax.swing.JPanel();
+        pnlTotal = new javax.swing.JPanel();
         btnGuardarVenta = new javax.swing.JButton();
         lblTotal = new javax.swing.JLabel();
         txtTotal = new javax.swing.JFormattedTextField();
@@ -92,6 +92,9 @@ public final class FrmVentas extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setSize(new java.awt.Dimension(720, 1440));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlVentas.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        pnlVentas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         grdArticulos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -114,7 +117,7 @@ public final class FrmVentas extends javax.swing.JDialog {
         });
         splArticulos.setViewportView(grdArticulos);
 
-        getContentPane().add(splArticulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 450, 300));
+        pnlVentas.add(splArticulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 450, 300));
 
         pnlVenta.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de la venta"));
         pnlVenta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -167,19 +170,9 @@ public final class FrmVentas extends javax.swing.JDialog {
                 btnBuscarClienteActionPerformed(evt);
             }
         });
-        pnlVenta.add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 20, 20));
+        pnlVenta.add(btnBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 20, 20));
 
-        btnBuscarRuc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
-        btnBuscarRuc.setBorder(null);
-        btnBuscarRuc.setContentAreaFilled(false);
-        btnBuscarRuc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarRucActionPerformed(evt);
-            }
-        });
-        pnlVenta.add(btnBuscarRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 20, 20));
-
-        getContentPane().add(pnlVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 460, 130));
+        pnlVentas.add(pnlVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 460, 130));
 
         pnlArticulo.setBorder(javax.swing.BorderFactory.createTitledBorder("Detalle de factura"));
         pnlArticulo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -237,7 +230,7 @@ public final class FrmVentas extends javax.swing.JDialog {
                 btnBuscarArticuloActionPerformed(evt);
             }
         });
-        pnlArticulo.add(btnBuscarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 20, 20));
+        pnlArticulo.add(btnBuscarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 20, 20));
 
         lblSubTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblSubTotal.setText("SubTotal");
@@ -259,10 +252,10 @@ public final class FrmVentas extends javax.swing.JDialog {
         txtStock.setEnabled(false);
         pnlArticulo.add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 125, -1));
 
-        getContentPane().add(pnlArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 460, 170));
+        pnlVentas.add(pnlArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 460, 170));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Total Factura"));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlTotal.setBorder(javax.swing.BorderFactory.createTitledBorder("Total Factura"));
+        pnlTotal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnGuardarVenta.setText("Guardar");
         btnGuardarVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -270,19 +263,21 @@ public final class FrmVentas extends javax.swing.JDialog {
                 btnGuardarVentaActionPerformed(evt);
             }
         });
-        jPanel3.add(btnGuardarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 90, 80, 40));
+        pnlTotal.add(btnGuardarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 90, 80, 40));
 
         lblTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTotal.setText("Total");
-        jPanel3.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 60, 20));
+        pnlTotal.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 60, 20));
 
         txtTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTotal.setText("0");
         txtTotal.setEnabled(false);
-        jPanel3.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 20, 125, -1));
+        pnlTotal.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 20, 125, -1));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 930, 150));
+        pnlVentas.add(pnlTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 930, 150));
+
+        getContentPane().add(pnlVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -295,32 +290,27 @@ public final class FrmVentas extends javax.swing.JDialog {
     }//GEN-LAST:event_txtClienteIdKeyReleased
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
-        new FrmBuscarVenta(this, false, "Buscar Cliente", "cliente", "id,nombre", null, (DatoCombo item) -> {
-            txtClienteId.setText(String.valueOf(item.toInt()));
-            txtCliente.setText(item.toString());
-            Object[] fila = BaseDatos.getPrimeraFila("SELECT id,ruc FROM cliente WHERE id=" + item.toInt());
-            txtRuc.setText((String) fila[1]);
-        }).setVisible(true);
+        new FrmBuscarVenta(this, false,
+                "Buscar Cliente", "cliente", new String[]{"id", "nombre", "ruc"},
+                1, null, (String[] fila) -> {
+                    txtClienteId.setText(fila[0]);
+                    txtCliente.setText(fila[1]);
+                    txtRuc.setText(fila[2]);
+                }
+        ).setVisible(true);
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
-
-    private void btnBuscarRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarRucActionPerformed
-        new FrmBuscarVenta(this, false, "Buscar Ruc", "cliente", "id,ruc", null, (DatoCombo item) -> {
-            txtClienteId.setText(String.valueOf(item.toInt()));
-            txtRuc.setText(item.toString());
-            Object[] fila = BaseDatos.getPrimeraFila("SELECT id,nombre FROM cliente WHERE id=" + item.toInt());
-            txtCliente.setText((String) fila[1]);
-        }).setVisible(true);
-    }//GEN-LAST:event_btnBuscarRucActionPerformed
 
     private void btnBuscarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarArticuloActionPerformed
         limpiarArticulo();
-        new FrmBuscarVenta(this, false, "Buscar Articulo", "articulo", "id,nombre", null, (DatoCombo item) -> {
-            txtArticuloId.setText(String.valueOf(item.toInt()));
-            txtArticulo.setText(item.toString());
-            Object[] fila = BaseDatos.getPrimeraFila("SELECT id,stock,precio FROM articulo WHERE id=" + item.toInt());
-            txtStock.setText(((Number) fila[1]).toString());
-            txtPrecio.setText(((Number) fila[2]).toString());
-        }).setVisible(true);
+        new FrmBuscarVenta(this, false,
+                "Buscar Articulo", "articulo", new String[]{"id", "nombre", "precio", "stock"},
+                1, null, (String[] fila) -> {
+                    txtArticuloId.setText(fila[0]);
+                    txtArticulo.setText(fila[1]);
+                    txtPrecio.setText(fila[2]);
+                    txtStock.setText(fila[3]);
+                }
+        ).setVisible(true);
     }//GEN-LAST:event_btnBuscarArticuloActionPerformed
 
     private void btnAgregarArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarArticuloActionPerformed
@@ -481,10 +471,8 @@ public final class FrmVentas extends javax.swing.JDialog {
     private javax.swing.JButton btnAgregarArticulo;
     private javax.swing.JButton btnBuscarArticulo;
     private javax.swing.JButton btnBuscarCliente;
-    private javax.swing.JButton btnBuscarRuc;
     private javax.swing.JButton btnGuardarVenta;
     private javax.swing.JTable grdArticulos;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblArticulo;
     private javax.swing.JLabel lblArticuloId;
     private javax.swing.JLabel lblCantidad;
@@ -498,7 +486,9 @@ public final class FrmVentas extends javax.swing.JDialog {
     private javax.swing.JLabel lblTotal;
     private javax.swing.JLabel lblVentaId;
     private javax.swing.JPanel pnlArticulo;
+    private javax.swing.JPanel pnlTotal;
     private javax.swing.JPanel pnlVenta;
+    private javax.swing.JPanel pnlVentas;
     private javax.swing.JScrollPane splArticulos;
     private javax.swing.JFormattedTextField txtArticulo;
     private javax.swing.JFormattedTextField txtArticuloId;

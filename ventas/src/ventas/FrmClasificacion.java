@@ -74,7 +74,7 @@ public final class FrmClasificacion extends javax.swing.JDialog {
                 btnActualizarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 380, 135, 40));
+        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, 135, 40));
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar.png"))); // NOI18N
         btnGuardar.setText("Guardar");
@@ -83,7 +83,7 @@ public final class FrmClasificacion extends javax.swing.JDialog {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, 124, 40));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 124, 40));
 
         btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar.png"))); // NOI18N
         btnBorrar.setText("Borrar");
@@ -92,25 +92,25 @@ public final class FrmClasificacion extends javax.swing.JDialog {
                 btnBorrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 137, 40));
+        jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 370, 137, 40));
 
         txtId.setEditable(false);
-        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 110, -1));
+        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 110, -1));
 
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
             }
         });
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 217, -1));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 217, -1));
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblNombre.setText("Nombre");
-        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 180, -1));
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 180, -1));
 
         lblId.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblId.setText("ID");
-        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 126, -1));
+        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 126, -1));
 
         grdClasificaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -125,7 +125,7 @@ public final class FrmClasificacion extends javax.swing.JDialog {
         ));
         splClasificaciones.setViewportView(grdClasificaciones);
 
-        jPanel1.add(splClasificaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 328, 282));
+        jPanel1.add(splClasificaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 328, 270));
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevo.png"))); // NOI18N
         btnAgregar.setText("Agregar");
@@ -134,18 +134,18 @@ public final class FrmClasificacion extends javax.swing.JDialog {
                 btnAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 127, 40));
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 127, 40));
 
         lblbuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblbuscar.setText("Buscar");
-        jPanel1.add(lblbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 126, -1));
+        jPanel1.add(lblbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 126, -1));
 
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
             }
         });
-        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 138, -1));
+        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 50, 210, -1));
 
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/clasificaciones (2).png"))); // NOI18N
         jPanel1.add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 161, 153));
@@ -156,9 +156,9 @@ public final class FrmClasificacion extends javax.swing.JDialog {
                 cboCriterioActionPerformed(evt);
             }
         });
-        jPanel1.add(cboCriterio, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 96, -1));
+        jPanel1.add(cboCriterio, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 96, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 650, 430));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 430));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

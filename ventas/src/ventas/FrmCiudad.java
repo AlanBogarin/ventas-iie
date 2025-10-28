@@ -48,7 +48,7 @@ public final class FrmCiudad extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        pnlCiudad = new javax.swing.JPanel();
         btnActualizar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
@@ -68,8 +68,8 @@ public final class FrmCiudad extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlCiudad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnlCiudad.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar-flecha.png"))); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -78,7 +78,7 @@ public final class FrmCiudad extends javax.swing.JDialog {
                 btnActualizarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 367, 135, 40));
+        pnlCiudad.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 380, 135, 40));
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar.png"))); // NOI18N
         btnGuardar.setText("Guardar");
@@ -87,7 +87,7 @@ public final class FrmCiudad extends javax.swing.JDialog {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 367, 124, 40));
+        pnlCiudad.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, 124, 40));
 
         btnBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar.png"))); // NOI18N
         btnBorrar.setText("Borrar");
@@ -96,25 +96,25 @@ public final class FrmCiudad extends javax.swing.JDialog {
                 btnBorrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 367, 137, 40));
+        pnlCiudad.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 137, 40));
 
         txtId.setEditable(false);
-        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 275, 210, 20));
+        pnlCiudad.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 210, 20));
 
         txtCiudad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCiudadKeyTyped(evt);
             }
         });
-        jPanel1.add(txtCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 333, 210, 30));
+        pnlCiudad.add(txtCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 210, 30));
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblNombre.setText("Nombre");
-        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 307, 210, 20));
+        pnlCiudad.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 210, 20));
 
         lblId.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblId.setText("ID");
-        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 249, 210, 20));
+        pnlCiudad.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 210, 20));
 
         grdCiudad.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         grdCiudad.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -131,7 +131,7 @@ public final class FrmCiudad extends javax.swing.JDialog {
         ));
         splClasificaciones.setViewportView(grdCiudad);
 
-        jPanel1.add(splClasificaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(223, 71, 328, 282));
+        pnlCiudad.add(splClasificaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 328, 282));
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/nuevo.png"))); // NOI18N
         btnAgregar.setText("Agregar");
@@ -140,11 +140,11 @@ public final class FrmCiudad extends javax.swing.JDialog {
                 btnAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 367, 127, 40));
+        pnlCiudad.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 127, 40));
 
         lblId1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblId1.setText("Buscar");
-        jPanel1.add(lblId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(223, 17, 126, -1));
+        pnlCiudad.add(lblId1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 126, -1));
 
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,16 +156,17 @@ public final class FrmCiudad extends javax.swing.JDialog {
                 txtBuscarKeyReleased(evt);
             }
         });
-        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(331, 43, 138, -1));
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 85, -1, -1));
+        pnlCiudad.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 220, -1));
+        pnlCiudad.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 85, -1, -1));
 
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mano.png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 52, 179, 153));
+        pnlCiudad.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 210, 200));
 
         cboCriterio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Ciudad" }));
-        jPanel1.add(cboCriterio, new org.netbeans.lib.awtextra.AbsoluteConstraints(223, 43, 96, -1));
+        pnlCiudad.add(cboCriterio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 96, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 560, 420));
+        getContentPane().add(pnlCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -281,10 +282,10 @@ public final class FrmCiudad extends javax.swing.JDialog {
     private javax.swing.JTable grdCiudad;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblId1;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JPanel pnlCiudad;
     private javax.swing.JScrollPane splClasificaciones;
     private javax.swing.JFormattedTextField txtBuscar;
     private javax.swing.JFormattedTextField txtCiudad;

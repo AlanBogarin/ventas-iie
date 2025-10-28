@@ -202,7 +202,7 @@ public class FrmClientes extends javax.swing.JDialog {
         jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 60, 20));
         jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 325, 20));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 710, 470));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
