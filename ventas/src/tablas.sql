@@ -8,7 +8,7 @@ USE ventas;
 
 CREATE TABLE clasificacion (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  nombre VARCHAR (50) UNIQUE NOT NULL
+  nombre VARCHAR(50) UNIQUE NOT NULL
 );
 
 CREATE TABLE articulo (
@@ -17,29 +17,31 @@ CREATE TABLE articulo (
   precio INT NOT NULL,
   stock INT NOT NULL,
   clasificacion_id INT NOT NULL,
-  FOREIGN KEY (clasificacion_id) REFERENCES clasificacion (id)
+  FOREIGN KEY (clasificacion_id) REFERENCES clasificacion(id) ON DELETE RESTRICT
 );
 
 CREATE TABLE ciudad (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  nombre VARCHAR (50) UNIQUE NOT NULL
+  nombre VARCHAR(50) UNIQUE NOT NULL
 );
 
 CREATE TABLE barrio (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  nombre VARCHAR (50) UNIQUE NOT NULL,
+  nombre VARCHAR(50) UNIQUE NOT NULL,
   ciudad_id INT NOT NULL,
-  FOREIGN KEY (ciudad_id) REFERENCES ciudad(id)
+  FOREIGN KEY (ciudad_id) REFERENCES ciudad(id) ON DELETE RESTRICT
 );
 
 CREATE TABLE cliente (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  nombre VARCHAR(100) UNIQUE NOT NULL,
+  nombre VARCHAR(100) NOT NULL,
+  apellido VARCHAR(100) NOT NULL,
   ruc VARCHAR(100) UNIQUE,
   ciudad_id INT NOT NULL,
   barrio_id INT NOT NULL,
-  FOREIGN KEY (ciudad_id) REFERENCES ciudad(id),
-  FOREIGN KEY (barrio_id) REFERENCES barrio(id)
+  FOREIGN KEY (ciudad_id) REFERENCES ciudad(id) ON DELETE RESTRICT,
+  FOREIGN KEY (barrio_id) REFERENCES barrio(id) ON DELETE RESTRICT,
+  UNIQUE (nombre, apellido)
 );
 
 CREATE TABLE venta (
@@ -48,7 +50,7 @@ CREATE TABLE venta (
   fecha DATE NOT NULL,
   total INT NOT NULL,
   anulado BOOLEAN NOT NULL DEFAULT FALSE,
-  FOREIGN KEY (cliente_id) REFERENCES cliente(id)
+  FOREIGN KEY (cliente_id) REFERENCES cliente(id) ON DELETE RESTRICT
 );
 
 CREATE TABLE venta_articulo (
@@ -57,7 +59,7 @@ CREATE TABLE venta_articulo (
   cantidad INT NOT NULL,
   precio INT NOT NULL,
   PRIMARY KEY (venta_id, articulo_id),
-  FOREIGN KEY (venta_id) REFERENCES venta(id),
-  FOREIGN KEY (articulo_id) REFERENCES articulo(id),
+  FOREIGN KEY (venta_id) REFERENCES venta(id) ON DELETE RESTRICT,
+  FOREIGN KEY (articulo_id) REFERENCES articulo(id) ON DELETE RESTRICT,
   CHECK (cantidad > 0 AND precio > 0)
 );

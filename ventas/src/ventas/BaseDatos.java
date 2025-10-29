@@ -9,10 +9,11 @@ import javax.swing.JOptionPane;
 
 public class BaseDatos {
 
-    static final String HOST = "191.167.50.2:3306";
+    // static final String HOST = "191.167.50.2:3306";
+    static final String HOST = "localhost:3306";
     static final String BASE_DATOS = "ventas";
     static final String USUARIO = "root";
-    static final String CLAVE = "remoto";
+    static final String CLAVE = "1234";
     static Connection conexion = null;
 
     public static boolean crearConexion() {
