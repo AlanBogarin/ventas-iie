@@ -24,8 +24,14 @@ public final class FrmBuscarVenta extends javax.swing.JDialog {
             Consumer<String[]> fnConfirmar) {
         super(parent, modal);
         initComponents();
-        Grilla.configurarModelo(grdItems, campos);
-        for (String criterio : campos) {
+
+        String[] columnas = new String[campos.length];
+        for (int i = 0; i < campos.length; i++) {
+            columnas[i] = campos[i].replaceAll("(?i).*\\bas\\s+", "");
+        }
+        
+        Grilla.configurarModelo(grdItems, columnas);
+        for (String criterio : columnas) {
             cboCriterio.addItem(criterio);
         }
         lblTitulo.setText(titulo);

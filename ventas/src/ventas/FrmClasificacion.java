@@ -129,7 +129,15 @@ public final class FrmClasificacion extends javax.swing.JDialog {
             new String [] {
                 "id", "nombre"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         splClasificaciones.setViewportView(grdClasificaciones);
 
         jPanel1.add(splClasificaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 328, 270));

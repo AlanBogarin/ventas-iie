@@ -127,7 +127,15 @@ public final class FrmCiudad extends javax.swing.JDialog {
             new String [] {
                 "id", "nombre"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         splClasificaciones.setViewportView(grdCiudad);
 
         pnlCiudad.add(splClasificaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 328, 282));

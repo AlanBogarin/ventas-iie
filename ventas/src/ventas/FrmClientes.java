@@ -51,6 +51,7 @@ public class FrmClientes extends javax.swing.JDialog {
         Grilla.cargarGrilla(grdClientes, tabla, new String[]{
             "c.id",
             "c.nombre",
+            "c.apellido",
             "c.ruc",
             "ci.nombre AS ciudad",
             "b.nombre AS barrio"
@@ -80,6 +81,8 @@ public class FrmClientes extends javax.swing.JDialog {
         btnCancelar = new javax.swing.JButton();
         lblId = new javax.swing.JLabel();
         txtId = new javax.swing.JFormattedTextField();
+        lblApellido = new javax.swing.JLabel();
+        txtApellido = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setSize(new java.awt.Dimension(720, 1440));
@@ -115,25 +118,25 @@ public class FrmClientes extends javax.swing.JDialog {
 
         lblCiudad.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCiudad.setText("Ciudad");
-        jPanel1.add(lblCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 60, 30));
+        jPanel1.add(lblCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 60, 30));
 
         lblBarrio.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblBarrio.setText("Barrio");
-        jPanel1.add(lblBarrio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 60, 30));
+        jPanel1.add(lblBarrio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 60, 30));
 
         cboCiudad.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboCiudadItemStateChanged(evt);
             }
         });
-        jPanel1.add(cboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 325, 30));
+        jPanel1.add(cboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 325, 30));
 
         cboBarrio.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboBarrioItemStateChanged(evt);
             }
         });
-        jPanel1.add(cboBarrio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 325, 30));
+        jPanel1.add(cboBarrio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 325, 30));
 
         grdClientes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(255, 255, 255), new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153))));
         grdClientes.setModel(new javax.swing.table.DefaultTableModel(
@@ -141,11 +144,11 @@ public class FrmClientes extends javax.swing.JDialog {
 
             },
             new String [] {
-                "id", "nombre", "ruc", "ciudad", "barrio"
+                "id", "nombre", "apellido", "ruc", "ciudad", "barrio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, true
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -154,7 +157,7 @@ public class FrmClientes extends javax.swing.JDialog {
         });
         splClientes.setViewportView(grdClientes);
 
-        jPanel1.add(splClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 680, 182));
+        jPanel1.add(splClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 680, 182));
 
         lblIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/public-service.png"))); // NOI18N
@@ -168,7 +171,7 @@ public class FrmClientes extends javax.swing.JDialog {
                 btnNuevoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 110, 31));
+        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, 110, 31));
 
         btnGuardar.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar.png"))); // NOI18N
@@ -178,7 +181,7 @@ public class FrmClientes extends javax.swing.JDialog {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 120, 31));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 480, 120, 31));
 
         btnModificar.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
         btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/modificar.png"))); // NOI18N
@@ -188,7 +191,7 @@ public class FrmClientes extends javax.swing.JDialog {
                 btnModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, 130, 31));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 480, 130, 31));
 
         btnEliminar.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar.png"))); // NOI18N
@@ -198,7 +201,7 @@ public class FrmClientes extends javax.swing.JDialog {
                 btnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 430, 130, 31));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 480, 130, 31));
 
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelar.png"))); // NOI18N
@@ -208,7 +211,7 @@ public class FrmClientes extends javax.swing.JDialog {
                 btnCancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 120, 30));
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 480, 120, 30));
 
         lblId.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblId.setText("Id");
@@ -217,7 +220,19 @@ public class FrmClientes extends javax.swing.JDialog {
         txtId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 325, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
+        lblApellido.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblApellido.setText("Apellido");
+        jPanel1.add(lblApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 60, 30));
+
+        txtApellido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 325, 30));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -238,13 +253,30 @@ public class FrmClientes extends javax.swing.JDialog {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         int ciudad_id = ((DatoCombo) cboCiudad.getSelectedItem()).toInt();
         int barrio_id = ((DatoCombo) cboBarrio.getSelectedItem()).toInt();
-        String nombre = txtNombre.getText().toUpperCase();
-        String ruc = txtRuc.getText().toUpperCase();
+        String nombre = txtNombre.getText().trim().toUpperCase();
+        String apellido = txtApellido.getText().trim().toUpperCase();
+        String ruc = txtRuc.getText().trim().toUpperCase();
+
+        if (nombre.isEmpty()) {
+            JOptionPane.showMessageDialog(btnGuardar, "El nombre no puede estar vacio");
+            txtNombre.requestFocus();
+            return;
+        } else if (apellido.isEmpty()) {
+            JOptionPane.showMessageDialog(btnGuardar, "El apellido no puede estar vacio");
+            txtApellido.requestFocus();
+            return;
+        } else if (ruc.isEmpty()) {
+            JOptionPane.showMessageDialog(btnGuardar, "El ruc no puede estar vacio");
+            txtRuc.requestFocus();
+            return;
+        }
+
         if (nuevo) {
-            BaseDatos.insertarRegistro("cliente", "nombre,ruc,ciudad_id,barrio_id",
-                    "'" + nombre + "','" + ruc + "'," + ciudad_id + "," + barrio_id);
+            BaseDatos.insertarRegistro("cliente", "nombre,apellido,ruc,ciudad_id,barrio_id",
+                    "'" + nombre + "','" + apellido + "','" + ruc + "'," + ciudad_id + "," + barrio_id);
         } else {
-            String campos = "nombre='" + nombre + "', ruc='" + ruc + "', ciudad_id=" + ciudad_id + ", barrio_id=" + barrio_id;
+            String campos = "nombre='" + nombre + "',apellido='" + apellido + "',ruc='"
+                    + ruc + "',ciudad_id=" + ciudad_id + ",barrio_id=" + barrio_id;
             String criterio = "id=" + txtId.getText();
             BaseDatos.actualizarRegistro("cliente", campos, criterio);
         }
@@ -261,6 +293,7 @@ public class FrmClientes extends javax.swing.JDialog {
         }
         txtId.setText((String) Grilla.getValorSeleccionado(grdClientes, "id"));
         txtNombre.setText((String) Grilla.getValorSeleccionado(grdClientes, "nombre"));
+        txtApellido.setText((String) Grilla.getValorSeleccionado(grdClientes, "apellido"));
         txtRuc.setText((String) Grilla.getValorSeleccionado(grdClientes, "ruc"));
 
         String ciudad = (String) Grilla.getValorSeleccionado(grdClientes, "ciudad");
@@ -311,14 +344,23 @@ public class FrmClientes extends javax.swing.JDialog {
         char e  = evt.getKeyChar();
         if(!txtNombre.getText().isEmpty()){
             if(e==KeyEvent.VK_ENTER){
-                cboCiudad.requestFocus();
+                txtApellido.requestFocus();
             }
-        }    
+        }
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void cboBarrioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboBarrioItemStateChanged
         btnGuardar.requestFocus();
     }//GEN-LAST:event_cboBarrioItemStateChanged
+
+    private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
+        char e  = evt.getKeyChar();
+        if(!txtNombre.getText().isEmpty()){
+            if(e==KeyEvent.VK_ENTER){
+                cboCiudad.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_txtApellidoKeyTyped
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -364,6 +406,7 @@ public class FrmClientes extends javax.swing.JDialog {
     private javax.swing.JComboBox<ventas.DatoCombo> cboCiudad;
     private javax.swing.JTable grdClientes;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblApellido;
     private javax.swing.JLabel lblBarrio;
     private javax.swing.JLabel lblCiudad;
     private javax.swing.JLabel lblIcon;
@@ -371,6 +414,7 @@ public class FrmClientes extends javax.swing.JDialog {
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblRuc;
     private javax.swing.JScrollPane splClientes;
+    private javax.swing.JFormattedTextField txtApellido;
     private javax.swing.JFormattedTextField txtId;
     private javax.swing.JFormattedTextField txtNombre;
     private javax.swing.JFormattedTextField txtRuc;
