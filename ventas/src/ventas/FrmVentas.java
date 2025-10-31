@@ -356,7 +356,7 @@ public final class FrmVentas extends javax.swing.JDialog {
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
         new FrmBuscarVenta(this, false,
-                "Buscar Cliente", "cliente", new String[]{"id", "CONCAT(nombre,apellido) as nombre", "ruc"},
+                "Buscar Cliente", "cliente", new String[]{"id", "CONCAT(nombre,' ',apellido) as nombre", "ruc"},
                 null, (String[] fila) -> {
                     txtClienteId.setText(fila[0]);
                     txtCliente.setText(fila[1]);
@@ -585,7 +585,7 @@ public final class FrmVentas extends javax.swing.JDialog {
             ciudad.setVisible(true);
         } else if (evt.getKeyCode() == KeyEvent.VK_F2) {
             FrmBuscarVenta frm = new FrmBuscarVenta(this, false,
-                    "Buscar Cliente", "cliente", new String[]{"id", "CONCAT(nombre,apellido) as nombre", "ruc"},
+                    "Buscar Cliente", "cliente", new String[]{"id", "CONCAT(nombre,' ',apellido) as nombre", "ruc"},
                     null, (String[] fila) -> {
                         txtClienteId.setText(fila[0]);
                         txtCliente.setText(fila[1]);
@@ -604,7 +604,7 @@ public final class FrmVentas extends javax.swing.JDialog {
             ciudad.setVisible(true);
         } else if (evt.getKeyCode() == KeyEvent.VK_F2) {
             FrmBuscarVenta frm = new FrmBuscarVenta(this, false,
-                    "Buscar Cliente", "cliente", new String[]{"id", "CONCAT(nombre,apellido) as nombre", "ruc"},
+                    "Buscar Cliente", "cliente", new String[]{"id", "CONCAT(nombre,' ', apellido) as nombre", "ruc"},
                     null, (String[] fila) -> {
                         txtClienteId.setText(fila[0]);
                         txtCliente.setText(fila[1]);
@@ -623,7 +623,7 @@ public final class FrmVentas extends javax.swing.JDialog {
             ciudad.setVisible(true);
         } else if (evt.getKeyCode() == KeyEvent.VK_F2) {
             FrmBuscarVenta frm = new FrmBuscarVenta(this, false,
-                    "Buscar Cliente", "cliente", new String[]{"id", "CONCAT(nombre,apellido) as nombre", "ruc"},
+                    "Buscar Cliente", "cliente", new String[]{"id", "CONCAT(nombre,' ',apellido) as nombre", "ruc"},
                     null, (String[] fila) -> {
                         txtClienteId.setText(fila[0]);
                         txtCliente.setText(fila[1]);

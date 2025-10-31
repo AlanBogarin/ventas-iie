@@ -112,6 +112,9 @@ public final class FrmFacturas extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(grdFacturas, "Esta factura ya esta anulada");
             return;
         }
+        if (JOptionPane.showConfirmDialog(btnAnular, "¿Esta seguro de anular la fatura?") != JOptionPane.YES_OPTION) {
+            return;
+        }
         String id = Grilla.getValorSeleccionado(grdFacturas, "id");
         BaseDatos.actualizarRegistro("venta", "anulado=true", "id=" + id);
         actualizarGrilla();
