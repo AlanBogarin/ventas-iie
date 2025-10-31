@@ -197,12 +197,12 @@ public final class FrmBuscarVenta extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmar;
-    private javax.swing.JComboBox<String> cboCriterio;
+    public javax.swing.JComboBox<String> cboCriterio;
     private javax.swing.JTable grdItems;
     private javax.swing.JLabel lblBuscar;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnlBuscar;
     private javax.swing.JScrollPane splItems;
-    private javax.swing.JTextField txtBuscar;
+    public javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

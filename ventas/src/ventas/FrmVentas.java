@@ -133,41 +133,52 @@ public final class FrmVentas extends javax.swing.JDialog {
         pnlVenta.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(255, 255, 255), new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)), "Datos de la venta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 3, 12))); // NOI18N
         pnlVenta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblFecha.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        lblFecha.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFecha.setText("Fecha");
-        pnlVenta.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 56, 20));
+        pnlVenta.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 60, 20));
 
-        lblVentaId.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        lblVentaId.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblVentaId.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblVentaId.setText("Nº Factura");
-        pnlVenta.add(lblVentaId, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 56, 20));
+        pnlVenta.add(lblVentaId, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 60, 20));
 
-        lblCliente.setFont(new java.awt.Font("Segoe UI Semilight", 3, 12)); // NOI18N
+        lblCliente.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblCliente.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCliente.setText("Cliente");
-        pnlVenta.add(lblCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 56, 20));
+        pnlVenta.add(lblCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 60, 20));
 
-        lblClienteId.setFont(new java.awt.Font("Segoe UI Semilight", 3, 12)); // NOI18N
+        lblClienteId.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblClienteId.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblClienteId.setText("ID Cliente");
-        pnlVenta.add(lblClienteId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 30));
+        pnlVenta.add(lblClienteId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 60, 20));
 
-        lblRuc.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        lblRuc.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblRuc.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblRuc.setText("Ruc");
-        pnlVenta.add(lblRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 56, 20));
+        pnlVenta.add(lblRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 60, 20));
 
         txtFecha.setEditable(false);
         txtFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnlVenta.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 125, 20));
+        txtFecha.setEnabled(false);
+        pnlVenta.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 125, 20));
 
         txtVentaId.setEditable(false);
         txtVentaId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnlVenta.add(txtVentaId, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 125, 20));
+        txtVentaId.setEnabled(false);
+        pnlVenta.add(txtVentaId, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 125, 20));
 
         txtCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtCliente.setEnabled(false);
+        txtCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtClienteActionPerformed(evt);
+            }
+        });
+        txtCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtClienteKeyReleased(evt);
+            }
+        });
         pnlVenta.add(txtCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 125, 20));
 
         txtClienteId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -184,7 +195,16 @@ public final class FrmVentas extends javax.swing.JDialog {
         pnlVenta.add(txtClienteId, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 125, 20));
 
         txtRuc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtRuc.setEnabled(false);
+        txtRuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRucActionPerformed(evt);
+            }
+        });
+        txtRuc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtRucKeyReleased(evt);
+            }
+        });
         pnlVenta.add(txtRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 125, 20));
 
         btnBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda-de-lupa-x16.png"))); // NOI18N
@@ -203,37 +223,45 @@ public final class FrmVentas extends javax.swing.JDialog {
         pnlArticulo.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(255, 255, 255), new java.awt.Color(153, 153, 153), new java.awt.Color(153, 153, 153)), "Detalle de factura", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Black", 3, 12))); // NOI18N
         pnlArticulo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblArticuloId.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        lblArticuloId.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblArticuloId.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblArticuloId.setText("ID Articulo");
         pnlArticulo.add(lblArticuloId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 60, 20));
 
         txtArticuloId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtArticuloId.setEnabled(false);
+        txtArticuloId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtArticuloIdActionPerformed(evt);
+            }
+        });
         pnlArticulo.add(txtArticuloId, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 125, -1));
 
-        lblArticulo.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        lblArticulo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblArticulo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblArticulo.setText("Articulo");
         pnlArticulo.add(lblArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 60, 20));
 
         txtArticulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtArticulo.setEnabled(false);
+        txtArticulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtArticuloActionPerformed(evt);
+            }
+        });
         pnlArticulo.add(txtArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 125, -1));
 
-        lblPrecio.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        lblPrecio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblPrecio.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPrecio.setText("Precio");
-        pnlArticulo.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 56, 20));
+        pnlArticulo.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 60, 20));
 
         txtPrecio.setEditable(false);
         txtPrecio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtPrecio.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtPrecio.setText("0");
         txtPrecio.setEnabled(false);
-        pnlArticulo.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 125, -1));
+        pnlArticulo.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 125, -1));
 
-        lblCantidad.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        lblCantidad.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblCantidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCantidad.setText("Cantidad");
         pnlArticulo.add(lblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 60, 20));
@@ -268,29 +296,29 @@ public final class FrmVentas extends javax.swing.JDialog {
         });
         pnlArticulo.add(btnBuscarArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 20, 20));
 
-        lblSubTotal.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        lblSubTotal.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblSubTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblSubTotal.setText("SubTotal");
-        pnlArticulo.add(lblSubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 56, 20));
+        pnlArticulo.add(lblSubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 60, 20));
 
         txtSubTotal.setEditable(false);
         txtSubTotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtSubTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtSubTotal.setText("0");
         txtSubTotal.setEnabled(false);
-        pnlArticulo.add(txtSubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 125, -1));
+        pnlArticulo.add(txtSubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 125, -1));
 
-        lblStock.setFont(new java.awt.Font("Yu Gothic UI Semibold", 3, 12)); // NOI18N
+        lblStock.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         lblStock.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblStock.setText("Stock");
-        pnlArticulo.add(lblStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 56, 20));
+        pnlArticulo.add(lblStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 60, 20));
 
         txtStock.setEditable(false);
         txtStock.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtStock.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtStock.setText("0");
         txtStock.setEnabled(false);
-        pnlArticulo.add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 125, -1));
+        pnlArticulo.add(txtStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 125, -1));
 
         pnlVentas.add(pnlArticulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 460, 170));
 
@@ -325,13 +353,6 @@ public final class FrmVentas extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtClienteIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClienteIdKeyReleased
-        if (evt.getKeyCode() == KeyEvent.VK_F1) {
-            FrmCiudad ciudad = new FrmCiudad(null, true);
-            ciudad.setVisible(true);
-        }
-    }//GEN-LAST:event_txtClienteIdKeyReleased
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
         new FrmBuscarVenta(this, false,
@@ -382,23 +403,19 @@ public final class FrmVentas extends javax.swing.JDialog {
             btnBuscarArticulo.requestFocus();
             return;
         }
-                // Obtener los datos de los campos
+        // Obtener los datos de los campos
         String id = txtArticuloId.getText();
         String nombre = txtArticulo.getText();
         String cantidad = txtCantidad.getText();
         String precio = txtPrecio.getText();
         String subtotal = txtSubTotal.getText();
-
         int intCantidad = Integer.parseInt(cantidad);
-
         DefaultTableModel modelo = (DefaultTableModel) grdArticulos.getModel();
         int fila = grdArticulos.getSelectedRow();
-
         if (intCantidad > stock) {
             JOptionPane.showMessageDialog(btnAgregarArticulo, "La cantidad no debe superar el stock");
             return;
         }
-
         if (fila == -1) {
             // Fila no seleccionada
             if (intCantidad <= 0) {
@@ -419,10 +436,7 @@ public final class FrmVentas extends javax.swing.JDialog {
             modelo.setValueAt(precio, fila, 3);
             modelo.setValueAt(subtotal, fila, 4);
         }
-
-        // Actualizar el total general
         actualizarTotalFactura();
-
         limpiarArticulo();
 
     }//GEN-LAST:event_btnAgregarArticuloActionPerformed
@@ -432,30 +446,25 @@ public final class FrmVentas extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un cliente antes de guardar la venta.");
             return;
         }
-
         DefaultTableModel modelo = (DefaultTableModel) grdArticulos.getModel();
         if (modelo.getRowCount() == 0) {
             JOptionPane.showMessageDialog(this, "Debe agregar al menos un artículo a la venta.");
             return;
         }
-
         // --- Obtener los datos de la cabecera de venta ---
         String clienteId = txtClienteId.getText();
         String total = txtTotal.getText();
         String fecha = java.time.LocalDate.now().toString();
-
         // --- Insertar en tabla venta ---
         boolean ok = BaseDatos.insertarRegistro(
                 "venta",
                 "cliente_id,fecha,total",
                 clienteId + ", '" + fecha + "'" + ", " + total
         );
-
         if (!ok) {
             JOptionPane.showMessageDialog(this, "No se pudo registrar la venta.");
             return;
         }
-
         // --- Obtener el ID generado (último ID) ---
         Object[] filaVenta = BaseDatos.getPrimeraFila("SELECT MAX(id) FROM venta");
         if (filaVenta.length == 0) {
@@ -463,7 +472,6 @@ public final class FrmVentas extends javax.swing.JDialog {
             return;
         }
         int ventaId = ((Number) filaVenta[0]).intValue();
-
         // --- Insertar los artículos ---
         for (int i = 0; i < modelo.getRowCount(); i++) {
             int articuloId = Integer.parseInt(modelo.getValueAt(i, 0).toString());
@@ -476,12 +484,10 @@ public final class FrmVentas extends javax.swing.JDialog {
                     "venta_id, articulo_id, cantidad, precio",
                     ventaId + ", " + articuloId + ", " + cantidad + ", " + precio
             );
-
             if (!okDetalle) {
                 JOptionPane.showMessageDialog(this, "Error al guardar artículo ID " + articuloId);
                 return;
             }
-
             // Actualizar el stock
             BaseDatos.actualizarRegistro(
                     "articulo",
@@ -489,9 +495,7 @@ public final class FrmVentas extends javax.swing.JDialog {
                     "id = " + articuloId
             );
         }
-
         JOptionPane.showMessageDialog(this, "Venta registrada correctamente con ID " + ventaId);
-
         // Limpiar formulario
         limpiarVenta();
         limpiarArticulo();
@@ -528,12 +532,143 @@ public final class FrmVentas extends javax.swing.JDialog {
     }//GEN-LAST:event_grdArticulosMouseClicked
 
     private void txtClienteIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClienteIdActionPerformed
-        // TODO add your handling code here:
-        //ResultSet rs=BaseDatos.consultar("SELECT*FROM cliente WHERE id="+this.txtClienteId.getText());
-        ///try{
-        //    
-        //}catch(SQLException)
+        String buscar = txtClienteId.getText().trim().toUpperCase();
+        if (buscar.isEmpty()) {
+            return;
+        }
+        Object[] fila = BaseDatos.getPrimeraFila("SELECT id,CONCAT(nombre,' ',apellido),ruc "
+                + "FROM cliente WHERE id=" + buscar);
+        if (fila.length == 0) {
+            JOptionPane.showMessageDialog(txtCliente, "No se ha encontrado el cliente");
+            return;
+        }
+        txtClienteId.setText(fila[0].toString());
+        txtCliente.setText(fila[1].toString());
+        txtRuc.setText(fila[2].toString());
     }//GEN-LAST:event_txtClienteIdActionPerformed
+
+    private void txtClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClienteActionPerformed
+        String buscar = txtCliente.getText().trim().toUpperCase();
+        if (buscar.isEmpty()) {
+            return;
+        }
+        Object[] fila = BaseDatos.getPrimeraFila("SELECT id,CONCAT(nombre,' ',apellido),ruc "
+                + "FROM cliente WHERE CONCAT(nombre,' ',apellido) LIKE '%" + buscar + "%'");
+        if (fila.length == 0) {
+            JOptionPane.showMessageDialog(txtCliente, "No se ha encontrado el cliente");
+            return;
+        }
+        txtClienteId.setText(fila[0].toString());
+        txtCliente.setText(fila[1].toString());
+        txtRuc.setText(fila[2].toString());
+    }//GEN-LAST:event_txtClienteActionPerformed
+
+    private void txtRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRucActionPerformed
+        String buscar = txtRuc.getText().trim().toUpperCase();
+        if (buscar.isEmpty()) {
+            return;
+        }
+        Object[] fila = BaseDatos.getPrimeraFila("SELECT id,CONCAT(nombre,' ',apellido),ruc "
+                + "FROM cliente WHERE ruc LIKE '%" + buscar + "%'");
+        if (fila.length == 0) {
+            JOptionPane.showMessageDialog(txtCliente, "No se ha encontrado el cliente");
+            return;
+        }
+        txtClienteId.setText(fila[0].toString());
+        txtCliente.setText(fila[1].toString());
+        txtRuc.setText(fila[2].toString());
+    }//GEN-LAST:event_txtRucActionPerformed
+
+    private void txtClienteIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClienteIdKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_F1) {
+            FrmCiudad ciudad = new FrmCiudad(null, true);
+            ciudad.setVisible(true);
+        } else if (evt.getKeyCode() == KeyEvent.VK_F2) {
+            FrmBuscarVenta frm = new FrmBuscarVenta(this, false,
+                    "Buscar Cliente", "cliente", new String[]{"id", "CONCAT(nombre,apellido) as nombre", "ruc"},
+                    null, (String[] fila) -> {
+                        txtClienteId.setText(fila[0]);
+                        txtCliente.setText(fila[1]);
+                        txtRuc.setText(fila[2]);
+                    }
+            );
+            frm.cboCriterio.setSelectedIndex(0);
+            frm.txtBuscar.setText(txtClienteId.getText());
+            frm.setVisible(true);
+        }
+    }//GEN-LAST:event_txtClienteIdKeyReleased
+
+    private void txtClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClienteKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_F1) {
+            FrmCiudad ciudad = new FrmCiudad(null, true);
+            ciudad.setVisible(true);
+        } else if (evt.getKeyCode() == KeyEvent.VK_F2) {
+            FrmBuscarVenta frm = new FrmBuscarVenta(this, false,
+                    "Buscar Cliente", "cliente", new String[]{"id", "CONCAT(nombre,apellido) as nombre", "ruc"},
+                    null, (String[] fila) -> {
+                        txtClienteId.setText(fila[0]);
+                        txtCliente.setText(fila[1]);
+                        txtRuc.setText(fila[2]);
+                    }
+            );
+            frm.cboCriterio.setSelectedIndex(1);
+            frm.txtBuscar.setText(txtCliente.getText());
+            frm.setVisible(true);
+        }
+    }//GEN-LAST:event_txtClienteKeyReleased
+
+    private void txtRucKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRucKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_F1) {
+            FrmCiudad ciudad = new FrmCiudad(null, true);
+            ciudad.setVisible(true);
+        } else if (evt.getKeyCode() == KeyEvent.VK_F2) {
+            FrmBuscarVenta frm = new FrmBuscarVenta(this, false,
+                    "Buscar Cliente", "cliente", new String[]{"id", "CONCAT(nombre,apellido) as nombre", "ruc"},
+                    null, (String[] fila) -> {
+                        txtClienteId.setText(fila[0]);
+                        txtCliente.setText(fila[1]);
+                        txtRuc.setText(fila[2]);
+                    }
+            );
+            frm.cboCriterio.setSelectedIndex(1);
+            frm.txtBuscar.setText(txtCliente.getText());
+            frm.setVisible(true);
+        }
+    }//GEN-LAST:event_txtRucKeyReleased
+
+    private void txtArticuloIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtArticuloIdActionPerformed
+        String buscar = txtArticuloId.getText().trim().toUpperCase();
+        if (buscar.isEmpty()) {
+            return;
+        }
+        Object[] fila = BaseDatos.getPrimeraFila("SELECT id,nombre,precio,stock "
+                + "FROM articulo WHERE id=" + buscar);
+        if (fila.length == 0) {
+            JOptionPane.showMessageDialog(txtCliente, "No se ha encontrado el articulo");
+            return;
+        }
+        txtArticuloId.setText(fila[0].toString());
+        txtArticulo.setText(fila[1].toString());
+        txtPrecio.setText(fila[2].toString());
+        txtStock.setText(fila[3].toString());
+    }//GEN-LAST:event_txtArticuloIdActionPerformed
+
+    private void txtArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtArticuloActionPerformed
+        String buscar = txtArticulo.getText().trim().toUpperCase();
+        if (buscar.isEmpty()) {
+            return;
+        }
+        Object[] fila = BaseDatos.getPrimeraFila("SELECT id,nombre,precio,stock "
+                + "FROM articulo WHERE nombre LIKE '%" + buscar + "%'");
+        if (fila.length == 0) {
+            JOptionPane.showMessageDialog(txtCliente, "No se ha encontrado el articulo");
+            return;
+        }
+        txtArticuloId.setText(fila[0].toString());
+        txtArticulo.setText(fila[1].toString());
+        txtPrecio.setText(fila[2].toString());
+        txtStock.setText(fila[3].toString());
+    }//GEN-LAST:event_txtArticuloActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

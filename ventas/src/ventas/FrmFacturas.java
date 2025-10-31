@@ -108,8 +108,12 @@ public final class FrmFacturas extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(btnAnular, "Seleccione un registro");
             return;
         }
+        if (Grilla.getValorSeleccionado(grdFacturas, "anulado").toUpperCase().equals("SI")) {
+            JOptionPane.showMessageDialog(grdFacturas, "Esta factura ya esta anulada");
+            return;
+        }
         String id = Grilla.getValorSeleccionado(grdFacturas, "id");
-        BaseDatos.actualizarRegistro("venta", "anulado=not anulado", "id=" + id);
+        BaseDatos.actualizarRegistro("venta", "anulado=true", "id=" + id);
         actualizarGrilla();
     }//GEN-LAST:event_btnAnularActionPerformed
 

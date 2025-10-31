@@ -164,7 +164,7 @@ public class BaseDatos {
                 }
                 return fila;
             } else {
-                return new Object[0]; // 🔹 sin resultados
+                return new Object[0]; // sin resultados
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,

@@ -101,7 +101,7 @@ public final class FrmClasificacion extends javax.swing.JDialog {
                 txtIdActionPerformed(evt);
             }
         });
-        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 110, 25));
+        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 217, 30));
 
         txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -109,15 +109,15 @@ public final class FrmClasificacion extends javax.swing.JDialog {
                 txtNombreKeyTyped(evt);
             }
         });
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 217, 25));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 217, 30));
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblNombre.setText("Nombre");
-        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 180, 25));
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 217, 20));
 
         lblId.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblId.setText("ID");
-        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 126, 25));
+        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 217, 20));
 
         grdClasificaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

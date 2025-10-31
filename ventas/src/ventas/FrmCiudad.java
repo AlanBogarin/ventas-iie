@@ -97,7 +97,7 @@ public final class FrmCiudad extends javax.swing.JDialog {
 
         txtId.setEditable(false);
         txtId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnlCiudad.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 210, 20));
+        pnlCiudad.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 210, 30));
 
         txtCiudad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtCiudad.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -109,7 +109,7 @@ public final class FrmCiudad extends javax.swing.JDialog {
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblNombre.setText("Nombre");
-        pnlCiudad.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 210, 20));
+        pnlCiudad.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 210, 20));
 
         lblId.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblId.setText("ID");
