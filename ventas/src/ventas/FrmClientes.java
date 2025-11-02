@@ -27,7 +27,6 @@ public class FrmClientes extends javax.swing.JDialog {
         txtApellido.setEnabled(estado);
         cboCiudad.setEnabled(estado);
         cboBarrio.setEnabled(estado);
-        
         txtRuc.requestFocus();
     }
 
