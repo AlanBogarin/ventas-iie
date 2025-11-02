@@ -24,8 +24,10 @@ public class FrmClientes extends javax.swing.JDialog {
         txtId.setEnabled(false);
         txtRuc.setEnabled(estado);
         txtNombre.setEnabled(estado);
+        txtApellido.setEnabled(estado);
         cboCiudad.setEnabled(estado);
         cboBarrio.setEnabled(estado);
+        
         txtRuc.requestFocus();
     }
 
@@ -41,6 +43,7 @@ public class FrmClientes extends javax.swing.JDialog {
         txtId.setText(null);
         txtRuc.setText(null);
         txtNombre.setText(null);
+        txtApellido.setText(null);
         cboBarrio.setSelectedIndex(-1);
         cboBarrio.setSelectedIndex(-1);
     }
@@ -315,8 +318,7 @@ public class FrmClientes extends javax.swing.JDialog {
         nuevo = false;
         habilitarCampos(true);
         habilitarBotones(false);
-        txtRuc.setEnabled(false);
-        txtNombre.requestFocus();
+        txtRuc.requestFocus();
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
