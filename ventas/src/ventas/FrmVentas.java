@@ -203,6 +203,9 @@ public final class FrmVentas extends javax.swing.JDialog {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtRucKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRucKeyTyped(evt);
+            }
         });
         pnlVenta.add(txtRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 125, 20));
 
@@ -231,6 +234,11 @@ public final class FrmVentas extends javax.swing.JDialog {
         txtArticuloId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtArticuloIdActionPerformed(evt);
+            }
+        });
+        txtArticuloId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtArticuloIdKeyTyped(evt);
             }
         });
         pnlArticulo.add(txtArticuloId, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 125, -1));
@@ -668,6 +676,24 @@ public final class FrmVentas extends javax.swing.JDialog {
         txtPrecio.setText(fila[2].toString());
         txtStock.setText(fila[3].toString());
     }//GEN-LAST:event_txtArticuloActionPerformed
+
+    private void txtRucKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRucKeyTyped
+        char e  = evt.getKeyChar();
+        if(!txtStock.getText().isEmpty()){
+            if(e==KeyEvent.VK_ENTER){
+                txtArticuloId.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_txtRucKeyTyped
+
+    private void txtArticuloIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtArticuloIdKeyTyped
+         char e  = evt.getKeyChar();
+        if(!txtStock.getText().isEmpty()){
+            if(e==KeyEvent.VK_ENTER){
+                txtCantidad.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_txtArticuloIdKeyTyped
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
