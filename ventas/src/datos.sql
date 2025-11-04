@@ -35,8 +35,8 @@ VALUES
 INSERT INTO cliente (nombre, apellido, ruc, ciudad_id, barrio_id)
 VALUES
 ("CLIENTE", "ANONIMO", "0000000", 1, 1),
-("CYNTHIA", "CHAMORRO", 1, 1),
-("HUGO", "GARCIA", 1, 1);
+("CYNTHIA", "CHAMORRO","0000001", 1, 1),
+("HUGO", "GARCIA","00000002", 1, 1);
 
 -- INSERT INTO venta (cliente_id, fecha, total, anulado)
 -- VALUES
